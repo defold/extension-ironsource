@@ -12,5 +12,8 @@ height = 640
 title = myextension
 
 [library]
-include_dirs = myextension
+include_dirs = extension-ironsource
+
+[android]
+iap_provider = GooglePlay
 
