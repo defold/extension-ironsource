@@ -16,19 +16,21 @@ namespace dmIronSource {
 
 struct IronSource
 {
-    jobject        m_IronSourceJNI;
+    jobject         m_IronSourceJNI;
 
-    jmethodID      m_Init;
-    jmethodID      m_OnPause;
-    jmethodID      m_OnResume;
-    jmethodID      m_ValidateIntegration;
-    jmethodID      m_SetConsent;
-    jmethodID      m_SetMetaData;
-    jmethodID      m_SetUserId;
-
+    jmethodID       m_Init;
+    jmethodID       m_OnPause;
+    jmethodID       m_OnResume;
+    jmethodID       m_ValidateIntegration;
+    jmethodID       m_SetConsent;
+    jmethodID       m_SetMetaData;
+    jmethodID       m_SetUserId;
+    jmethodID       m_ShouldTrackNetworkState;
+    jmethodID       m_IsRewardedVideoAvailable;
+    jmethodID       m_ShowRewardedVideo;
 };
 
-static IronSource       g_ironsource;
+static IronSource   g_ironsource;
 
 static void CallVoidMethod(jobject instance, jmethodID method)
 {
@@ -104,6 +106,9 @@ static void InitJNIMethods(JNIEnv* env, jclass cls)
     g_ironsource.m_SetConsent = env->GetMethodID(cls, "setConsent", "(Z)V");
     g_ironsource.m_SetMetaData = env->GetMethodID(cls, "setMetaData", "(Ljava/lang/String;Ljava/lang/String;)V");
     g_ironsource.m_SetUserId = env->GetMethodID(cls, "setUserId", "(Ljava/lang/String;)V");
+    g_ironsource.m_ShouldTrackNetworkState = env->GetMethodID(cls, "shouldTrackNetworkState", "(Z)V");
+    g_ironsource.m_IsRewardedVideoAvailable= env->GetMethodID(cls, "isRewardedVideoAvailable", "(Z)Z");
+    g_ironsource.m_ShowRewardedVideo = env->GetMethodID(cls, "showRewardedVideo", "(Ljava/lang/String;)V");
 }
 
 void Initialize_Ext()
@@ -153,6 +158,22 @@ void SetMetaData(const char* key, const char* value)
 void SetUserId(const char* userId)
 {
     CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetUserId, userId);
+}
+
+void ShouldTrackNetworkState(bool shouldTrackNetworkState)
+{
+    CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_ShouldTrackNetworkState, shouldTrackNetworkState);
+}
+
+bool IsRewardedVideoAvailable()
+{
+    return CallBoolMethod(g_ironsource.m_IronSourceJNI, g_ironsource.m_IsRewardedVideoAvailable);
+}
+
+void ShowRewardedVideo(const char* placementName)
+{
+    //TODO: check when `placementName` is NULL (default value)
+    CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_ShowRewardedVideo, placementName);
 }
 
 }//namespace dmIronSource

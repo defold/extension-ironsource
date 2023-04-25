@@ -22,6 +22,10 @@ void SetConsent(bool isConsentProvided);
 void SetMetaData(const char* key, const char* value);
 void SetUserId(const char* userId);
 
+void ShouldTrackNetworkState(bool shouldTrackNetworkState);
+bool IsRewardedVideoAvailable();
+void ShowRewardedVideo(const char* placementName);
+
 } //namespace dmIronSource
 
 #endif

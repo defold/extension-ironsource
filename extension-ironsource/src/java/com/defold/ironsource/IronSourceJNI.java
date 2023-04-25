@@ -20,6 +20,10 @@ import org.json.JSONException;
 
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.integration.IntegrationHelper;
+import com.ironsource.mediationsdk.sdk.LevelPlayRewardedVideoListener;
+import com.ironsource.mediationsdk.adunit.adapter.utility.AdInfo;
+import com.ironsource.mediationsdk.model.Placement;
+import com.ironsource.mediationsdk.logger.IronSourceError;
 
 public class IronSourceJNI {
 
@@ -29,13 +33,10 @@ public class IronSourceJNI {
 
   // duplicate of enums from ironsource_callback_private.h:
   // CONSTANTS:
-  private static final int MSG_INIT =                    4;
-
 
   private static final int EVENT_JSON_ERROR =            11;
 
   // END CONSTANTS
-
 
   private Activity activity;
 
@@ -44,6 +45,7 @@ public class IronSourceJNI {
   }
 
   public void init(String appKey) {
+    IronSource.setLevelPlayRewardedVideoListener(new DefoldLevelPlayRewardedVideoListener());
     IronSource.init(activity, appKey);
   }
 
@@ -73,6 +75,85 @@ public class IronSourceJNI {
   public void onPause() {
     IronSource.onPause(activity);
   }
+
+//--------------------------------------------------
+// Rewarded ADS
+
+  public void shouldTrackNetworkState(boolean shouldTrackNetworkState) {
+    IronSource.shouldTrackNetworkState(activity, shouldTrackNetworkState);
+  }
+
+  public boolean isRewardedVideoAvailable() {
+    return IronSource.isRewardedVideoAvailable();
+  }
+
+  public void showRewardedVideo(final String placementName) {
+    activity.runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        IronSource.showRewardedVideo(placementName);
+      }
+    });
+  }
+
+  private class DefoldLevelPlayRewardedVideoListener implements LevelPlayRewardedVideoListener {
+    // Indicates that there's an available ad. 
+    // The adInfo object includes information about the ad that was loaded successfully
+    // Use this callback instead of onRewardedVideoAvailabilityChanged(true)
+    @Override
+    public void onAdAvailable(AdInfo adInfo) {
+        // String AdUnit = adInfo.getAdUnit();
+        // String AuctionId = adInfo.getAuctionId();
+        // String AdNetwork = adInfo.getAdNetwork();
+        // String Ab = adInfo.getAb();
+        // String Country = adInfo.getCountry();
+        // String InstanceId = adInfo.getInstanceId();
+    }
+    // Indicates that no ads are available to be displayed 
+    // Use this callback instead of onRewardedVideoAvailabilityChanged(false) 
+    @Override
+    public void onAdUnavailable() {
+
+    }
+    // The Rewarded Video ad view has opened. Your activity will loose focus
+    @Override
+    public void onAdOpened(AdInfo adInfo) {
+
+    }
+    // The Rewarded Video ad view is about to be closed. Your activity will regain its focus
+    @Override
+    public void onAdClosed(AdInfo adInfo) {
+
+    }
+    // The user completed to watch the video, and should be rewarded. 
+    // The placement parameter will include the reward data.
+    // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback
+    @Override
+    public void onAdRewarded(Placement placement, AdInfo adInfo) {
+
+    }
+    // The rewarded video ad was failed to show
+    @Override
+    public void onAdShowFailed(IronSourceError error, AdInfo adInfo) {
+
+    }
+    // Invoked when the video ad was clicked. 
+    // This callback is not supported by all networks, and we recommend using it 
+    // only if it's supported by all networks you included in your build
+    @Override
+    public void onAdClicked(Placement placement, AdInfo adInfo) {
+
+    }
+  }
+
+
+//--------------------------------------------------
+// Interstitial ADS
+  
+
+//--------------------------------------------------
+// Banner ADS
+
 
 //--------------------------------------------------
 // Helpers
@@ -143,19 +224,5 @@ public class IronSourceJNI {
     }
     ironSourceAddToQueue(msg, message);
   }
-
-//--------------------------------------------------
-// Interstitial ADS
-
- 
-
-//--------------------------------------------------
-// Rewarded ADS
-
-  
-
-//--------------------------------------------------
-// Banner ADS
-
 
 }

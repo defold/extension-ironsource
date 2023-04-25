@@ -16,7 +16,8 @@ namespace dmIronSource {
 static int Lua_Init(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
-    if (lua_type(L, 1) != LUA_TSTRING) {
+    if (lua_type(L, 1) != LUA_TSTRING)
+    {
         return DM_LUA_ERROR("Expected string, got %s. Wrong type for appKey variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
     }
     const char* lua_appKey = luaL_checkstring(L, 1);
@@ -63,6 +64,42 @@ static int Lua_SetUserId(lua_State* L)
     return 0;
 }
 
+static int Lua_shouldTrackNetworkState(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    bool shouldTrackNetworkState = luaL_checkbool(L, 1);
+    ShouldTrackNetworkState(shouldTrackNetworkState);
+    return 0;
+}
+
+static int Lua_isRewardedVideoAvailable(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    bool isAvailable = IsRewardedVideoAvailable();
+    lua_pushboolean(L, isAvailable);
+    return 1;
+}
+
+static int Lua_showRewardedVideo(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    int type = lua_type(L, 1);
+    if (type != LUA_TSTRING && type != LUA_TNONE && type != LUA_TNIL)
+    {
+        return DM_LUA_ERROR("Expected string with the placement name or nil/nothing for default placement, got %s. Wrong type for appKey variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
+    }
+    if (type == LUA_TSTRING)
+    {
+        const char* placementName = luaL_checkstring(L, 1);
+        ShowRewardedVideo(placementName);
+    }
+    else
+    {
+        ShowRewardedVideo(NULL);
+    }
+    return 0;
+}
+
 static const luaL_reg Module_methods[] =
 {
     {"init", Lua_Init},
@@ -71,6 +108,11 @@ static const luaL_reg Module_methods[] =
     {"set_consent", Lua_SetConsent},
     {"set_metadata", Lua_SetMetaData},
     {"set_user_id", Lua_SetUserId},
+    //rewarded
+    {"should_track_network_state", Lua_shouldTrackNetworkState},
+    {"is_rewarded_video_available", Lua_isRewardedVideoAvailable},
+    {"show_rewarded_video", Lua_showRewardedVideo},
+
     {0, 0}
 };
 

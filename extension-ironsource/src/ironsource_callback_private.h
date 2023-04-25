@@ -11,7 +11,7 @@ namespace dmIronSource {
 
 enum MessageId
 {
-    MSG_INIT =                         4
+    // MSG_INIT =                         4
 };
 
 enum MessageEvent
