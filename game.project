@@ -9,7 +9,8 @@ width = 960
 height = 640
 
 [project]
-title = myextension
+title = IronSource
+version = 0.2
 
 [library]
 include_dirs = extension-ironsource

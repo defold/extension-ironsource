@@ -96,6 +96,28 @@ public class IronSourceJNI {
     });
   }
 
+  public String getRewardedVideoPlacementInfo(String placementName) {
+    Placement placement = IronSource.getRewardedVideoPlacementInfo(placementName);
+      // Null can be returned instead of a placement if the placementName is not valid.
+      if (placement == null) {
+        return null;
+      }
+      String message;
+      try {
+          JSONObject obj = new JSONObject();
+          obj.put("reward_name", placement.getRewardName());
+          obj.put("reward_amount", placement.getRewardAmount());
+          message = obj.toString();
+      } catch (JSONException e) {
+          message = getJsonConversionErrorMessage(e.getLocalizedMessage());
+      }
+      return message;
+  }
+
+  public boolean isRewardedVideoPlacementCapped(String placementName) {
+    return IronSource.isRewardedVideoPlacementCapped(placementName);
+  }
+
   private class DefoldLevelPlayRewardedVideoListener implements LevelPlayRewardedVideoListener {
     // Indicates that there's an available ad. 
     // The adInfo object includes information about the ad that was loaded successfully

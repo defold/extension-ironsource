@@ -25,6 +25,8 @@ void SetUserId(const char* userId);
 void ShouldTrackNetworkState(bool shouldTrackNetworkState);
 bool IsRewardedVideoAvailable();
 void ShowRewardedVideo(const char* placementName);
+const char* GetRewardedVideoPlacementInfo(const char* placementName);
+bool IsRewardedVideoPlacementCapped(const char* placementName);
 
 } //namespace dmIronSource
 

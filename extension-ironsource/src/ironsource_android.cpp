@@ -28,6 +28,8 @@ struct IronSource
     jmethodID       m_ShouldTrackNetworkState;
     jmethodID       m_IsRewardedVideoAvailable;
     jmethodID       m_ShowRewardedVideo;
+    jmethodID       m_GetRewardedVideoPlacementInfo;
+    jmethodID       m_IsRewardedVideoPlacementCapped;
 };
 
 static IronSource   g_ironsource;
@@ -49,6 +51,17 @@ static bool CallBoolMethod(jobject instance, jmethodID method)
     return JNI_TRUE == return_value;
 }
 
+static bool CallBoolMethodChar(jobject instance, jmethodID method, const char* cstr)
+{
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
+
+    jstring jstr = env->NewStringUTF(cstr);
+    jboolean return_value = (jboolean)env->CallBooleanMethod(instance, method, jstr);
+    env->DeleteLocalRef(jstr);
+    return JNI_TRUE == return_value;
+}
+
 static void CallVoidMethodChar(jobject instance, jmethodID method, const char* cstr)
 {
     dmAndroid::ThreadAttacher threadAttacher;
@@ -57,6 +70,19 @@ static void CallVoidMethodChar(jobject instance, jmethodID method, const char* c
     jstring jstr = env->NewStringUTF(cstr);
     env->CallVoidMethod(instance, method, jstr);
     env->DeleteLocalRef(jstr);
+}
+
+static char const* CallCharMethodChar(jobject instance, jmethodID method, const char* cstr)
+{
+    dmAndroid::ThreadAttacher threadAttacher;
+    JNIEnv* env = threadAttacher.GetEnv();
+
+    jstring jstr = env->NewStringUTF(cstr);
+    jstring returned_value = (jstring)env->CallObjectMethod(instance, method, jstr);
+    env->DeleteLocalRef(jstr);
+    const char* returned_char = env->GetStringUTFChars(returned_value, 0);
+    env->DeleteLocalRef(returned_value);
+    return returned_char;
 }
 
 static void CallVoidMethodCharChar(jobject instance, jmethodID method, const char* cstr_1, const char* cstr_2)
@@ -109,6 +135,8 @@ static void InitJNIMethods(JNIEnv* env, jclass cls)
     g_ironsource.m_ShouldTrackNetworkState = env->GetMethodID(cls, "shouldTrackNetworkState", "(Z)V");
     g_ironsource.m_IsRewardedVideoAvailable= env->GetMethodID(cls, "isRewardedVideoAvailable", "(Z)Z");
     g_ironsource.m_ShowRewardedVideo = env->GetMethodID(cls, "showRewardedVideo", "(Ljava/lang/String;)V");
+    g_ironsource.m_GetRewardedVideoPlacementInfo = env->GetMethodID(cls, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
+    g_ironsource.m_IsRewardedVideoPlacementCapped = env->GetMethodID(cls, "isRewardedVideoPlacementCapped", "(Ljava/lang/String;)Z");
 }
 
 void Initialize_Ext()
@@ -174,6 +202,17 @@ void ShowRewardedVideo(const char* placementName)
 {
     //TODO: check when `placementName` is NULL (default value)
     CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_ShowRewardedVideo, placementName);
+}
+
+const char* GetRewardedVideoPlacementInfo(const char* placementName)
+{
+    //TODO: check when return null
+    return CallCharMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_GetRewardedVideoPlacementInfo, placementName);
+}
+
+bool IsRewardedVideoPlacementCapped(const char* placementName)
+{
+    return CallBoolMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_IsRewardedVideoPlacementCapped, placementName);
 }
 
 }//namespace dmIronSource

@@ -100,6 +100,39 @@ static int Lua_showRewardedVideo(lua_State* L)
     return 0;
 }
 
+static int Lua_getRewardedVideoPlacementInfo(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    if (lua_type(L, 1) != LUA_TSTRING)
+    {
+        return DM_LUA_ERROR("Expected string, got %s. Wrong type for placement name variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
+    }
+    const char* lua_placementName = luaL_checkstring(L, 1);
+    const char* placementJson = GetRewardedVideoPlacementInfo(lua_placementName);
+    if (placementJson == NULL)
+    {
+        lua_pushnil(L);
+    }
+    else
+    {
+        dmScript::JsonToLua(L, placementJson, strlen(placementJson)); // throws lua error if it fails
+    }
+    return 1;
+}
+
+static int Lua_isRewardedVideoPlacementCapped(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    if (lua_type(L, 1) != LUA_TSTRING)
+    {
+        return DM_LUA_ERROR("Expected string, got %s. Wrong type for placement name variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
+    }
+    const char* lua_placementName = luaL_checkstring(L, 1);
+    bool isCapped = IsRewardedVideoPlacementCapped(lua_placementName);
+    lua_pushboolean(L, isCapped);
+    return 1;
+}
+
 static const luaL_reg Module_methods[] =
 {
     {"init", Lua_Init},
@@ -112,6 +145,8 @@ static const luaL_reg Module_methods[] =
     {"should_track_network_state", Lua_shouldTrackNetworkState},
     {"is_rewarded_video_available", Lua_isRewardedVideoAvailable},
     {"show_rewarded_video", Lua_showRewardedVideo},
+    {"get_rewarded_video_placement_info", Lua_getRewardedVideoPlacementInfo},
+    {"is_rewarded_video_placement_capped", Lua_isRewardedVideoPlacementCapped},
 
     {0, 0}
 };
