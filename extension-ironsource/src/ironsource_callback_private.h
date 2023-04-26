@@ -11,12 +11,20 @@ namespace dmIronSource {
 
 enum MessageId
 {
+    MSG_REWARDED =                        2,
     // MSG_INIT =                         4
 };
 
 enum MessageEvent
 {
-    EVENT_JSON_ERROR =              11
+    EVENT_AD_AVAILABLE =                 1,
+    EVENT_AD_UNAVAILABLE =               2,
+    EVENT_AD_OPENED =                    3,
+    EVENT_AD_CLOSED =                    4,
+    EVENT_AD_REWARDED =                  5,
+    EVENT_AD_CLICKED =                   6,
+    EVENT_AD_SHOW_FAILED =               7,
+    EVENT_JSON_ERROR =                   11
 };
 
 struct CallbackData
