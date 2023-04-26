@@ -150,7 +150,6 @@ void Initialize_Ext()
     InitJNIMethods(env, cls);
 
     jmethodID jni_constructor = env->GetMethodID(cls, "<init>", "(Landroid/app/Activity;)V");
-
     g_ironsource.m_IronSourceJNI = env->NewGlobalRef(env->NewObject(cls, jni_constructor, threadAttacher.GetActivity()->clazz));
 }
 
@@ -178,7 +177,6 @@ void SetConsent(bool isConsentProvided)
 {
     CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetConsent, isConsentProvided);
 }
-
 
 void SetMetaData(const char* key, const char* value)
 {

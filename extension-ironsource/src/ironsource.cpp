@@ -230,7 +230,7 @@ DM_DECLARE_EXTENSION(EXTENSION_NAME, LIB_NAME, dmIronSource::AppInitializeIronSo
 
 #else
 
-static  dmExtension::Result InitializeIronSource(dmExtension::Params* params)
+static dmExtension::Result InitializeIronSource(dmExtension::Params* params)
 {
     dmLogInfo("Registered extension IronSource (null)");
     return dmExtension::RESULT_OK;
@@ -243,4 +243,4 @@ static dmExtension::Result FinalizeIronSource(dmExtension::Params* params)
 
 DM_DECLARE_EXTENSION(EXTENSION_NAME, LIB_NAME, 0, 0, InitializeIronSource, 0, 0, FinalizeIronSource)
 
-#endif // IOS/Android
+#endif // DM_PLATFORM_ANDROID || DM_PLATFORM_IOS
