@@ -27,6 +27,7 @@ bool IsRewardedVideoAvailable();
 void ShowRewardedVideo(const char* placementName);
 const char* GetRewardedVideoPlacementInfo(const char* placementName);
 bool IsRewardedVideoPlacementCapped(const char* placementName);
+void SetDynamicUserId(const char* userID);
 
 } //namespace dmIronSource
 

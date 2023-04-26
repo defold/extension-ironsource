@@ -18,7 +18,7 @@ static int Lua_Init(lua_State* L)
     DM_LUA_STACK_CHECK(L, 0);
     if (lua_type(L, 1) != LUA_TSTRING)
     {
-        return DM_LUA_ERROR("Expected string, got %s. Wrong type for appKey variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
+        return DM_LUA_ERROR("Expected string, got %s. Wrong type for app_key variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
     }
     const char* lua_appKey = luaL_checkstring(L, 1);
     Init(lua_appKey);
@@ -133,6 +133,18 @@ static int Lua_isRewardedVideoPlacementCapped(lua_State* L)
     return 1;
 }
 
+static int Lua_setDynamicUserId(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    if (lua_type(L, 1) != LUA_TSTRING)
+    {
+        return DM_LUA_ERROR("Expected string, got %s. Wrong type for user_id variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
+    }
+    const char* lua_appKey = luaL_checkstring(L, 1);
+    SetDynamicUserId(lua_appKey);
+    return 0;
+}
+
 static const luaL_reg Module_methods[] =
 {
     {"init", Lua_Init},
@@ -147,6 +159,7 @@ static const luaL_reg Module_methods[] =
     {"show_rewarded_video", Lua_showRewardedVideo},
     {"get_rewarded_video_placement_info", Lua_getRewardedVideoPlacementInfo},
     {"is_rewarded_video_placement_capped", Lua_isRewardedVideoPlacementCapped},
+    {"set_dynamic_user_id", Lua_setDynamicUserId},
 
     {0, 0}
 };

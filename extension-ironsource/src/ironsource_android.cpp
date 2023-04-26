@@ -30,6 +30,7 @@ struct IronSource
     jmethodID       m_ShowRewardedVideo;
     jmethodID       m_GetRewardedVideoPlacementInfo;
     jmethodID       m_IsRewardedVideoPlacementCapped;
+    jmethodID       m_SetDynamicUserId;
 };
 
 static IronSource   g_ironsource;
@@ -137,6 +138,7 @@ static void InitJNIMethods(JNIEnv* env, jclass cls)
     g_ironsource.m_ShowRewardedVideo = env->GetMethodID(cls, "showRewardedVideo", "(Ljava/lang/String;)V");
     g_ironsource.m_GetRewardedVideoPlacementInfo = env->GetMethodID(cls, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
     g_ironsource.m_IsRewardedVideoPlacementCapped = env->GetMethodID(cls, "isRewardedVideoPlacementCapped", "(Ljava/lang/String;)Z");
+    g_ironsource.m_SetDynamicUserId = env->GetMethodID(cls, "setDynamicUserId", "(Ljava/lang/String;)V");
 }
 
 void Initialize_Ext()
@@ -213,6 +215,11 @@ const char* GetRewardedVideoPlacementInfo(const char* placementName)
 bool IsRewardedVideoPlacementCapped(const char* placementName)
 {
     return CallBoolMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_IsRewardedVideoPlacementCapped, placementName);
+}
+
+void SetDynamicUserId(const char* userID)
+{
+    CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetDynamicUserId, userID);
 }
 
 }//namespace dmIronSource

@@ -118,6 +118,10 @@ public class IronSourceJNI {
     return IronSource.isRewardedVideoPlacementCapped(placementName);
   }
 
+  public boolean setDynamicUserId(String userID) {
+    return IronSource.setDynamicUserId(userID);
+  }
+
   private class DefoldLevelPlayRewardedVideoListener implements LevelPlayRewardedVideoListener {
     // Indicates that there's an available ad. 
     // The adInfo object includes information about the ad that was loaded successfully
