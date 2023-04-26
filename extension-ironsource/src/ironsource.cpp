@@ -145,6 +145,74 @@ static int Lua_setDynamicUserId(lua_State* L)
     return 0;
 }
 
+static int Lua_loadInterstitial(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    LoadInterstitial();
+    return 0;
+}
+
+static int Lua_isInterstitialReady(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    bool isReady = IsInterstitialReady();
+    lua_pushboolean(L, isReady);
+    return 1;
+}
+
+static int Lua_getInterstitialPlacementInfo(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    if (lua_type(L, 1) != LUA_TSTRING)
+    {
+        return DM_LUA_ERROR("Expected string, got %s. Wrong type for placement name variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
+    }
+    const char* lua_placementName = luaL_checkstring(L, 1);
+    const char* placementJson = GetInterstitialPlacementInfo(lua_placementName);
+    if (placementJson == NULL)
+    {
+        lua_pushnil(L);
+    }
+    else
+    {
+        dmScript::JsonToLua(L, placementJson, strlen(placementJson)); // throws lua error if it fails
+    }
+    return 1;
+}
+
+static int Lua_isInterstitialPlacementCapped(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    if (lua_type(L, 1) != LUA_TSTRING)
+    {
+        return DM_LUA_ERROR("Expected string, got %s. Wrong type for placement name variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
+    }
+    const char* lua_placementName = luaL_checkstring(L, 1);
+    bool isCapped = IsInterstitialPlacementCapped(lua_placementName);
+    lua_pushboolean(L, isCapped);
+    return 1;
+}
+
+static int Lua_showInterstitial(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    int type = lua_type(L, 1);
+    if (type != LUA_TSTRING && type != LUA_TNONE && type != LUA_TNIL)
+    {
+        return DM_LUA_ERROR("Expected string with the placement name or nil/nothing for default placement, got %s. Wrong type for appKey variable '%s'.", luaL_typename(L, 1), lua_tostring(L, 1));
+    }
+    if (type == LUA_TSTRING)
+    {
+        const char* placementName = luaL_checkstring(L, 1);
+        ShowInterstitial(placementName);
+    }
+    else
+    {
+        ShowInterstitial(NULL);
+    }
+    return 0;
+}
+
 static const luaL_reg Module_methods[] =
 {
     {"init", Lua_Init},
@@ -153,14 +221,19 @@ static const luaL_reg Module_methods[] =
     {"set_consent", Lua_SetConsent},
     {"set_metadata", Lua_SetMetaData},
     {"set_user_id", Lua_SetUserId},
-    //rewarded
+    // rewarded
     {"should_track_network_state", Lua_shouldTrackNetworkState},
     {"is_rewarded_video_available", Lua_isRewardedVideoAvailable},
     {"show_rewarded_video", Lua_showRewardedVideo},
     {"get_rewarded_video_placement_info", Lua_getRewardedVideoPlacementInfo},
     {"is_rewarded_video_placement_capped", Lua_isRewardedVideoPlacementCapped},
     {"set_dynamic_user_id", Lua_setDynamicUserId},
-
+    // Interstitial
+    {"load_interstitial", Lua_loadInterstitial},
+    {"is_interstitial_ready", Lua_isInterstitialReady},
+    {"get_interstitial_placement_info", Lua_getInterstitialPlacementInfo},
+    {"is_interstitial_placement_capped", Lua_isInterstitialPlacementCapped},
+    {"show_interstitial", Lua_showInterstitial},
     {0, 0}
 };
 
@@ -173,6 +246,7 @@ static void LuaInit(lua_State* L)
     lua_pushnumber(L, (lua_Number) name); \
     lua_setfield(L, -2, #name); \
 
+    SETCONSTANT(MSG_INTERSTITIAL)
     SETCONSTANT(MSG_REWARDED)
 
     SETCONSTANT(EVENT_AD_AVAILABLE)
@@ -182,6 +256,9 @@ static void LuaInit(lua_State* L)
     SETCONSTANT(EVENT_AD_REWARDED)
     SETCONSTANT(EVENT_AD_CLICKED)
     SETCONSTANT(EVENT_AD_SHOW_FAILED)
+    SETCONSTANT(EVENT_AD_READY)
+    SETCONSTANT(EVENT_AD_SHOW_SUCCEEDED)
+    SETCONSTANT(EVENT_AD_LOAD_FAILED)
     SETCONSTANT(EVENT_JSON_ERROR)
 
     #undef SETCONSTANT

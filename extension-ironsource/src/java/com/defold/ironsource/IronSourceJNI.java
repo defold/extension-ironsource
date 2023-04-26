@@ -24,6 +24,8 @@ import com.ironsource.mediationsdk.sdk.LevelPlayRewardedVideoListener;
 import com.ironsource.mediationsdk.adunit.adapter.utility.AdInfo;
 import com.ironsource.mediationsdk.model.Placement;
 import com.ironsource.mediationsdk.logger.IronSourceError;
+import com.ironsource.mediationsdk.sdk.LevelPlayInterstitialListener;
+import com.ironsource.mediationsdk.model.InterstitialPlacement;
 
 public class IronSourceJNI {
 
@@ -33,6 +35,7 @@ public class IronSourceJNI {
 
     // duplicate of enums from ironsource_callback_private.h:
     // CONSTANTS:
+    private static final int MSG_INTERSTITIAL =             1;
     private static final int MSG_REWARDED =                 2;
 
     private static final int EVENT_AD_AVAILABLE =           1;
@@ -42,6 +45,9 @@ public class IronSourceJNI {
     private static final int EVENT_AD_REWARDED =            5;
     private static final int EVENT_AD_CLICKED =             6;
     private static final int EVENT_AD_SHOW_FAILED =         7;
+    private static final int EVENT_AD_READY =               8;
+    private static final int EVENT_AD_SHOW_SUCCEEDED =      9;
+    private static final int EVENT_AD_LOAD_FAILED =         10;
     private static final int EVENT_JSON_ERROR =             11;
 
     // END CONSTANTS
@@ -54,6 +60,7 @@ public class IronSourceJNI {
 
     public void init(String appKey) {
         IronSource.setLevelPlayRewardedVideoListener(new DefoldLevelPlayRewardedVideoListener());
+        IronSource.setLevelPlayInterstitialListener(new DefoldLevelPlayInterstitialListener());
         IronSource.init(activity, appKey);
     }
 
@@ -112,11 +119,11 @@ public class IronSourceJNI {
             }
             String message;
             try {
-                    JSONObject obj = new JSONObject();
-                    addPlacement(obj, placement);
-                    message = obj.toString();
+                JSONObject obj = new JSONObject();
+                addPlacement(obj, placement);
+                message = obj.toString();
             } catch (JSONException e) {
-                    message = getJsonConversionErrorMessage(e.getLocalizedMessage());
+                message = getJsonConversionErrorMessage(e.getLocalizedMessage());
             }
             return message;
     }
@@ -178,6 +185,85 @@ public class IronSourceJNI {
 //--------------------------------------------------
 // Interstitial ADS
     
+    public void loadInterstitial() {
+        IronSource.loadInterstitial();
+    }
+
+    public boolean isInterstitialReady() {
+        return IronSource.isInterstitialReady();
+    }
+
+    public String getInterstitialPlacementInfo(String placementName) {
+        InterstitialPlacement placement = IronSource.getInterstitialPlacementInfo(placementName);
+        // Null can be returned instead of a placement if the placementName is not valid.
+        if (placement == null) {
+            return null;
+        }
+        String message;
+        try {
+            JSONObject obj = new JSONObject();
+            addPlacement(obj, placement);
+            message = obj.toString();
+        } catch (JSONException e) {
+            message = getJsonConversionErrorMessage(e.getLocalizedMessage());
+        }
+        return message;
+    }
+
+    public boolean isInterstitialPlacementCapped(String placementName) {
+        return IronSource.isInterstitialPlacementCapped(placementName);
+    }
+
+    public void showInterstitial(final String placementName) {
+        activity.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                IronSource.showInterstitial(placementName);
+            }
+        });
+    }
+
+    private class DefoldLevelPlayInterstitialListener implements LevelPlayInterstitialListener {
+       // Invoked when the interstitial ad was loaded successfully.
+       // AdInfo parameter includes information about the loaded ad   
+       @Override
+       public void onAdReady(AdInfo adInfo) {
+            sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_READY, adInfo);
+       }
+       // Indicates that the ad failed to be loaded 
+       @Override
+       public void onAdLoadFailed(IronSourceError error) {
+            sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_LOAD_FAILED, error);
+       }
+       // Invoked when the Interstitial Ad Unit has opened, and user left the application screen.
+       // This is the impression indication. 
+       @Override
+       public void onAdOpened(AdInfo adInfo) {
+            sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_OPENED, adInfo);
+       }
+       // Invoked when the interstitial ad closed and the user went back to the application screen.
+       @Override
+       public void onAdClosed(AdInfo adInfo) {
+            sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_CLOSED, adInfo);
+       }
+       // Invoked when the ad failed to show 
+       @Override
+       public void onAdShowFailed(IronSourceError error, AdInfo adInfo) {
+            sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_SHOW_FAILED, adInfo, error);
+       }
+       // Invoked when end user clicked on the interstitial ad
+       @Override
+       public void onAdClicked(AdInfo adInfo) {
+            sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_CLICKED, adInfo);
+       }
+       // Invoked before the interstitial ad was opened, and before the InterstitialOnAdOpenedEvent is reported.
+       // This callback is not supported by all networks, and we recommend using it only if  
+       // it's supported by all networks you included in your build. 
+       @Override
+       public void onAdShowSucceeded(AdInfo adInfo){
+            sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_SHOW_SUCCEEDED, adInfo);
+       }
+    }
 
 //--------------------------------------------------
 // Banner ADS
@@ -187,9 +273,18 @@ public class IronSourceJNI {
 // Helpers
 
     private void addPlacement(JSONObject obj, Placement placement) throws JSONException {
+        obj.put("placement_id", placement.getPlacementId());
+        obj.put("placement_name", placement.getPlacementName());
+        obj.put("is_default", placement.isDefault());
+
         obj.put("reward_name", placement.getRewardName());
         obj.put("reward_amount", placement.getRewardAmount());
-        obj.put("placement_тame", placement.getPlacementName());
+    }
+
+    private void addPlacement(JSONObject obj, InterstitialPlacement placement) throws JSONException {
+        obj.put("placement_id", placement.getPlacementId());
+        obj.put("placement_name", placement.getPlacementName());
+        obj.put("is_default", placement.isDefault());
     }
 
     private void addAdInfo(JSONObject obj, AdInfo adInfo) throws JSONException {
@@ -317,6 +412,20 @@ public class IronSourceJNI {
             JSONObject obj = new JSONObject();
             obj.put("event", eventId);
             addAdInfo(obj, adInfo);
+            addIronSourceError(obj, error);
+            message = obj.toString();
+        }
+        catch (JSONException e) {
+            message = getJsonConversionErrorMessage(e.getLocalizedMessage());
+        }
+        ironSourceAddToQueue(msg, message);
+    }
+
+    private void sendSimpleMessage(int msg, int eventId, IronSourceError error) {
+        String message = null;
+        try {
+            JSONObject obj = new JSONObject();
+            obj.put("event", eventId);
             addIronSourceError(obj, error);
             message = obj.toString();
         }

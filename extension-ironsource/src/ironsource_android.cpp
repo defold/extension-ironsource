@@ -25,12 +25,19 @@ struct IronSource
     jmethodID       m_SetConsent;
     jmethodID       m_SetMetaData;
     jmethodID       m_SetUserId;
+
     jmethodID       m_ShouldTrackNetworkState;
     jmethodID       m_IsRewardedVideoAvailable;
     jmethodID       m_ShowRewardedVideo;
     jmethodID       m_GetRewardedVideoPlacementInfo;
     jmethodID       m_IsRewardedVideoPlacementCapped;
     jmethodID       m_SetDynamicUserId;
+
+    jmethodID       m_LoadInterstitial;
+    jmethodID       m_IsInterstitialReady;
+    jmethodID       m_GetInterstitialPlacementInfo;
+    jmethodID       m_IsInterstitialPlacementCapped;
+    jmethodID       m_ShowInterstitial;
 };
 
 static IronSource   g_ironsource;
@@ -126,19 +133,26 @@ static void CallVoidMethodBool(jobject instance, jmethodID method, bool cbool)
 
 static void InitJNIMethods(JNIEnv* env, jclass cls)
 {
-    g_ironsource.m_Init = env->GetMethodID(cls, "init", "(Ljava/lang/String;)V");
-    g_ironsource.m_OnPause = env->GetMethodID(cls, "onPause", "()V");
-    g_ironsource.m_OnResume = env->GetMethodID(cls, "onResume", "()V");
-    g_ironsource.m_ValidateIntegration = env->GetMethodID(cls, "validateIntegration", "()V");
-    g_ironsource.m_SetConsent = env->GetMethodID(cls, "setConsent", "(Z)V");
-    g_ironsource.m_SetMetaData = env->GetMethodID(cls, "setMetaData", "(Ljava/lang/String;Ljava/lang/String;)V");
-    g_ironsource.m_SetUserId = env->GetMethodID(cls, "setUserId", "(Ljava/lang/String;)V");
-    g_ironsource.m_ShouldTrackNetworkState = env->GetMethodID(cls, "shouldTrackNetworkState", "(Z)V");
-    g_ironsource.m_IsRewardedVideoAvailable= env->GetMethodID(cls, "isRewardedVideoAvailable", "(Z)Z");
-    g_ironsource.m_ShowRewardedVideo = env->GetMethodID(cls, "showRewardedVideo", "(Ljava/lang/String;)V");
-    g_ironsource.m_GetRewardedVideoPlacementInfo = env->GetMethodID(cls, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
+    g_ironsource.m_Init =                           env->GetMethodID(cls, "init", "(Ljava/lang/String;)V");
+    g_ironsource.m_OnPause =                        env->GetMethodID(cls, "onPause", "()V");
+    g_ironsource.m_OnResume =                       env->GetMethodID(cls, "onResume", "()V");
+    g_ironsource.m_ValidateIntegration =            env->GetMethodID(cls, "validateIntegration", "()V");
+    g_ironsource.m_SetConsent =                     env->GetMethodID(cls, "setConsent", "(Z)V");
+    g_ironsource.m_SetMetaData =                    env->GetMethodID(cls, "setMetaData", "(Ljava/lang/String;Ljava/lang/String;)V");
+    g_ironsource.m_SetUserId =                      env->GetMethodID(cls, "setUserId", "(Ljava/lang/String;)V");
+
+    g_ironsource.m_ShouldTrackNetworkState =        env->GetMethodID(cls, "shouldTrackNetworkState", "(Z)V");
+    g_ironsource.m_IsRewardedVideoAvailable =       env->GetMethodID(cls, "isRewardedVideoAvailable", "(Z)Z");
+    g_ironsource.m_ShowRewardedVideo =              env->GetMethodID(cls, "showRewardedVideo", "(Ljava/lang/String;)V");
+    g_ironsource.m_GetRewardedVideoPlacementInfo =  env->GetMethodID(cls, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
     g_ironsource.m_IsRewardedVideoPlacementCapped = env->GetMethodID(cls, "isRewardedVideoPlacementCapped", "(Ljava/lang/String;)Z");
-    g_ironsource.m_SetDynamicUserId = env->GetMethodID(cls, "setDynamicUserId", "(Ljava/lang/String;)V");
+    g_ironsource.m_SetDynamicUserId =               env->GetMethodID(cls, "setDynamicUserId", "(Ljava/lang/String;)V");
+
+    g_ironsource.m_LoadInterstitial =               env->GetMethodID(cls, "showInterstitial", "()V");
+    g_ironsource.m_IsInterstitialReady =            env->GetMethodID(cls, "isInterstitialReady", "()Z");
+    g_ironsource.m_GetInterstitialPlacementInfo =   env->GetMethodID(cls, "getInterstitialPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
+    g_ironsource.m_IsInterstitialPlacementCapped =  env->GetMethodID(cls, "isInterstitialPlacementCapped", "(Ljava/lang/String;)Z");
+    g_ironsource.m_ShowInterstitial =               env->GetMethodID(cls, "showInterstitial", "(Ljava/lang/String;)V");
 }
 
 void Initialize_Ext()
@@ -188,6 +202,9 @@ void SetUserId(const char* userId)
     CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetUserId, userId);
 }
 
+//--------------------------------------------------
+// Rewarded ADS
+
 void ShouldTrackNetworkState(bool shouldTrackNetworkState)
 {
     CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_ShouldTrackNetworkState, shouldTrackNetworkState);
@@ -218,6 +235,36 @@ bool IsRewardedVideoPlacementCapped(const char* placementName)
 void SetDynamicUserId(const char* userID)
 {
     CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetDynamicUserId, userID);
+}
+
+//--------------------------------------------------
+// Interstitial ADS
+
+void LoadInterstitial()
+{
+    CallVoidMethod(g_ironsource.m_IronSourceJNI, g_ironsource.m_LoadInterstitial);
+}
+
+bool IsInterstitialReady()
+{
+    return CallBoolMethod(g_ironsource.m_IronSourceJNI, g_ironsource.m_IsInterstitialReady);
+}
+
+const char* GetInterstitialPlacementInfo(const char* placementName)
+{
+    //TODO: check when return null
+    return CallCharMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_GetInterstitialPlacementInfo, placementName);
+}
+
+bool IsInterstitialPlacementCapped(const char* placementName)
+{
+    return CallBoolMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_IsInterstitialPlacementCapped, placementName);
+}
+
+void ShowInterstitial(const char* placementName)
+{
+    //TODO: check when `placementName` is NULL (default value)
+    CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_ShowInterstitial, placementName);
 }
 
 }//namespace dmIronSource

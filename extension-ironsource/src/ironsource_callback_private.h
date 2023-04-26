@@ -11,8 +11,8 @@ namespace dmIronSource {
 
 enum MessageId
 {
-    MSG_REWARDED =                        2,
-    // MSG_INIT =                         4
+    MSG_INTERSTITIAL =                    1,
+    MSG_REWARDED =                        2
 };
 
 enum MessageEvent
@@ -24,6 +24,9 @@ enum MessageEvent
     EVENT_AD_REWARDED =                  5,
     EVENT_AD_CLICKED =                   6,
     EVENT_AD_SHOW_FAILED =               7,
+    EVENT_AD_READY =                     8,
+    EVENT_AD_SHOW_SUCCEEDED =            9,
+    EVENT_AD_LOAD_FAILED =               10,
     EVENT_JSON_ERROR =                   11
 };
 

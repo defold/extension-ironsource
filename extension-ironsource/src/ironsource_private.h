@@ -29,6 +29,12 @@ const char* GetRewardedVideoPlacementInfo(const char* placementName);
 bool IsRewardedVideoPlacementCapped(const char* placementName);
 void SetDynamicUserId(const char* userID);
 
+void LoadInterstitial();
+bool IsInterstitialReady();
+const char* GetInterstitialPlacementInfo(const char* placementName);
+bool IsInterstitialPlacementCapped(const char* placementName);
+void ShowInterstitial(const char* placementName);
+
 } //namespace dmIronSource
 
 #endif
