@@ -1,0 +1,77 @@
+local log = require("example.log")
+local ui = require("example.ui")
+local dirtylarry = require("dirtylarry.dirtylarry")
+
+local data = {
+    ["menu"] = { type = "menu",
+        ["main"] = {},
+        ["interstitial"] = {},
+        ["rewarded"] = {},
+        ["banner"] = {},
+    },
+    ["main_page"] = { type = "page",
+        ["init"] = {},
+        ["validate"] = {},
+        ["test_suite"] = {},
+        ["auto_test"] = {},
+    },
+    ["interstitial_page"] = { type = "page",
+    },
+    ["rewarded_page"] = { type = "page",
+    },
+    ["banner_page"] = { type = "page",
+    }
+}
+
+local actions = {}
+actions.main = function(self, el)
+    ui.disable_all(self.ui, "page")
+    ui.enable(self.ui.main_page, true)
+end
+actions.interstitial = function(self, el)
+    ui.disable_all(self.ui, "page")
+    ui.enable(self.ui.interstitial_page, true)
+end
+actions.rewarded = function(self, el)
+    ui.disable_all(self.ui, "page")
+    ui.enable(self.ui.rewarded_page, true)
+end
+actions.banner = function(self, el)
+    ui.disable_all(self.ui, "page")
+    ui.enable(self.ui.banner_page, true)
+end
+actions.init = function(self, el)
+    ironsource.set_metadata("is_test_suite", "enable")
+    ironsource.init("19bfef645")
+end
+actions.validate = function(self, el)
+    ironsource.validate_integration()
+end
+actions.test_suite = function(self, el)
+    ironsource.launch_test_suite()
+end
+actions.auto_test = function(self, el)
+    --TODO:run auto-tests
+end
+
+function init(self)
+    log.print_all_sdk_ent()
+    self.console = gui.get_node("console")
+    self.ui = ui.fill_tree(data, actions)
+    ui.enable(self.ui.main_page, true)
+    msg.post(".", "acquire_input_focus")
+end
+
+function update(self, dt)
+    log.update(self.console)
+end
+
+function on_input(self, action_id, action)
+    for name, el in pairs(self.ui) do
+        if ui.is_button(el) and ui.is_enabled(el) then
+            dirtylarry:button(el.name, action_id, action, function()
+                actions[el.name](self, el)
+            end)
+        end
+    end
+end
