@@ -143,8 +143,8 @@ public class IronSourceJNI {
         return IronSource.isRewardedVideoPlacementCapped(placementName);
     }
 
-    public boolean setDynamicUserId(String userID) {
-        return IronSource.setDynamicUserId(userID);
+    public void setDynamicUserId(String userID) {
+        IronSource.setDynamicUserId(userID);
     }
 
     private class DefoldLevelPlayRewardedVideoListener implements LevelPlayRewardedVideoListener {

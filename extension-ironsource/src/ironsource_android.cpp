@@ -144,13 +144,13 @@ static void InitJNIMethods(JNIEnv* env, jclass cls)
     g_ironsource.m_LaunchTestSuite =                env->GetMethodID(cls, "launchTestSuite", "()V");
 
     g_ironsource.m_ShouldTrackNetworkState =        env->GetMethodID(cls, "shouldTrackNetworkState", "(Z)V");
-    g_ironsource.m_IsRewardedVideoAvailable =       env->GetMethodID(cls, "isRewardedVideoAvailable", "(Z)Z");
+    g_ironsource.m_IsRewardedVideoAvailable =       env->GetMethodID(cls, "isRewardedVideoAvailable", "()Z");
     g_ironsource.m_ShowRewardedVideo =              env->GetMethodID(cls, "showRewardedVideo", "(Ljava/lang/String;)V");
     g_ironsource.m_GetRewardedVideoPlacementInfo =  env->GetMethodID(cls, "getRewardedVideoPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
     g_ironsource.m_IsRewardedVideoPlacementCapped = env->GetMethodID(cls, "isRewardedVideoPlacementCapped", "(Ljava/lang/String;)Z");
     g_ironsource.m_SetDynamicUserId =               env->GetMethodID(cls, "setDynamicUserId", "(Ljava/lang/String;)V");
 
-    g_ironsource.m_LoadInterstitial =               env->GetMethodID(cls, "showInterstitial", "()V");
+    g_ironsource.m_LoadInterstitial =               env->GetMethodID(cls, "loadInterstitial", "()V");
     g_ironsource.m_IsInterstitialReady =            env->GetMethodID(cls, "isInterstitialReady", "()Z");
     g_ironsource.m_GetInterstitialPlacementInfo =   env->GetMethodID(cls, "getInterstitialPlacementInfo", "(Ljava/lang/String;)Ljava/lang/String;");
     g_ironsource.m_IsInterstitialPlacementCapped =  env->GetMethodID(cls, "isInterstitialPlacementCapped", "(Ljava/lang/String;)Z");
