@@ -21,6 +21,7 @@ void ValidateIntegration();
 void SetConsent(bool isConsentProvided);
 void SetMetaData(const char* key, const char* value);
 void SetUserId(const char* userId);
+void LaunchTestSuite();
 
 void ShouldTrackNetworkState(bool shouldTrackNetworkState);
 bool IsRewardedVideoAvailable();

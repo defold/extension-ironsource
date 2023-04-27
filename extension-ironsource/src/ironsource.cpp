@@ -64,6 +64,13 @@ static int Lua_SetUserId(lua_State* L)
     return 0;
 }
 
+static int Lua_LaunchTestSuite(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    LaunchTestSuite();
+    return 0;
+}
+
 static int Lua_shouldTrackNetworkState(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
@@ -221,6 +228,7 @@ static const luaL_reg Module_methods[] =
     {"set_consent", Lua_SetConsent},
     {"set_metadata", Lua_SetMetaData},
     {"set_user_id", Lua_SetUserId},
+    {"launch_test_suite", Lua_LaunchTestSuite},
     // rewarded
     {"should_track_network_state", Lua_shouldTrackNetworkState},
     {"is_rewarded_video_available", Lua_isRewardedVideoAvailable},
@@ -248,6 +256,7 @@ static void LuaInit(lua_State* L)
 
     SETCONSTANT(MSG_INTERSTITIAL)
     SETCONSTANT(MSG_REWARDED)
+    SETCONSTANT(MSG_INIT)
 
     SETCONSTANT(EVENT_AD_AVAILABLE)
     SETCONSTANT(EVENT_AD_UNAVAILABLE)
@@ -260,6 +269,7 @@ static void LuaInit(lua_State* L)
     SETCONSTANT(EVENT_AD_SHOW_SUCCEEDED)
     SETCONSTANT(EVENT_AD_LOAD_FAILED)
     SETCONSTANT(EVENT_JSON_ERROR)
+    SETCONSTANT(EVENT_INIT_COMPLETE)
 
     #undef SETCONSTANT
 

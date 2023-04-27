@@ -25,6 +25,7 @@ import com.ironsource.mediationsdk.adunit.adapter.utility.AdInfo;
 import com.ironsource.mediationsdk.model.Placement;
 import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.ironsource.mediationsdk.sdk.LevelPlayInterstitialListener;
+import com.ironsource.mediationsdk.sdk.InitializationListener;
 import com.ironsource.mediationsdk.model.InterstitialPlacement;
 
 public class IronSourceJNI {
@@ -37,6 +38,7 @@ public class IronSourceJNI {
     // CONSTANTS:
     private static final int MSG_INTERSTITIAL =             1;
     private static final int MSG_REWARDED =                 2;
+    private static final int MSG_INIT =                     4;
 
     private static final int EVENT_AD_AVAILABLE =           1;
     private static final int EVENT_AD_UNAVAILABLE =         2;
@@ -49,6 +51,7 @@ public class IronSourceJNI {
     private static final int EVENT_AD_SHOW_SUCCEEDED =      9;
     private static final int EVENT_AD_LOAD_FAILED =         10;
     private static final int EVENT_JSON_ERROR =             11;
+    private static final int EVENT_INIT_COMPLETE =          12;
 
     // END CONSTANTS
 
@@ -61,7 +64,11 @@ public class IronSourceJNI {
     public void init(String appKey) {
         IronSource.setLevelPlayRewardedVideoListener(new DefoldLevelPlayRewardedVideoListener());
         IronSource.setLevelPlayInterstitialListener(new DefoldLevelPlayInterstitialListener());
-        IronSource.init(activity, appKey);
+        IronSource.init(activity, appKey, new InitializationListener() { 
+            @Override public void onInitializationComplete() {
+                sendSimpleMessage(MSG_INIT, EVENT_INIT_COMPLETE);
+            } 
+        });
     }
 
     public void validateIntegration() {
@@ -78,6 +85,10 @@ public class IronSourceJNI {
 
     public void setUserId(String userId) {
         IronSource.setUserId(userId);
+    }
+
+    public void launchTestSuite() {
+        IronSource.launchTestSuite(activity.getApplicationContext());
     }
 
 //--------------------------------------------------
@@ -180,7 +191,6 @@ public class IronSourceJNI {
             sendSimpleMessage(MSG_REWARDED, EVENT_AD_CLICKED, adInfo, placement);
         }
     }
-
 
 //--------------------------------------------------
 // Interstitial ADS
