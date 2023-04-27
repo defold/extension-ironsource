@@ -1,3 +1,7 @@
+if not ironsource then
+    return
+end
+
 local log = require("example.log")
 local ui = require("example.ui")
 local dirtylarry = require("dirtylarry.dirtylarry")
@@ -16,6 +20,11 @@ local data = {
         ["auto_test"] = {},
     },
     ["interstitial_page"] = { type = "page",
+        ["load_interstitial"] = {},
+        ["is_interstitial_ready"] = {},
+        ["get_interstitial_placement_info"] = {},
+        ["is_interstitial_placement_capped"] = {},
+        ["show_interstitial"] = {},
     },
     ["rewarded_page"] = { type = "page",
     },
@@ -52,6 +61,25 @@ actions.test_suite = function(self, el)
 end
 actions.auto_test = function(self, el)
     --TODO:run auto-tests
+end
+actions.load_interstitial = function(self, el)
+    ironsource.load_interstitial()
+end
+actions.is_interstitial_ready = function(self, el)
+    print("is_interstitial_ready:", ironsource.is_interstitial_ready())
+end
+actions.get_interstitial_placement_info = function(self, el)
+    local info = "get_interstitial_placement_info:"
+    for k, v in pairs(ironsource.get_interstitial_placement_info()) do
+        info = info.." "..k..":"..v..","
+    end
+    print(info)
+end
+actions.is_interstitial_placement_capped = function(self, el)
+    print("is_interstitial_ready:", ironsource.is_interstitial_placement_capped())
+end
+actions.show_interstitial = function(self, el)
+    ironsource.show_interstitial()
 end
 
 function init(self)
