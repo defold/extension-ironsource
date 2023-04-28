@@ -2,6 +2,16 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="{{android.package}}">
     <uses-sdk android:minSdkVersion="{{android.minimum_sdk_version}}" android:targetSdkVersion="{{android.target_sdk_version}}" />
 
+    <application>
+
+{{#iron_source.admob_android}}
+        <!-- For extension-ironsource -->
+        <meta-data
+            android:name="com.google.android.gms.ads.APPLICATION_ID"
+            android:value="{{iron_source.admob_android}}"/>
+{{/iron_source.admob_android}}
+
+    </application>
     <!-- For extension-ironsource -->
     <uses-permission android:name="com.google.android.gms.permission.AD_ID"/>
 

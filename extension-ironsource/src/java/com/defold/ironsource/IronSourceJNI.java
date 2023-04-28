@@ -93,7 +93,7 @@ public class IronSourceJNI {
     }
 
     public void setAdaptersDebug(boolean isDebugAdapters) {
-        IronSource.Agent.setAdaptersDebug(isDebugAdapters);
+        IronSource.setAdaptersDebug(isDebugAdapters);
     }
 
 //--------------------------------------------------

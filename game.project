@@ -21,5 +21,6 @@ iap_provider = GooglePlay
 package = com.defold.ironsource
 
 [iron_source]
-ad_colony = 1
+ad_colony_android = Remove this text if you don't need this adapter
+admob_android = ca-app-pub-3940256099942544~3347511713 
 
