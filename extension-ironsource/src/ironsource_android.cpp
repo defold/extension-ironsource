@@ -26,6 +26,7 @@ struct IronSource
     jmethodID       m_SetMetaData;
     jmethodID       m_SetUserId;
     jmethodID       m_LaunchTestSuite;
+    jmethodID       m_SetAdaptersDebug;
 
     jmethodID       m_ShouldTrackNetworkState;
     jmethodID       m_IsRewardedVideoAvailable;
@@ -146,6 +147,7 @@ static void InitJNIMethods(JNIEnv* env, jclass cls)
     g_ironsource.m_SetMetaData =                    env->GetMethodID(cls, "setMetaData", "(Ljava/lang/String;Ljava/lang/String;)V");
     g_ironsource.m_SetUserId =                      env->GetMethodID(cls, "setUserId", "(Ljava/lang/String;)V");
     g_ironsource.m_LaunchTestSuite =                env->GetMethodID(cls, "launchTestSuite", "()V");
+    g_ironsource.m_SetAdaptersDebug =               env->GetMethodID(cls, "setAdaptersDebug", "(Z)V");
 
     g_ironsource.m_ShouldTrackNetworkState =        env->GetMethodID(cls, "shouldTrackNetworkState", "(Z)V");
     g_ironsource.m_IsRewardedVideoAvailable =       env->GetMethodID(cls, "isRewardedVideoAvailable", "()Z");
@@ -211,6 +213,11 @@ void SetUserId(const char* userId)
 void LaunchTestSuite()
 {
     CallVoidMethod(g_ironsource.m_IronSourceJNI, g_ironsource.m_LaunchTestSuite);
+}
+
+void SetAdaptersDebug(bool isDebugAdapters)
+{
+    CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetAdaptersDebug, isDebugAdapters);
 }
 
 

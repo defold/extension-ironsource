@@ -92,6 +92,10 @@ public class IronSourceJNI {
         IronSource.launchTestSuite(activity.getApplicationContext());
     }
 
+    public void setAdaptersDebug(boolean isDebugAdapters) {
+        IronSource.Agent.setAdaptersDebug(isDebugAdapters);
+    }
+
 //--------------------------------------------------
 // Lifecycle
 
