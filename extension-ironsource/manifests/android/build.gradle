@@ -14,16 +14,23 @@ dependencies {
     implementation 'com.google.android.gms:play-services-basement:18.1.0' 
 // --- NOT AMAZON ---
 
-{{#iron_source.ad_colony_android}}
+{{#iron_source.adcolony_android}}
     // Add AdColony Network
     implementation 'com.ironsource.adapters:adcolonyadapter:4.3.14'
     implementation 'com.adcolony:sdk:4.8.0'
-{{/iron_source.ad_colony_android}}
+{{/iron_source.adcolony_android}}
 
 {{#iron_source.admob_android}}
     // Add AdMob and Ad Manager Network
     implementation 'com.google.android.gms:play-services-ads:21.5.0'
     implementation 'com.ironsource.adapters:admobadapter:4.3.36'
 {{/iron_source.admob_android}}
+
+{{#iron_source.applovin_android}}
+    // Add Applovin Network
+    implementation 'com.ironsource.adapters:applovinadapter:4.3.37'
+    implementation 'com.applovin:applovin-sdk:11.7.1'
+{{/iron_source.applovin_android}}
+
 
 }
