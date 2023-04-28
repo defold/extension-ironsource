@@ -32,5 +32,10 @@ dependencies {
     implementation 'com.applovin:applovin-sdk:11.7.1'
 {{/iron_source.applovin_android}}
 
+{{#iron_source.charboost_android}}
+    // Add Chartboost Network
+    implementation 'com.ironsource.adapters:chartboostadapter:4.3.11'
+    implementation 'com.chartboost:chartboost-sdk:9.2.0'
+{{/iron_source.charboost_android}}
 
 }
