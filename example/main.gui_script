@@ -1,10 +1,15 @@
 if not ironsource then
+    error("Extension works only on IOS and Android")
     return
 end
 
 local log = require("example.log")
 local ui = require("example.ui")
+local callback = require("example.callback")
 local dirtylarry = require("dirtylarry.dirtylarry")
+
+local INT_PLACEMENT = "DefaultInterstitial"
+local REW_PLACEMENT = "DefaultRewardedVideo"
 
 local data = {
     ["menu"] = { type = "menu",
@@ -27,6 +32,12 @@ local data = {
         ["show_interstitial"] = {},
     },
     ["rewarded_page"] = { type = "page",
+        ["should_track_network_state"] = {},
+        ["is_rewarded_video_available"] = {},
+        ["show_rewarded_video"] = {},
+        ["get_rewarded_video_placement_info"] = {},
+        ["is_rewarded_video_placement_capped"] = {},
+        ["set_dynamic_user_id"] = {},
     },
     ["banner_page"] = { type = "page",
     }
@@ -61,25 +72,54 @@ actions.test_suite = function(self, el)
 end
 actions.auto_test = function(self, el)
     --TODO:run auto-tests
+    print("Not implemented yet!")
 end
 actions.load_interstitial = function(self, el)
     ironsource.load_interstitial()
 end
 actions.is_interstitial_ready = function(self, el)
-    print("is_interstitial_ready:", ironsource.is_interstitial_ready())
+    print("is_interstitial_ready: ", ironsource.is_interstitial_ready())
 end
 actions.get_interstitial_placement_info = function(self, el)
-    local info = "get_interstitial_placement_info:"
-    for k, v in pairs(ironsource.get_interstitial_placement_info()) do
-        info = info.." "..k..":"..v..","
-    end
-    print(info)
+    local msg = log.get_table_as_str(ironsource.get_interstitial_placement_info(INT_PLACEMENT))
+    print(tostring(msg))
 end
 actions.is_interstitial_placement_capped = function(self, el)
-    print("is_interstitial_ready:", ironsource.is_interstitial_placement_capped())
+    print(ironsource.is_interstitial_placement_capped(INT_PLACEMENT))
 end
 actions.show_interstitial = function(self, el)
-    ironsource.show_interstitial()
+    ironsource.show_interstitial(self.next_int_placement)
+    print("show: " + tostring(self.next_int_placement))
+    if self.next_int_placement == INT_PLACEMENT then
+        self.next_int_placement = nil
+    else
+        self.next_int_placement = INT_PLACEMENT
+    end
+end
+actions.should_track_network_state = function(self, el)
+    ironsource.should_track_network_state(true)
+end
+actions.is_rewarded_video_available = function(self, el)
+    print("is_rewarded_video_available: ", ironsource.is_rewarded_video_available())
+end
+actions.show_rewarded_video = function(self, el)
+    ironsource.show_interstitial(self.next_rew_placement)
+    print("show: " + tostring(self.next_rew_placement))
+    if self.next_rew_placement == REW_PLACEMENT then
+        self.next_rew_placement = nil
+    else
+        self.next_rew_placement = REW_PLACEMENT
+    end
+end
+actions.get_rewarded_video_placement_info = function(self, el)
+    local msg = log.get_table_as_str(ironsource.get_rewarded_video_placement_info(REW_PLACEMENT))
+    print(tostring(msg))
+end
+actions.is_rewarded_video_placement_capped = function(self, el)
+    print(ironsource.is_rewarded_video_placement_capped(REW_PLACEMENT))
+end
+actions.set_dynamic_user_id = function(self, el)
+    ironsource.set_dynamic_user_id("custom_user_id")
 end
 
 function init(self)
@@ -88,6 +128,7 @@ function init(self)
     self.ui = ui.fill_tree(data, actions)
     ui.enable(self.ui.main_page, true)
     msg.post(".", "acquire_input_focus")
+    callback.set()
 end
 
 function update(self, dt)
@@ -98,6 +139,7 @@ function on_input(self, action_id, action)
     for name, el in pairs(self.ui) do
         if ui.is_button(el) and ui.is_enabled(el) then
             dirtylarry:button(el.name, action_id, action, function()
+                print("click: "..el.name)
                 actions[el.name](self, el)
             end)
         end

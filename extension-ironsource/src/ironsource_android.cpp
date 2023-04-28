@@ -89,6 +89,10 @@ static char const* CallCharMethodChar(jobject instance, jmethodID method, const 
     jstring jstr = env->NewStringUTF(cstr);
     jstring returned_value = (jstring)env->CallObjectMethod(instance, method, jstr);
     env->DeleteLocalRef(jstr);
+    if (returned_value == NULL)
+    {
+        return NULL;
+    }
     const char* returned_char = env->GetStringUTFChars(returned_value, 0);
     env->DeleteLocalRef(returned_value);
     return returned_char;
