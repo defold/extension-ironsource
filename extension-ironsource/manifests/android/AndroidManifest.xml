@@ -2,7 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android" package="{{android.package}}">
     <uses-sdk android:minSdkVersion="{{android.minimum_sdk_version}}" android:targetSdkVersion="{{android.target_sdk_version}}" />
 
-    <application>
+    <application
+{{#iron_source.facebook_android}}
+        android:networkSecurityConfig="@xml/network_security_config"
+{{/iron_source.facebook_android}}
+    >
 
 {{#iron_source.admob_android}}
         <!-- For extension-ironsource -->

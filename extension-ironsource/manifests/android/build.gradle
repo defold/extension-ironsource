@@ -44,4 +44,10 @@ dependencies {
     implementation "com.fyber:marketplace-sdk:8.2.2"
 {{/iron_source.fyber_android}}
 
+{{#iron_source.facebook_android}}
+    // Add Facebook Network
+    implementation 'com.ironsource.adapters:facebookadapter:4.3.40'
+    implementation 'com.facebook.android:audience-network-sdk:6.13.7'
+{{/iron_source.facebook_android}}
+
 }
