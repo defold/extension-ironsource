@@ -38,4 +38,10 @@ dependencies {
     implementation 'com.chartboost:chartboost-sdk:9.2.0'
 {{/iron_source.charboost_android}}
 
+{{#iron_source.fyber_android}}
+    // Add Fyber Network (Adapter only)
+    implementation 'com.ironsource.adapters:fyberadapter:4.3.24'
+    implementation "com.fyber:marketplace-sdk:8.2.2"
+{{/iron_source.fyber_android}}
+
 }
