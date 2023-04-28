@@ -64,6 +64,7 @@ public class IronSourceJNI {
     public void init(String appKey) {
         IronSource.setLevelPlayRewardedVideoListener(new DefoldLevelPlayRewardedVideoListener());
         IronSource.setLevelPlayInterstitialListener(new DefoldLevelPlayInterstitialListener());
+        //TODO: add AD Units android.app.Activity, java.lang.String, com.ironsource.mediationsdk.sdk.InitializationListener, com.ironsource.mediationsdk.IronSource$AD_UNIT...
         IronSource.init(activity, appKey, new InitializationListener() { 
             @Override public void onInitializationComplete() {
                 sendSimpleMessage(MSG_INIT, EVENT_INIT_COMPLETE);

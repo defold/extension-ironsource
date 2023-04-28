@@ -1,15 +1,16 @@
 // https://developers.is.com/ironsource-mobile/android/android-sdk/#step-1
 repositories {
-    maven {
-        url 'https://android-sdk.is.com/'
-   }
-}
+   mavenCentral()
+   maven {url 'https://android-sdk.is.com/'} 
 
+}
 dependencies {
     implementation 'com.ironsource.sdk:mediationsdk:7.3.0.1' 
-// Remove for AMAZON:
-    implementation fileTree(dir: 'libs', include: ['*.jar']) 
-    implementation 'com.google.android.gms:play-services-appset:16.0.0' 
-    implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1' 
-    implementation 'com.google.android.gms:play-services-basement:18.1.0' 
+
+    {{#iron_source.ad_colony}}
+    // Add AdColony Network
+    implementation 'com.ironsource.adapters:adcolonyadapter:4.3.14'
+    implementation 'com.adcolony:sdk:4.8.0'
+    {{/iron_source.ad_colony}}
+
 }

@@ -19,3 +19,7 @@ include_dirs = extension-ironsource
 [android]
 iap_provider = GooglePlay
 package = com.defold.ironsource
+
+[iron_source]
+ad_colony = 1
+
