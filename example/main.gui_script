@@ -104,7 +104,7 @@ actions.is_rewarded_video_available = function(self, el)
     print("is_rewarded_video_available: ", ironsource.is_rewarded_video_available())
 end
 actions.show_rewarded_video = function(self, el)
-    ironsource.show_interstitial(self.next_rew_placement)
+    ironsource.show_rewarded_video(self.next_rew_placement)
     print("show: " + tostring(self.next_rew_placement))
     if self.next_rew_placement == REW_PLACEMENT then
         self.next_rew_placement = nil
