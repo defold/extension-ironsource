@@ -1,27 +1,32 @@
 // https://developers.is.com/ironsource-mobile/android/android-sdk/#step-1
 repositories {
-   mavenCentral()
-   maven {url 'https://android-sdk.is.com/'}
+    mavenCentral()
+    maven {url 'https://android-sdk.is.com/'}
 
 {{#iron_source.liftoff_android}}
-   maven {url "https://jitpack.io"}
+    // For liftoff (vungle) 
+    maven {url "https://jitpack.io"}
 {{/iron_source.liftoff_android}}
 
 {{#iron_source.pangle_android}}
+    // For pangle 
     maven {url 'https://artifact.bytedance.com/repository/pangle'}
 {{/iron_source.pangle_android}}
 
 {{#iron_source.tapjoy_android}}
+    // For tapjoy 
     maven { url "https://sdk.tapjoy.com/"}
 {{/iron_source.tapjoy_android}}
 
 {{#iron_source.yahoo_android}}
+    // For yahoo
     maven { url 'https://artifactory.yahooinc.com/artifactory/maven/'}
 {{/iron_source.yahoo_android}}
 
 {{#iron_source.mintegral_android}}
-     // For the non-China Traffic app, Android X Version
-     maven {url  "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
+    // For mintegral
+    // For the non-China Traffic app, Android X Version
+    maven {url  "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
 {{/iron_source.mintegral_android}}
 
 }
@@ -29,11 +34,12 @@ dependencies {
     implementation 'com.ironsource.sdk:mediationsdk:7.3.0.1' 
 
 // Remove for AMAZON:
+// --- NOT AMAZON START ---
     implementation fileTree(dir: 'libs', include: ['*.jar']) 
     implementation 'com.google.android.gms:play-services-appset:16.0.0' 
     implementation 'com.google.android.gms:play-services-ads-identifier:18.0.1' 
     implementation 'com.google.android.gms:play-services-basement:18.1.0' 
-// --- NOT AMAZON ---
+// --- NOT AMAZON END ---
 
 {{#iron_source.adcolony_android}}
     // Add AdColony Network
