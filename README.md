@@ -22,13 +22,13 @@ For example, If you don't need `Pangle` on Android, click `Restore` button for i
 
 The fields may contain any text for including into the bundle and stay empty for excluding.
 
-2.1 `admob_android` field should contain `app_id` if you wanna use it or stay empty if not.
+3. `admob_android` field should contain `app_id` if you wanna use it or stay empty if not.
 
-3. Use the official Android and iOS manuals for the SDK integration in everething related to the SDK functions: initialization, AD loading and showing, meta data, consent, work with user id and the other functions. Also for Adapters integration. Ignore everething related to Gradle and library installation, changes in manifests and so on.
+4. Use the official Android and iOS manuals for the SDK integration in everething related to the SDK functions: initialization, AD loading and showing, meta data, consent, work with user id and the other functions. Also for Adapters integration. Ignore everething related to Gradle and library installation, changes in manifests and so on.
 
-4. In Defold the SDK has `ironsource` namespace and all the methods are the same as in official documentation but in camel case. For ecample if in official documentation you see `IronSource.setMetaData("AppLovin_AgeRestrictedUser","true");` in Defold it will be: `ironsource.set_meta_data("AppLovin_AgeRestrictedUser","true")`
+5. In Defold the SDK has `ironsource` namespace and all the methods are the same as in official documentation but in camel case. For ecample if in official documentation you see `IronSource.setMetaData("AppLovin_AgeRestrictedUser","true");` in Defold it will be: `ironsource.set_meta_data("AppLovin_AgeRestrictedUser","true")`
 
-5. The SDK has just one universal callback for everething. Please check [callback.lua](https://github.com/defold/extension-ironsource/blob/main/example/callback.lua) for better understanding.
+6. The SDK has just one universal callback for everething. Please check [callback.lua](https://github.com/defold/extension-ironsource/blob/main/example/callback.lua) for better understanding.
 
 ---
 
