@@ -1,4 +1,4 @@
-# AdMob Extension for Defold
+# IronSource Extension for Defold
 
 Defold [native extension](https://www.defold.com/manuals/extensions/) which provides access to IronSource functionality on Android and iOS.
 
