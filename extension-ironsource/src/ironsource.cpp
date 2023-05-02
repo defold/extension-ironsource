@@ -75,7 +75,7 @@ static int Lua_SetAdaptersDebug(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
     bool isDebugAdapters = luaL_checkbool(L, 1);
-    SetConsent(isDebugAdapters);
+    SetAdaptersDebug(isDebugAdapters);
     return 0;
 }
 
