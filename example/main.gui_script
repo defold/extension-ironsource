@@ -61,6 +61,8 @@ actions.banner = function(self, el)
     ui.enable(self.ui.banner_page, true)
 end
 actions.init = function(self, el)
+    -- ironsource.set_user_id("UserID");
+    ironsource.set_consent(true)
     ironsource.set_adapters_debug(true)
     ironsource.set_metadata("is_test_suite", "enable")
     ironsource.init("19bfef645")
