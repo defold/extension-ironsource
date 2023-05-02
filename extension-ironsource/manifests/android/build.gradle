@@ -16,8 +16,14 @@ repositories {
 {{/iron_source.tapjoy_android}}
 
 {{#iron_source.yahoo_android}}
-   maven { url 'https://artifactory.yahooinc.com/artifactory/maven/'}
+    maven { url 'https://artifactory.yahooinc.com/artifactory/maven/'}
 {{/iron_source.yahoo_android}}
+
+{{#iron_source.mintegral_android}}
+     // For the non-China Traffic app, Android X Version
+     maven {url  "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
+{{/iron_source.mintegral_android}}
+
 }
 dependencies {
     implementation 'com.ironsource.sdk:mediationsdk:7.3.0.1' 
@@ -87,7 +93,14 @@ dependencies {
 
 // TODO: Maio
 
-// TODO: Mintegral
+{{#iron_source.mintegral_android}}
+    // For the non-China Traffic app, Add Mintegral Network
+    implementation 'com.ironsource.adapters:mintegraladapter:4.3.13'
+    implementation 'com.mbridge.msdk.oversea:mbbid:16.3.81'
+    implementation 'com.mbridge.msdk.oversea:reward:16.3.81'
+    implementation 'com.mbridge.msdk.oversea:mbbanner:16.3.81'
+    implementation 'com.mbridge.msdk.oversea:newinterstitial:16.3.81'
+{{/iron_source.mintegral_android}}
 
 {{#iron_source.mytarget_android}}
     // Add myTarget Network
