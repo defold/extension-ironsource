@@ -66,6 +66,7 @@ public class IronSourceJNI {
         IronSource.setLevelPlayInterstitialListener(new DefoldLevelPlayInterstitialListener());
         //TODO: add AD Units android.app.Activity, java.lang.String, com.ironsource.mediationsdk.sdk.InitializationListener, com.ironsource.mediationsdk.IronSource$AD_UNIT...
         IronSource.init(activity, appKey, new InitializationListener() { 
+            // ironSource SDK is initialized
             @Override public void onInitializationComplete() {
                 sendSimpleMessage(MSG_INIT, EVENT_INIT_COMPLETE);
             } 
@@ -153,14 +154,14 @@ public class IronSourceJNI {
     }
 
     private class DefoldLevelPlayRewardedVideoListener implements LevelPlayRewardedVideoListener {
-        // Indicates that there's an available ad. 
+        // Indicates that there's an available ad.
         // The adInfo object includes information about the ad that was loaded successfully
         // Use this callback instead of onRewardedVideoAvailabilityChanged(true)
         @Override
         public void onAdAvailable(AdInfo adInfo) {
             sendSimpleMessage(MSG_REWARDED, EVENT_AD_AVAILABLE, adInfo);
         }
-        // Indicates that no ads are available to be displayed 
+        // Indicates that no ads are available to be displayed
         // Use this callback instead of onRewardedVideoAvailabilityChanged(false) 
         @Override
         public void onAdUnavailable() {
@@ -176,7 +177,7 @@ public class IronSourceJNI {
         public void onAdClosed(AdInfo adInfo) {
             sendSimpleMessage(MSG_REWARDED, EVENT_AD_CLOSED, adInfo);
         }
-        // The user completed to watch the video, and should be rewarded. 
+        // The user completed to watch the video, and should be rewarded.
         // The placement parameter will include the reward data.
         // When using server-to-server callbacks, you may ignore this event and wait for the ironSource server callback
         @Override
@@ -188,7 +189,7 @@ public class IronSourceJNI {
         public void onAdShowFailed(IronSourceError error, AdInfo adInfo) {
             sendSimpleMessage(MSG_REWARDED, EVENT_AD_SHOW_FAILED, adInfo, error);
         }
-        // Invoked when the video ad was clicked. 
+        // Invoked when the video ad was clicked.
         // This callback is not supported by all networks, and we recommend using it 
         // only if it's supported by all networks you included in your build
         @Override
@@ -240,12 +241,12 @@ public class IronSourceJNI {
 
     private class DefoldLevelPlayInterstitialListener implements LevelPlayInterstitialListener {
        // Invoked when the interstitial ad was loaded successfully.
-       // AdInfo parameter includes information about the loaded ad   
+       // AdInfo parameter includes information about the loaded ad
        @Override
        public void onAdReady(AdInfo adInfo) {
             sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_READY, adInfo);
        }
-       // Indicates that the ad failed to be loaded 
+       // Indicates that the ad failed to be loaded
        @Override
        public void onAdLoadFailed(IronSourceError error) {
             sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_LOAD_FAILED, error);
