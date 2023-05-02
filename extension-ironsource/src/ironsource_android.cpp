@@ -236,13 +236,11 @@ bool IsRewardedVideoAvailable()
 
 void ShowRewardedVideo(const char* placementName)
 {
-    //TODO: check when `placementName` is NULL (default value)
     CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_ShowRewardedVideo, placementName);
 }
 
 const char* GetRewardedVideoPlacementInfo(const char* placementName)
 {
-    //TODO: check when return null
     return CallCharMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_GetRewardedVideoPlacementInfo, placementName);
 }
 
@@ -271,7 +269,6 @@ bool IsInterstitialReady()
 
 const char* GetInterstitialPlacementInfo(const char* placementName)
 {
-    //TODO: check when return null
     return CallCharMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_GetInterstitialPlacementInfo, placementName);
 }
 
@@ -282,7 +279,6 @@ bool IsInterstitialPlacementCapped(const char* placementName)
 
 void ShowInterstitial(const char* placementName)
 {
-    //TODO: check when `placementName` is NULL (default value)
     CallVoidMethodChar(g_ironsource.m_IronSourceJNI, g_ironsource.m_ShowInterstitial, placementName);
 }
 

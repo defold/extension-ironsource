@@ -92,7 +92,7 @@ actions.is_interstitial_placement_capped = function(self, el)
 end
 actions.show_interstitial = function(self, el)
     ironsource.show_interstitial(self.next_int_placement)
-    print("show: " + tostring(self.next_int_placement))
+    print("show: " .. tostring(self.next_int_placement))
     if self.next_int_placement == INT_PLACEMENT then
         self.next_int_placement = nil
     else
@@ -107,7 +107,7 @@ actions.is_rewarded_video_available = function(self, el)
 end
 actions.show_rewarded_video = function(self, el)
     ironsource.show_rewarded_video(self.next_rew_placement)
-    print("show: " + tostring(self.next_rew_placement))
+    print("show: " .. tostring(self.next_rew_placement))
     if self.next_rew_placement == REW_PLACEMENT then
         self.next_rew_placement = nil
     else
