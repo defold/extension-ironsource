@@ -50,4 +50,15 @@ dependencies {
     implementation 'com.facebook.android:audience-network-sdk:6.13.7'
 {{/iron_source.facebook_android}}
 
+{{#iron_source.hyprmx_android}}
+    // Add HyprMX Network
+    implementation 'com.ironsource.adapters:hyprmxadapter:4.3.4'
+    implementation 'com.hyprmx.android:HyprMX-SDK:6.0.3'
+{{/iron_source.hyprmx_android}}
+
+{{#iron_source.inmobi_android}}
+    // Add InMobi Network
+    implementation 'com.ironsource.adapters:inmobiadapter:4.3.17' 
+    implementation 'com.inmobi.monetization:inmobi-ads:10.1.2'
+{{/iron_source.inmobi_android}}
 }
