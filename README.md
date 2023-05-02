@@ -22,7 +22,7 @@ For example, If you don't need `Pangle` on Android, click `Restore` button for i
 
 The fields may contain any text for including into the bundle and stay empty for excluding.
 
-3. `admob_android` field should contain `app_id` if you wanna use it or stay empty if not.
+3. The `admob_android` field should contain `app_id` if you wanna use it or stay empty if not.
 
 4. Use the official Android and iOS manuals for the SDK integration in everething related to the SDK functions: initialization, AD loading and showing, meta data, consent, work with user id and the other functions. Also for Adapters integration. Ignore everething related to Gradle and library installation, changes in manifests and so on.
 
