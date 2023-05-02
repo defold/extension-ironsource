@@ -1,8 +1,23 @@
 // https://developers.is.com/ironsource-mobile/android/android-sdk/#step-1
 repositories {
    mavenCentral()
-   maven {url 'https://android-sdk.is.com/'} 
+   maven {url 'https://android-sdk.is.com/'}
 
+{{#iron_source.liftoff_android}}
+   maven {url "https://jitpack.io"}
+{{/iron_source.liftoff_android}}
+
+{{#iron_source.pangle_android}}
+    maven {url 'https://artifact.bytedance.com/repository/pangle'}
+{{/iron_source.pangle_android}}
+
+{{#iron_source.tapjoy_android}}
+    maven { url "https://sdk.tapjoy.com/"}
+{{/iron_source.tapjoy_android}}
+
+{{#iron_source.yahoo_android}}
+   maven { url 'https://artifactory.yahooinc.com/artifactory/maven/'}
+{{/iron_source.yahoo_android}}
 }
 dependencies {
     implementation 'com.ironsource.sdk:mediationsdk:7.3.0.1' 
@@ -31,6 +46,8 @@ dependencies {
     implementation 'com.ironsource.adapters:applovinadapter:4.3.37'
     implementation 'com.applovin:applovin-sdk:11.7.1'
 {{/iron_source.applovin_android}}
+
+// TODO: APS
 
 {{#iron_source.charboost_android}}
     // Add Chartboost Network
@@ -61,4 +78,50 @@ dependencies {
     implementation 'com.ironsource.adapters:inmobiadapter:4.3.17' 
     implementation 'com.inmobi.monetization:inmobi-ads:10.1.2'
 {{/iron_source.inmobi_android}}
+
+{{#iron_source.liftoff_android}}
+    // Add Vungle Network
+    implementation 'com.ironsource.adapters:vungleadapter:4.3.20'
+    implementation 'com.vungle:publisher-sdk-android:6.12.1'
+{{/iron_source.liftoff_android}}
+
+// TODO: Maio
+
+// TODO: Mintegral
+
+{{#iron_source.mytarget_android}}
+    // Add myTarget Network
+    implementation 'com.ironsource.adapters:mytargetadapter:4.1.16'
+    implementation 'com.my.target:mytarget-sdk:5.16.3'
+    implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
+{{/iron_source.mytarget_android}}
+
+{{#iron_source.pangle_android}}
+    // Add Pangle Network
+    implementation 'com.ironsource.adapters:pangleadapter:4.3.17'
+    implementation 'com.pangle.global:ads-sdk:5.0.0.8'
+{{/iron_source.pangle_android}}
+
+// TODO: Smaato
+
+// TODO: SuperAwesome
+
+{{#iron_source.tapjoy_android}}
+    // Add Tapjoy Network
+    implementation 'com.ironsource.adapters:tapjoyadapter:4.1.24'
+    implementation 'com.tapjoy:tapjoy-android-sdk:12.11.1'
+{{/iron_source.tapjoy_android}}
+
+{{#iron_source.unityads_android}}
+    // Add UnityAds Network
+    implementation 'com.ironsource.adapters:unityadsadapter:4.3.28'
+    implementation 'com.unity3d.ads:unity-ads:4.6.1'
+{{/iron_source.unityads_android}}
+
+{{#iron_source.yahoo_android}}
+    // Add Yahoo Network
+    implementation 'com.ironsource.adapters:yahooadapter:4.3.4'
+    implementation 'com.yahoo.mobile.ads:android-yahoo-mobile-sdk:1.4.0'
+{{/iron_source.yahoo_android}}
+
 }
