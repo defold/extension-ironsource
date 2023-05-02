@@ -252,7 +252,7 @@ public class IronSourceJNI {
             sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_LOAD_FAILED, error);
        }
        // Invoked when the Interstitial Ad Unit has opened, and user left the application screen.
-       // This is the impression indication. 
+       // This is the impression indication.
        @Override
        public void onAdOpened(AdInfo adInfo) {
             sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_OPENED, adInfo);
@@ -262,7 +262,7 @@ public class IronSourceJNI {
        public void onAdClosed(AdInfo adInfo) {
             sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_CLOSED, adInfo);
        }
-       // Invoked when the ad failed to show 
+       // Invoked when the ad failed to show
        @Override
        public void onAdShowFailed(IronSourceError error, AdInfo adInfo) {
             sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_SHOW_FAILED, adInfo, error);
@@ -273,8 +273,8 @@ public class IronSourceJNI {
             sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_CLICKED, adInfo);
        }
        // Invoked before the interstitial ad was opened, and before the InterstitialOnAdOpenedEvent is reported.
-       // This callback is not supported by all networks, and we recommend using it only if  
-       // it's supported by all networks you included in your build. 
+       // This callback is not supported by all networks, and we recommend using it only if
+       // it's supported by all networks you included in your build.
        @Override
        public void onAdShowSucceeded(AdInfo adInfo){
             sendSimpleMessage(MSG_INTERSTITIAL, EVENT_AD_SHOW_SUCCEEDED, adInfo);
