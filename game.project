@@ -21,18 +21,19 @@ iap_provider = GooglePlay
 package = com.defold.ironsource
 
 [iron_source]
-adcolony_android = Remove this text if you don't need this adapter (keep field empty)
-admob_android = ca-app-pub-3940256099942544~3347511713
-applovin_android = Remove this text if you don't need this adapter (keep field empty)
-charboost_android = Remove this text if you don't need this adapter (keep field empty)
-fyber_android = Remove this text if you don't need this adapter (keep field empty)
-facebook_android = Remove this text if you don't need this adapter (keep field empty)
-hyprmx_android = Remove this text if you don't need this adapter (keep field empty)
-inmobi_android = Remove this text if you don't need this adapter (keep field empty)
-liftoff_android = Remove this text if you don't need this adapter (keep field empty)
-mintegral_android = Remove this text if you don't need this adapter (keep field empty)
-mytarget_android = Remove this text if you don't need this adapter (keep field empty)
-tapjoy_android = Remove this text if you don't need this adapter (keep field empty)
-unityads_android = Remove this text if you don't need this adapter (keep field empty)
-yahoo_android = Remove this text if you don't need this adapter (keep field empty)
+adcolony_android = 1
+admob_android = 1
+admob_android_appid = ca-app-pub-3940256099942544~3347511713
+applovin_android = 1
+charboost_android = 1
+fyber_android = 1
+facebook_android = 1
+hyprmx_android = 1
+inmobi_android = 1
+liftoff_android = 1
+mintegral_android = 1
+mytarget_android = 1
+tapjoy_android = 1
+unityads_android = 1
+yahoo_android = 1
 

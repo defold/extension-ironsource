@@ -15,14 +15,9 @@ See the [example folder](https://github.com/defold/extension-ironsource/tree/mai
 
 1. Copy/paste `[iron_source]` section from [game.project](https://github.com/defold/extension-ironsource/blob/main/game.project) file into your `game.project`.
 
-2. If you don't need an adapter, just remove text for the field (use restore button) but keep this empty field in the `game.project` file.
-For example, If you don't need `Pangle` on Android, click `Restore` button for it:
+2. If you don't need an adapter, just set `0` into a adapter's field (these fields are boolean and may be `1` or `0`.).
 
-<img width="610" alt="image" src="https://user-images.githubusercontent.com/2209596/235677588-5b387f86-f9b7-4a91-9d92-2a40195a70a3.png">
-
-The fields may contain any text for including into the bundle and stay empty for excluding.
-
-3. The `admob_android` field should contain `app_id` if you wanna use it or stay empty if not.
+3. The `admob_android_appid` field should contain `app_id` if you want to use AdMob adapter and specify `admob_android` to 1.
 
 4. Use the official Android and iOS manuals for the SDK integration in everething related to the SDK functions: initialization, AD loading and showing, meta data, consent, work with user id and the other functions. Also for Adapters integration. Ignore everething related to Gradle and library installation, changes in manifests and so on.
 
