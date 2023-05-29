@@ -107,11 +107,11 @@ void SetAdaptersDebug(bool isDebugAdapters) {
 // Rewarded ADS
 
 void ShouldTrackNetworkState(bool shouldTrackNetworkState) {
-
+    [IronSource shouldTrackReachability:shouldTrackNetworkState ? YES : NO];
 }
 
 bool IsRewardedVideoAvailable() {
-
+    return [IronSource hasRewardedVideo] == YES;
 }
 
 void ShowRewardedVideo(const char* placementName) {
@@ -123,11 +123,11 @@ const char* GetRewardedVideoPlacementInfo(const char* placementName) {
 }
 
 bool IsRewardedVideoPlacementCapped(const char* placementName) {
-
+    return [IronSource isRewardedVideoCappedForPlacement:[NSString stringWithUTF8String:placementName]] == YES;
 }
 
 void SetDynamicUserId(const char* userID) {
-
+    [IronSource setDynamicUserId:[NSString stringWithUTF8String:userID]];
 }
 
 //--------------------------------------------------
@@ -138,7 +138,7 @@ void LoadInterstitial() {
 }
 
 bool IsInterstitialReady() {
-
+    return [IronSource hasInterstitial] == YES;
 }
 
 const char* GetInterstitialPlacementInfo(const char* placementName) {
@@ -146,7 +146,7 @@ const char* GetInterstitialPlacementInfo(const char* placementName) {
 }
 
 bool IsInterstitialPlacementCapped(const char* placementName) {
-
+    return [IronSource isInterstitialCappedForPlacement:[NSString stringWithUTF8String:placementName]] == YES;
 }
 
 void ShowInterstitial(const char* placementName) {
