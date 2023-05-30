@@ -63,9 +63,15 @@ void SendSimpleMessage(MessageId msg, MessageEvent event) {
 }
 
 void AddPlacement(id dict, ISPlacementInfo *placementInfo) {
-    [dict setObject:[placementInfo placementName] forKey:@"placement_name"];
-    [dict setObject:[placementInfo rewardAmount] forKey:@"reward_amount"];
-    [dict setObject:[placementInfo rewardName] forKey:@"reward_name"];
+    if ([placementInfo placementName]) {
+        [dict setObject:[placementInfo placementName] forKey:@"placement_name"];
+    }
+    if ([placementInfo rewardAmount]) {
+        [dict setObject:[placementInfo rewardAmount] forKey:@"reward_amount"];
+    }
+    if ([placementInfo rewardName]) {
+        [dict setObject:[placementInfo rewardName] forKey:@"reward_name"];
+    }
 }
 
 void AddAdInfo(id dict, ISAdInfo *placementInfo) {
@@ -165,6 +171,10 @@ const char* GetDictAsJSON(NSMutableDictionary *dict) {
     }
 }
 
+NSString* GetNSStringOrNULL(const char* str) {
+    return str ? [NSString stringWithUTF8String:str] : NULL;
+}
+
 //--------------------------------------------------
 // Main functions
 
@@ -180,7 +190,7 @@ void Initialize_Ext() {
 }
 
 void Init(const char* appKey) {
-    [IronSource initWithAppKey:[NSString stringWithUTF8String:appKey]];
+    [IronSource initWithAppKey:[NSString stringWithUTF8String:appKey] delegate:ironSourceExtInitAdDelegate];
 }
 
 void OnPause() {
@@ -235,11 +245,11 @@ bool IsRewardedVideoAvailable() {
 }
 
 void ShowRewardedVideo(const char* placementName) {
-    [IronSource showRewardedVideoWithViewController:uiViewController placement:[NSString stringWithUTF8String:placementName]];
+    [IronSource showRewardedVideoWithViewController:uiViewController placement:GetNSStringOrNULL(placementName)];
 }
 
 const char* GetRewardedVideoPlacementInfo(const char* placementName) {
-    ISPlacementInfo *placementInfo = [IronSource rewardedVideoPlacementInfo:[NSString stringWithUTF8String:placementName]];
+    ISPlacementInfo *placementInfo = [IronSource rewardedVideoPlacementInfo:GetNSStringOrNULL(placementName)];
     NSMutableDictionary *dict = [NSMutableDictionary dictionary];
     AddPlacement(dict, placementInfo);
 
@@ -248,7 +258,7 @@ const char* GetRewardedVideoPlacementInfo(const char* placementName) {
 }
 
 bool IsRewardedVideoPlacementCapped(const char* placementName) {
-    return [IronSource isRewardedVideoCappedForPlacement:[NSString stringWithUTF8String:placementName]] == YES;
+    return [IronSource isRewardedVideoCappedForPlacement:GetNSStringOrNULL(placementName)] == YES;
 }
 
 void SetDynamicUserId(const char* userID) {
@@ -272,11 +282,11 @@ const char* GetInterstitialPlacementInfo(const char* placementName) {
 }
 
 bool IsInterstitialPlacementCapped(const char* placementName) {
-    return [IronSource isInterstitialCappedForPlacement:[NSString stringWithUTF8String:placementName]] == YES;
+    return [IronSource isInterstitialCappedForPlacement: GetNSStringOrNULL(placementName)] == YES;
 }
 
 void ShowInterstitial(const char* placementName) {
-    [IronSource showInterstitialWithViewController:uiViewController placement:[NSString stringWithUTF8String:placementName]];
+    [IronSource showInterstitialWithViewController:uiViewController placement:GetNSStringOrNULL(placementName)];
 }
 
 } //namespace

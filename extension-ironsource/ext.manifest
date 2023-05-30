@@ -1,1 +1,6 @@
 name: "IronSourceExt"
+
+platforms:
+    ios:
+        context:
+            linkFlags:  ["-ObjC"]
