@@ -85,6 +85,12 @@ local function ironsource_callback(self, message_id, message)
         elseif message.event == ironsource.EVENT_CONSENT_SHOW_FAILED then
             -- Consent view was not displayed, due to error
             -- massage.consent_view_type, massage.error_code, massage.error_message
+        elseif message.event == ironsource.EVENT_CONSENT_ACCEPTED then
+            -- The user pressed the Settings or Next buttons
+            -- massage.consent_view_type
+        elseif message.event == ironsource.EVENT_CONSENT_DISMISSED then
+            -- The user dismiss consent
+            -- massage.consent_view_type
         end
     end
 end

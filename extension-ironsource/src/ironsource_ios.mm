@@ -437,6 +437,14 @@ void ShowInterstitial(const char* placementName) {
 - (void)consentViewDidFailToShowWithError:(NSError *)error consentViewType:(NSString *)consentViewType {
     dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_SHOW_FAILED, @"consent_view_type", consentViewType, error);
 }
+// The user pressed the Settings or Next buttons
+- (void)consentViewDidAccept:(NSString *)consentViewType {
+    dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_ACCEPTED, @"consent_view_type", consentViewType);
+}
+
+- (void)consentViewDidDismiss:(NSString *)consentViewType {
+    dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_DISMISSED, @"consent_view_type", consentViewType);
+}
 
 @end
 

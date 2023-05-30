@@ -477,4 +477,10 @@
   - name: EVENT_CONSENT_SHOW_FAILED
     type: number
 
+  - name: EVENT_CONSENT_ACCEPTED
+    type: number
+
+  - name: EVENT_CONSENT_DISMISSED
+    type: number
+
 #*****************************************************************************************************
