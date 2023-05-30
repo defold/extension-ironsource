@@ -11,7 +11,7 @@
       </array>
 
       <key>NSAppTransportSecurity</key>
-      <dict>xw
+      <dict>
          <key>NSAllowsArbitraryLoads</key>
          <true/>
       </dict>

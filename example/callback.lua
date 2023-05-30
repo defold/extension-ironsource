@@ -72,6 +72,20 @@ local function ironsource_callback(self, message_id, message)
             -- it's supported by all networks you included in your build.
             -- massage{AdInfo}
         end
+    elseif message_id == ironsource.MSG_CONSENT then
+        if message.event == ironsource.EVENT_CONSENT_LOADED then
+            -- Consent View was loaded successfully
+            -- massage.consent_view_type
+        elseif message.event == ironsource.EVENT_CONSENT_SHOWN then
+            -- Consent view was displayed successfully 
+            -- massage.consent_view_type
+        elseif message.event == ironsource.EVENT_CONSENT_LOAD_FAILED then
+            -- Consent view was failed to load
+            -- massage.consent_view_type, massage.error_code, massage.error_message
+        elseif message.event == ironsource.EVENT_CONSENT_SHOW_FAILED then
+            -- Consent view was not displayed, due to error
+            -- massage.consent_view_type, massage.error_code, massage.error_message
+        end
     end
 end
 

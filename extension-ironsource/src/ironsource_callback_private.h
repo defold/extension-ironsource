@@ -32,7 +32,7 @@ enum MessageEvent
     EVENT_JSON_ERROR =                   11,
     EVENT_INIT_COMPLETE =                12,
     EVENT_CONSENT_LOADED =               13,
-    EVENT_CONSENT_SHOWED =               14,
+    EVENT_CONSENT_SHOWN =               14,
     EVENT_CONSENT_LOAD_FAILED =          15,
     EVENT_CONSENT_SHOW_FAILED =          16,
 

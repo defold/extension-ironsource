@@ -22,6 +22,7 @@ namespace dmIronSource {
 static IronSourceExtInitAdDelegate                  *ironSourceExtInitAdDelegate;
 static IronSourceExtLevelPlayRewardedVideoDelegate  *ironSourceExtLevelPlayRewardedVideoDelegate;
 static IronSourceExtLevelPlayInterstitialDelegate   *ironSourceExtLevelPlayInterstitialDelegate;
+static IronSourceExtConsentViewDelegate             *ironSourceExtConsentViewDelegate;
 static UIViewController *uiViewController = nil;
 
 //--------------------------------------------------
@@ -187,6 +188,8 @@ void Initialize_Ext() {
     [IronSource setLevelPlayRewardedVideoDelegate:ironSourceExtLevelPlayRewardedVideoDelegate];
     ironSourceExtLevelPlayInterstitialDelegate = [[IronSourceExtLevelPlayInterstitialDelegate alloc] init];
     [IronSource setLevelPlayInterstitialDelegate:ironSourceExtLevelPlayInterstitialDelegate];
+    ironSourceExtConsentViewDelegate = [[IronSourceExtConsentViewDelegate alloc] init];
+    [IronSource setConsentViewWithDelegate:ironSourceExtConsentViewDelegate];
 }
 
 void Init(const char* appKey) {
@@ -420,19 +423,19 @@ void ShowInterstitial(const char* placementName) {
     dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_LOADED, @"consent_view_type", consentViewType);
 }
 
-// Consent view was failed to load 
+// Consent view was failed to load
 - (void)consentViewDidFailToLoadWithError:(NSError *)error consentViewType:(NSString *)consentViewType {
-    dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_SHOWED, @"consent_view_type", consentViewType, error);
+    dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_LOAD_FAILED, @"consent_view_type", consentViewType, error);
 }
 
 // Consent view was displayed successfully 
 - (void)consentViewDidShowSuccess:(NSString *)consentViewType {
-    dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_SHOWED, @"consent_view_type", consentViewType);
+    dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_SHOWN, @"consent_view_type", consentViewType);
 }
 
 // Consent view was not displayed, due to error
 - (void)consentViewDidFailToShowWithError:(NSError *)error consentViewType:(NSString *)consentViewType {
-    dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_SHOWED, @"consent_view_type", consentViewType, error);
+    dmIronSource::SendSimpleMessage(dmIronSource::MSG_CONSENT, dmIronSource::EVENT_CONSENT_SHOW_FAILED, @"consent_view_type", consentViewType, error);
 }
 
 @end

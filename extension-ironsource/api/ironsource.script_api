@@ -210,25 +210,25 @@
 
   - name: load_consent_view
     type: function
-    desc: [icon:ios] iOS Only. Load the IronSource permission pop-up.
+    desc: iOS Only. Load the IronSource permission pop-up.
           [iOS](https://developers.is.com/ironsource-mobile/ios/unity-levelplay-test-suite/)
 
     returns:
     - name: consent_view_type
       type: string
-      desc: one of the folowing values: "pre" or "post" 
+      desc: one of the folowing values "pre" or "post" 
 
 #*****************************************************************************************************
 
   - name: show_consent_view
     type: function
-    desc: [icon:ios] iOS Only. Display the IronSource permission pop-up.
+    desc: iOS Only. Display the IronSource permission pop-up.
           [iOS](https://developers.is.com/ironsource-mobile/ios/unity-levelplay-test-suite/)
 
     returns:
     - name: consent_view_type
       type: string
-      desc: one of the folowing values: "pre" or "post" 
+      desc: one of the folowing values "pre" or "post" 
 
 #*****************************************************************************************************
 
@@ -364,7 +364,7 @@
   
   - name: get_interstitial_placement_info
     type: function
-    desc: [icon:android] Android Only. Get details about the specific Ad Placement.
+    desc: Android Only. Get details about the specific Ad Placement.
           Original docs
           [Android](https://developers.is.com/ironsource-mobile/android/interstitial-mediation-integration-android/#step-3),
           [iOS](https://developers.is.com/ironsource-mobile/ios/interstitial-integration-ios/#step-3)
@@ -468,7 +468,7 @@
   - name: EVENT_CONSENT_LOADED
     type: number
 
-  - name: EVENT_CONSENT_SHOWED
+  - name: EVENT_CONSENT_SHOWN
     type: number
 
   - name: EVENT_CONSENT_LOAD_FAILED
