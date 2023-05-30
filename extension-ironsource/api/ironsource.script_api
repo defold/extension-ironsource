@@ -208,6 +208,30 @@
 
 #*****************************************************************************************************
 
+  - name: load_consent_view
+    type: function
+    desc: [icon:ios] iOS Only. Load the IronSource permission pop-up.
+          [iOS](https://developers.is.com/ironsource-mobile/ios/unity-levelplay-test-suite/)
+
+    returns:
+    - name: consent_view_type
+      type: string
+      desc: one of the folowing values: "pre" or "post" 
+
+#*****************************************************************************************************
+
+  - name: show_consent_view
+    type: function
+    desc: [icon:ios] iOS Only. Display the IronSource permission pop-up.
+          [iOS](https://developers.is.com/ironsource-mobile/ios/unity-levelplay-test-suite/)
+
+    returns:
+    - name: consent_view_type
+      type: string
+      desc: one of the folowing values: "pre" or "post" 
+
+#*****************************************************************************************************
+
   - name: should_track_network_state
     type: function
     desc: You can determine and monitor the internet connection on the user’s device through the ironSource Network
@@ -215,8 +239,8 @@
           i.e. in the case of no network connection, the availability will turn to FALSE.
           The default of this function is false; if you’d like to listen to it for changes in connectivity,
           activate it in the SDK initialization
-          [Android](https://developers.is.com/ironsource-mobile/android/rewarded-video-integration-android/#step-1),
-          [iOS](https://developers.is.com/ironsource-mobile/ios/rewarded-video-integration-ios/#step-1)
+          [Android shouldTrackNetworkState](https://developers.is.com/ironsource-mobile/android/rewarded-video-integration-android/#step-1),
+          [iOS shouldTrackReachability](https://developers.is.com/ironsource-mobile/ios/rewarded-video-integration-ios/#step-1)
 
     parameters:
     - name: should_track
@@ -289,8 +313,8 @@
           an ad when the placement is capped, you must call the below method to verify if a specific placement
           has reached its ad limit. When requesting availability, you might receive a TRUE response but in the case your placement has reached its capping limit, the ad will not be served to the user.
           Original docs
-          [Android](https://developers.is.com/ironsource-mobile/android/rewarded-video-integration-android/#step-2),
-          [iOS](https://developers.is.com/ironsource-mobile/ios/rewarded-video-integration-ios/#step-2)
+          [Android isRewardedVideoPlacementCapped](https://developers.is.com/ironsource-mobile/android/rewarded-video-integration-android/#step-2),
+          [iOS isRewardedVideoCappedForPlacement](https://developers.is.com/ironsource-mobile/ios/rewarded-video-integration-ios/#step-2)
 
     parameters:
     - name: placement_name
@@ -340,7 +364,7 @@
   
   - name: get_interstitial_placement_info
     type: function
-    desc: Get details about the specific Ad Placement.
+    desc: [icon:android] Android Only. Get details about the specific Ad Placement.
           Original docs
           [Android](https://developers.is.com/ironsource-mobile/android/interstitial-mediation-integration-android/#step-3),
           [iOS](https://developers.is.com/ironsource-mobile/ios/interstitial-integration-ios/#step-3)
@@ -397,6 +421,9 @@
   - name: MSG_REWARDED
     type: number
 
+  - name: MSG_CONSENT
+    type: number
+
   - name: MSG_INIT
     type: number
 
@@ -436,6 +463,18 @@
     type: number
 
   - name: EVENT_INIT_COMPLETE
+    type: number
+
+  - name: EVENT_CONSENT_LOADED
+    type: number
+
+  - name: EVENT_CONSENT_SHOWED
+    type: number
+
+  - name: EVENT_CONSENT_LOAD_FAILED
+    type: number
+
+  - name: EVENT_CONSENT_SHOW_FAILED
     type: number
 
 #*****************************************************************************************************

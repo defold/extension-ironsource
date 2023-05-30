@@ -23,6 +23,8 @@ void SetMetaData(const char* key, const char* value);
 void SetUserId(const char* userId);
 void LaunchTestSuite();
 void SetAdaptersDebug(bool isDebugAdapters);
+void LoadConsentView(const char* consentViewType);
+void ShowConsentView(const char* consentViewType);
 
 void ShouldTrackNetworkState(bool shouldTrackNetworkState);
 bool IsRewardedVideoAvailable();

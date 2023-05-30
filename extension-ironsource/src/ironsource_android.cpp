@@ -220,6 +220,16 @@ void SetAdaptersDebug(bool isDebugAdapters)
     CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetAdaptersDebug, isDebugAdapters);
 }
 
+void ShowConsentView(const char* consentViewType)
+{
+    // no-op
+}
+
+void LoadConsentView(const char* consentViewType)
+{
+    // no-op
+}
+
 
 //--------------------------------------------------
 // Rewarded ADS

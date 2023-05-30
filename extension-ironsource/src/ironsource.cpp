@@ -79,6 +79,22 @@ static int Lua_SetAdaptersDebug(lua_State* L)
     return 0;
 }
 
+static int Lua_ShowConsentView(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    const char* lua_consentViewType = luaL_checkstring(L, 1);
+    ShowConsentView(lua_consentViewType);
+    return 0;
+}
+
+static int Lua_LoadConsentView(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    const char* lua_consentViewType = luaL_checkstring(L, 1);
+    LoadConsentView(lua_consentViewType);
+    return 0;
+}
+
 static int Lua_shouldTrackNetworkState(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
@@ -238,6 +254,8 @@ static const luaL_reg Module_methods[] =
     {"set_user_id", Lua_SetUserId},
     {"launch_test_suite", Lua_LaunchTestSuite},
     {"set_adapters_debug", Lua_SetAdaptersDebug},
+    {"show_consent_view", Lua_LoadConsentView},
+    {"load_consent_view", Lua_ShowConsentView},
     // rewarded
     {"should_track_network_state", Lua_shouldTrackNetworkState},
     {"is_rewarded_video_available", Lua_isRewardedVideoAvailable},
@@ -265,6 +283,7 @@ static void LuaInit(lua_State* L)
 
     SETCONSTANT(MSG_INTERSTITIAL)
     SETCONSTANT(MSG_REWARDED)
+    SETCONSTANT(MSG_CONSENT)
     SETCONSTANT(MSG_INIT)
 
     SETCONSTANT(EVENT_AD_AVAILABLE)
@@ -279,6 +298,9 @@ static void LuaInit(lua_State* L)
     SETCONSTANT(EVENT_AD_LOAD_FAILED)
     SETCONSTANT(EVENT_JSON_ERROR)
     SETCONSTANT(EVENT_INIT_COMPLETE)
+    SETCONSTANT(EVENT_CONSENT_LOADED)
+    SETCONSTANT(EVENT_CONSENT_LOAD_FAILED)
+    SETCONSTANT(EVENT_CONSENT_SHOW_FAILED)
 
     #undef SETCONSTANT
 
