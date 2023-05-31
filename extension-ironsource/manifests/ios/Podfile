@@ -20,3 +20,31 @@ pod 'IronSourceFyberAdapter','4.3.29.0'
 {{#iron_source.admob_ios}}
 pod 'IronSourceAdMobAdapter','4.3.43.0'
 {{/iron_source.admob_ios}}
+
+{{#iron_source.hyprmx_ios}}
+pod 'IronSourceHyprMXAdapter','4.3.2.0'
+{{/iron_source.hyprmx_ios}}
+
+{{#iron_source.inmobi_ios}}
+pod 'IronSourceInMobiAdapter','4.3.17.0'
+{{/iron_source.inmobi_ios}}
+
+{{#iron_source.liftoff_ios}}
+pod 'IronSourceVungleAdapter','4.3.26.0'
+{{/iron_source.liftoff_ios}}
+
+{{#iron_source.maio_ios}}
+pod 'IronSourceMaioAdapter','4.1.11.0'
+{{/iron_source.maio_ios}}
+
+{{#iron_source.facebook_ios}}
+pod 'IronSourceFacebookAdapter','4.3.39.0'
+{{/iron_source.facebook_ios}}
+
+{{#iron_source.mintegral_ios}}
+pod 'IronSourceMintegralAdapter', '4.3.15.0'
+{{/iron_source.mintegral_ios}}
+
+{{#iron_source.mytarget_ios}}
+pod 'IronSourceMyTargetAdapter','4.1.16.0'
+{{/iron_source.mytarget_ios}}
