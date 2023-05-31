@@ -2,27 +2,48 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
     <dict>
-      <key>SKAdNetworkItems</key>
-      <array>
+        <key>SKAdNetworkItems</key>
+        <array>
          <dict>
             <key>SKAdNetworkIdentifier</key>
             <string>su67r6k2v3.skadnetwork</string>
          </dict>
-      </array>
+        </array>
 
-      <key>NSAppTransportSecurity</key>
-      <dict>
-         <key>NSAllowsArbitraryLoads</key>
-         <true/>
-      </dict>
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+{{#iron_source.ios_enable_ats}}
+            <key>NSAllowsLocalNetworking</key>  
+            <true/>
+            <key>NSAllowsArbitraryLoadsInWebContent</key>
+            <true/>
+{{/iron_source.ios_enable_ats}}
+        </dict>
 
-      <key>NSUserTrackingUsageDescription</key>
-      <string>{{iron_source.ios_tracking_usage_description}}</string>
+{{#iron_source.admob_ios}}
+        <key>GADApplicationIdentifier</key>
+        <string>{{iron_source.admob_ios}}</string>
+{{/iron_source.admob_ios}}
 
-{{#iron_source.use_skan_ios}}
-      <key>NSAdvertisingAttributionReportEndpoint</key>
-      <string>https://postbacks-is.com</string>
-{{/iron_source.use_skan_ios}}
+        <key>NSUserTrackingUsageDescription</key>
+        <string>{{iron_source.ios_tracking_usage_description}}</string>
+
+{{#iron_source.ios_use_skan}}
+        <key>NSAdvertisingAttributionReportEndpoint</key>
+        <string>https://postbacks-is.com</string>
+{{/iron_source.ios_use_skan}}
+
+{{#iron_source.adcolony_ios}}
+        <key>LSApplicationQueriesSchemes</key>
+        <array>
+            <string>fb</string>
+            <string>instagram</string>
+            <string>tumblr</string>
+            <string>twitter</string>
+        </array>
+{{/iron_source.adcolony_ios}}
 
     </dict>
 </plist>

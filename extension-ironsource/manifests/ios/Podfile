@@ -1,2 +1,22 @@
 platform :ios, '10.0'
 pod 'IronSourceSDK','7.3.0.0'
+
+{{#iron_source.adcolony_ios}}
+pod 'IronSourceAdColonyAdapter','4.3.16.0'
+{{/iron_source.adcolony_ios}}
+
+{{#iron_source.applovin_ios}}
+pod 'IronSourceAppLovinAdapter','4.3.40.0'
+{{/iron_source.applovin_ios}}
+
+{{#iron_source.charboost_ios}}
+pod 'IronSourceChartboostAdapter','4.3.13.0'
+{{/iron_source.charboost_ios}}
+
+{{#iron_source.charboost_ios}}
+pod 'IronSourceFyberAdapter','4.3.29.0'
+{{/iron_source.charboost_ios}}
+
+{{#iron_source.admob_ios}}
+pod 'IronSourceAdMobAdapter','4.3.43.0'
+{{/iron_source.admob_ios}}
