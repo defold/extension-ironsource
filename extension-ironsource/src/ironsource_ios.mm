@@ -75,25 +75,55 @@ void AddPlacement(id dict, ISPlacementInfo *placementInfo) {
     }
 }
 
-void AddAdInfo(id dict, ISAdInfo *placementInfo) {
-    [dict setObject:[placementInfo ad_unit] forKey:@"ad_unit"];
-    [dict setObject:[placementInfo auction_id] forKey:@"auction_id"];
-    [dict setObject:[placementInfo ad_network] forKey:@"ad_network"];
-    [dict setObject:[placementInfo ab] forKey:@"ab"];
-    [dict setObject:[placementInfo country] forKey:@"country"];
-    [dict setObject:[placementInfo instance_id] forKey:@"instance_id"];
-    [dict setObject:[placementInfo instance_name] forKey:@"instance_name"];
-    [dict setObject:[placementInfo segment_name] forKey:@"segment_name"];
-    [dict setObject:[placementInfo precision] forKey:@"precision"];
-    [dict setObject:[placementInfo encrypted_cpm] forKey:@"encrypted_cpm"];
-    [dict setObject:[placementInfo revenue] forKey:@"revenue"];
-    [dict setObject:[placementInfo lifetime_revenue] forKey:@"lifetime_revenue"];
-    [dict setObject:[placementInfo conversion_value] forKey:@"conversion_value"];
+void AddAdInfo(id dict, ISAdInfo *adInfo) {
+    if ([adInfo ad_unit]) {
+        [dict setObject:[adInfo ad_unit] forKey:@"ad_unit"];
+    }
+    if ([adInfo auction_id]) {
+        [dict setObject:[adInfo auction_id] forKey:@"auction_id"];
+    }
+    if ([adInfo ad_network]) {
+        [dict setObject:[adInfo ad_network] forKey:@"ad_network"];
+    }
+    if ([adInfo ab]) {
+        [dict setObject:[adInfo ab] forKey:@"ab"];
+    }
+    if ([adInfo country]) {
+        [dict setObject:[adInfo country] forKey:@"country"];
+    }
+    if ([adInfo instance_id]) {
+        [dict setObject:[adInfo instance_id] forKey:@"instance_id"];
+    }
+    if ([adInfo instance_name]) {
+        [dict setObject:[adInfo instance_name] forKey:@"instance_name"];
+    }
+    if ([adInfo segment_name]) {
+        [dict setObject:[adInfo segment_name] forKey:@"segment_name"];
+    }
+    if ([adInfo precision]) {
+        [dict setObject:[adInfo precision] forKey:@"precision"];
+    }
+    if ([adInfo encrypted_cpm]) {
+        [dict setObject:[adInfo encrypted_cpm] forKey:@"encrypted_cpm"];
+    }
+    if ([adInfo revenue]) {
+        [dict setObject:[adInfo revenue] forKey:@"revenue"];
+    }
+    if ([adInfo lifetime_revenue]) {
+        [dict setObject:[adInfo lifetime_revenue] forKey:@"lifetime_revenue"];
+    }
+    if ([adInfo conversion_value]) {
+        [dict setObject:[adInfo conversion_value] forKey:@"conversion_value"];
+    }
 }
 
 void AddError(id dict, NSError *error) {
-    [dict setObject:[NSNumber numberWithInt:[error code]] forKey:@"error_code"];
-    [dict setObject:[error localizedDescription] forKey:@"error_message"];
+    if ([error code]) {
+        [dict setObject:[NSNumber numberWithInt:[error code]] forKey:@"error_code"];
+    }
+    if ([error localizedDescription]) {
+        [dict setObject:[error localizedDescription] forKey:@"error_message"];
+    }
 }
 
 void SendSimpleMessage(MessageId msg, MessageEvent event, ISAdInfo *adInfo) {
