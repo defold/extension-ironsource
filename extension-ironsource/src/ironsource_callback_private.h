@@ -36,7 +36,7 @@ enum MessageEvent
     EVENT_CONSENT_LOAD_FAILED =          15,
     EVENT_CONSENT_SHOW_FAILED =          16,
     EVENT_CONSENT_ACCEPTED =             17,
-    EVENT_CONSENT_DISMISSED =             18
+    EVENT_CONSENT_DISMISSED =            18
 
 };
 

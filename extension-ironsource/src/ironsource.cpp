@@ -254,8 +254,8 @@ static const luaL_reg Module_methods[] =
     {"set_user_id", Lua_SetUserId},
     {"launch_test_suite", Lua_LaunchTestSuite},
     {"set_adapters_debug", Lua_SetAdaptersDebug},
-    {"show_consent_view", Lua_LoadConsentView},
-    {"load_consent_view", Lua_ShowConsentView},
+    {"load_consent_view", Lua_LoadConsentView},
+    {"show_consent_view", Lua_ShowConsentView},
     // rewarded
     {"should_track_network_state", Lua_shouldTrackNetworkState},
     {"is_rewarded_video_available", Lua_isRewardedVideoAvailable},
