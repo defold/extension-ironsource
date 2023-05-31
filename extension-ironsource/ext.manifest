@@ -3,4 +3,4 @@ name: "IronSourceExt"
 platforms:
     ios:
         context:
-            linkFlags:  ["-ObjC"]
+            linkFlags:  ["-ObjC", "-Wl,-rpath,/usr/lib/swift", "-Wl,-rpath,@executable_path/Frameworks"]

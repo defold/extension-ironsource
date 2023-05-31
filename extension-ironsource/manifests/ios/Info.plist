@@ -36,7 +36,7 @@
 
 {{#iron_source.admob_ios}}
         <key>GADApplicationIdentifier</key>
-        <string>{{iron_source.admob_ios}}</string>
+        <string>{{iron_source.admob_ios_appid}}</string>
 {{/iron_source.admob_ios}}
 
 {{#iron_source.yahoo_ios}}

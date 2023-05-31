@@ -13,9 +13,9 @@ pod 'IronSourceAppLovinAdapter','4.3.40.0'
 pod 'IronSourceChartboostAdapter','4.3.13.0'
 {{/iron_source.charboost_ios}}
 
-{{#iron_source.charboost_ios}}
+{{#iron_source.fyber_ios}}
 pod 'IronSourceFyberAdapter','4.3.29.0'
-{{/iron_source.charboost_ios}}
+{{/iron_source.fyber_ios}}
 
 {{#iron_source.admob_ios}}
 pod 'IronSourceAdMobAdapter','4.3.43.0'
