@@ -22,12 +22,27 @@
             <key>NSAllowsArbitraryLoadsForMedia</key>
             <true/>
 {{/iron_source.ios_enable_ats}}
+{{#iron_source.tapjoy_ios}}
+            <key>NSExceptionDomains</key>
+            <dict>
+               <key>localhost</key>
+               <dict>           
+                   <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                   <true/>
+               </dict>
+            </dict>
+{{/iron_source.tapjoy_ios}}
         </dict>
 
 {{#iron_source.admob_ios}}
         <key>GADApplicationIdentifier</key>
         <string>{{iron_source.admob_ios}}</string>
 {{/iron_source.admob_ios}}
+
+{{#iron_source.yahoo_ios}}
+        <key>YahooAdsSourceAppId</key>
+        <string>{{iron_source.yahoo_ios_appid}}</string> 
+{{/iron_source.yahoo_ios}}
 
         <key>NSUserTrackingUsageDescription</key>
         <string>{{iron_source.ios_tracking_usage_description}}</string>

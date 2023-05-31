@@ -48,3 +48,23 @@ pod 'IronSourceMintegralAdapter', '4.3.15.0'
 {{#iron_source.mytarget_ios}}
 pod 'IronSourceMyTargetAdapter','4.1.16.0'
 {{/iron_source.mytarget_ios}}
+
+{{#iron_source.pangle_ios}}
+pod 'IronSourcePangleAdapter','4.3.21.0'
+{{/iron_source.pangle_ios}}
+
+{{#iron_source.tapjoy_ios}}
+pod 'IronSourceTapjoyAdapter','4.1.25.0'
+{{/iron_source.tapjoy_ios}}
+
+{{#iron_source.tencent_ios}}
+pod 'IronSourceTencentAdapter','4.3.5.0'
+{{/iron_source.tencent_ios}}
+
+{{#iron_source.unityads_ios}}
+pod 'IronSourceUnityAdsAdapter','4.3.30.0'
+{{/iron_source.unityads_ios}}
+
+{{#iron_source.yahoo_ios}}
+pod 'IronSourceYahooAdapter','4.3.5.0'
+{{/iron_source.yahoo_ios}}
