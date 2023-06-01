@@ -17,11 +17,11 @@ See the [example folder](https://github.com/defold/extension-ironsource/tree/mai
 
 2. If you don't need an adapter, just set `0` into an adapter's field (these fields are boolean and may be `1` or `0`.).
 
-3. The `admob_android_appid` field should contain `app_id` if you want to use AdMob adapter specify admob_android as 1.
+3. The `admob_android_appid` field should contain `app_id` if you want to use AdMob adapter specify admob_android as 1. The same for `admob_ios` and `admob_ios_appid`.
 
 4. Use the official Android and iOS manuals for SDK integration, including everything related to the SDK functions: initialization, AD loading and showing, meta data, consent, work with user id and the other functions. Also for Adapters integration. Ignore everything related to Gradle, library installation, changes in manifests, and so on.
 
-5. In Defold the SDK has `ironsource` namespace and all the methods are the same as in official documentation but in camel case. For example if in official documentation you see `IronSource.setMetaData("AppLovin_AgeRestrictedUser","true");` in Defold it will be: `ironsource.set_meta_data("AppLovin_AgeRestrictedUser","true")`
+5. In Defold the SDK has `ironsource` namespace and all the methods are the same as in official documentation but in camel case. For example if in official documentation you see `IronSource.setMetaData("AppLovin_AgeRestrictedUser","true");` in Defold it will be: `ironsource.set_meta_data("AppLovin_AgeRestrictedUser","true")`.
 
 6. The SDK has just one universal callback for everything. Please check [callback.lua](https://github.com/defold/extension-ironsource/blob/main/example/callback.lua) for better understanding.
 
