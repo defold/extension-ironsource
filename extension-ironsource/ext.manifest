@@ -4,4 +4,4 @@ platforms:
     ios:
         context:
             linkFlags:  ["-ObjC", "-Wl,-rpath,/usr/lib/swift", "-Wl,-rpath,@executable_path/Frameworks"]
-            libs:       ["z", "swiftCompatibility50", "swiftCompatibility51"]
+            libs:       ["swiftCompatibility50", "swiftCompatibility51"]
