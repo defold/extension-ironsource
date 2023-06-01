@@ -315,6 +315,7 @@ public class IronSourceJNI {
         obj.put("revenue", adInfo.getRevenue());
         obj.put("precision", adInfo.getPrecision());
         obj.put("encrypted_cpm", adInfo.getEncryptedCPM());
+        obj.put("lifetime_revenue", adInfo.getLifetimeRevenue());
     }
 
     private void addIronSourceError(JSONObject obj, IronSourceError error) throws JSONException {

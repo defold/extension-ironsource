@@ -23,6 +23,8 @@ local data = {
         ["validate"] = {},
         ["test_suite"] = {},
         ["auto_test"] = {},
+        ["load_consent"] = {},
+        ["show_consent"] = {},
     },
     ["interstitial_page"] = { type = "page",
         ["load_interstitial"] = {},
@@ -61,11 +63,16 @@ actions.banner = function(self, el)
     ui.enable(self.ui.banner_page, true)
 end
 actions.init = function(self, el)
-    -- ironsource.set_user_id("UserID");
+    ironsource.set_user_id("UserID");
     ironsource.set_consent(true)
     ironsource.set_adapters_debug(true)
     ironsource.set_metadata("is_test_suite", "enable")
-    ironsource.init("19bfef645")
+    local sysinfo = sys.get_sys_info()
+    if sysinfo.system_name == "Android" then
+        ironsource.init("19bfef645")
+    elseif sysinfo.system_name == "iPhone OS" then
+        ironsource.init("1a349ce5d")
+    end
 end
 actions.validate = function(self, el)
     ironsource.validate_integration()
@@ -76,6 +83,12 @@ end
 actions.auto_test = function(self, el)
     --TODO:run auto-tests
     print("Not implemented yet!")
+end
+actions.load_consent = function(self, el)
+    ironsource.load_consent_view("pre")
+end
+actions.show_consent = function(self, el)
+    ironsource.show_consent_view("pre")
 end
 actions.load_interstitial = function(self, el)
     ironsource.load_interstitial()

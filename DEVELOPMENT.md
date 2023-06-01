@@ -11,7 +11,11 @@ Check [Change Log](https://developers.is.com/ironsource-mobile/android/sdk-chang
 
 ## iOS SDK update
 
-...
+Open `extension-ironsource/manifests/android/Podfile` and change versions for the main package and adapters.
+
+Check [Change Log](https://developers.is.com/ironsource-mobile/ios/sdk-change-log/) to make sure there are no breaking changes and all new APIs implemented. Make sure you use compatable adapters using [this page](https://developers.is.com/ironsource-mobile/ios/mediation-networks-ios/).
+
+Update `SKAdNetworkItems` using [this page](https://developers.is.com/ironsource-mobile/ios/managing-skadnetwork-ids/). IronSource is adapted by default. Also, it is nice to reduce count of duplicates by removing all the keys which are in IronSource section from the other sections.
 
 ## Adapter adding
 

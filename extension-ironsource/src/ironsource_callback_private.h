@@ -13,6 +13,7 @@ enum MessageId
 {
     MSG_INTERSTITIAL =                    1,
     MSG_REWARDED =                        2,
+    MSG_CONSENT =                         3,
     MSG_INIT =                            4
 };
 
@@ -29,7 +30,14 @@ enum MessageEvent
     EVENT_AD_SHOW_SUCCEEDED =            9,
     EVENT_AD_LOAD_FAILED =               10,
     EVENT_JSON_ERROR =                   11,
-    EVENT_INIT_COMPLETE =                12
+    EVENT_INIT_COMPLETE =                12,
+    EVENT_CONSENT_LOADED =               13,
+    EVENT_CONSENT_SHOWN =                14,
+    EVENT_CONSENT_LOAD_FAILED =          15,
+    EVENT_CONSENT_SHOW_FAILED =          16,
+    EVENT_CONSENT_ACCEPTED =             17,
+    EVENT_CONSENT_DISMISSED =            18
+
 };
 
 struct CallbackData
