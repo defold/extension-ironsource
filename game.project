@@ -10,7 +10,7 @@ height = 1280
 
 [project]
 title = IronSource
-version = 0.4.0
+version = 0.5.0
 dependencies#0 = https://github.com/andsve/dirtylarry/archive/master.zip
 
 [library]
@@ -55,3 +55,7 @@ mintegral_ios = 1
 mytarget_ios = 1
 tapjoy_ios = 1
 unityads_ios = 1
+
+[ios]
+bundle_identifier = com.defold.ironsource
+
