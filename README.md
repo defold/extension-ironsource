@@ -25,6 +25,12 @@ See the [example folder](https://github.com/defold/extension-ironsource/tree/mai
 
 6. The SDK has just one universal callback for everything. Please check [callback.lua](https://github.com/defold/extension-ironsource/blob/main/example/callback.lua) for better understanding.
 
+## Troubleshooting
+
+### "Error 508: Interstitial - Server response contains no interstitial data"
+
+If you get such an error, make sure that you initialize ADS right and use test placements. If it still doesn't work ask IronSource support.
+
 ---
 
 If you have any issues, questions or suggestions please [create an issue](https://github.com/defold/extension-ironsource/issues).
