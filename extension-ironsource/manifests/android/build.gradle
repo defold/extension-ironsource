@@ -31,7 +31,7 @@ repositories {
 
 }
 dependencies {
-    implementation 'com.ironsource.sdk:mediationsdk:7.3.0.1' 
+    implementation 'com.ironsource.sdk:mediationsdk:7.3.1' 
 
 // Remove for AMAZON:
 // --- NOT AMAZON START ---
@@ -49,14 +49,14 @@ dependencies {
 
 {{#iron_source.admob_android}}
     // Add AdMob and Ad Manager Network
-    implementation 'com.google.android.gms:play-services-ads:21.5.0'
-    implementation 'com.ironsource.adapters:admobadapter:4.3.36'
+    implementation 'com.google.android.gms:play-services-ads:22.1.0'
+    implementation 'com.ironsource.adapters:admobadapter:4.3.37'
 {{/iron_source.admob_android}}
 
 {{#iron_source.applovin_android}}
     // Add Applovin Network
-    implementation 'com.ironsource.adapters:applovinadapter:4.3.37'
-    implementation 'com.applovin:applovin-sdk:11.7.1'
+    implementation 'com.ironsource.adapters:applovinadapter:4.3.39'
+    implementation 'com.applovin:applovin-sdk:11.10.1'
 {{/iron_source.applovin_android}}
 
 // TODO: APS
@@ -69,14 +69,14 @@ dependencies {
 
 {{#iron_source.fyber_android}}
     // Add Fyber Network (Adapter only)
-    implementation 'com.ironsource.adapters:fyberadapter:4.3.24'
-    implementation "com.fyber:marketplace-sdk:8.2.2"
+    implementation 'com.ironsource.adapters:fyberadapter:4.3.25'
+    implementation "com.fyber:marketplace-sdk:8.2.3"
 {{/iron_source.fyber_android}}
 
 {{#iron_source.facebook_android}}
     // Add Facebook Network
-    implementation 'com.ironsource.adapters:facebookadapter:4.3.40'
-    implementation 'com.facebook.android:audience-network-sdk:6.13.7'
+    implementation 'com.ironsource.adapters:facebookadapter:4.3.42'
+    implementation 'com.facebook.android:audience-network-sdk:6.14.0'
 {{/iron_source.facebook_android}}
 
 {{#iron_source.hyprmx_android}}
@@ -101,24 +101,24 @@ dependencies {
 
 {{#iron_source.mintegral_android}}
     // For the non-China Traffic app, Add Mintegral Network
-    implementation 'com.ironsource.adapters:mintegraladapter:4.3.13'
-    implementation 'com.mbridge.msdk.oversea:mbbid:16.3.81'
-    implementation 'com.mbridge.msdk.oversea:reward:16.3.81'
-    implementation 'com.mbridge.msdk.oversea:mbbanner:16.3.81'
-    implementation 'com.mbridge.msdk.oversea:newinterstitial:16.3.81'
+    implementation 'com.ironsource.adapters:mintegraladapter:4.3.16'
+    implementation 'com.mbridge.msdk.oversea:mbbid:16.4.41'
+    implementation 'com.mbridge.msdk.oversea:reward:16.4.41'
+    implementation 'com.mbridge.msdk.oversea:mbbanner:16.4.41'
+    implementation 'com.mbridge.msdk.oversea:newinterstitial:16.4.41'
 {{/iron_source.mintegral_android}}
 
 {{#iron_source.mytarget_android}}
     // Add myTarget Network
-    implementation 'com.ironsource.adapters:mytargetadapter:4.1.16'
-    implementation 'com.my.target:mytarget-sdk:5.16.3'
+    implementation 'com.ironsource.adapters:mytargetadapter:4.1.17'
+    implementation 'com.my.target:mytarget-sdk:5.16.5'
     implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
 {{/iron_source.mytarget_android}}
 
 {{#iron_source.pangle_android}}
     // Add Pangle Network
-    implementation 'com.ironsource.adapters:pangleadapter:4.3.17'
-    implementation 'com.pangle.global:ads-sdk:5.0.0.8'
+    implementation 'com.ironsource.adapters:pangleadapter:4.3.19'
+    implementation 'com.pangle.global:ads-sdk:5.2.0.3'
 {{/iron_source.pangle_android}}
 
 // TODO: Smaato
@@ -127,14 +127,14 @@ dependencies {
 
 {{#iron_source.tapjoy_android}}
     // Add Tapjoy Network
-    implementation 'com.ironsource.adapters:tapjoyadapter:4.1.24'
-    implementation 'com.tapjoy:tapjoy-android-sdk:12.11.1'
+    implementation 'com.ironsource.adapters:tapjoyadapter:4.1.25'
+    implementation 'com.tapjoy:tapjoy-android-sdk:13.0.1'
 {{/iron_source.tapjoy_android}}
 
 {{#iron_source.unityads_android}}
     // Add UnityAds Network
-    implementation 'com.ironsource.adapters:unityadsadapter:4.3.28'
-    implementation 'com.unity3d.ads:unity-ads:4.6.1'
+    implementation 'com.ironsource.adapters:unityadsadapter:4.3.30'
+    implementation 'com.unity3d.ads:unity-ads:4.7.1'
 {{/iron_source.unityads_android}}
 
 {{#iron_source.yahoo_android}}
