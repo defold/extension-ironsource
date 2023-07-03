@@ -3,7 +3,12 @@
 #include "ironsource_callback_private.h"
 
 #include <UIKit/UIKit.h>
+#import <AVFoundation/AVFoundation.h>
 #import "IronSource/IronSource.h"
+
+#if __has_include(<AppTrackingTransparency/ATTrackingManager.h>)
+#import <AppTrackingTransparency/ATTrackingManager.h>
+#endif
 
 @interface IronSourceExtInitAdDelegate : NSObject<ISInitializationDelegate>
 @end
@@ -27,6 +32,12 @@ static UIViewController *uiViewController = nil;
 
 //--------------------------------------------------
 // Helpers
+
+void RestoreAudioSession() {
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryPlayback error: nil];
+    [[AVAudioSession sharedInstance] setCategory: AVAudioSessionCategoryAmbient error: nil];
+    [[AVAudioSession sharedInstance] setActive:YES error:nil];
+}
 
 void SendSimpleMessage(MessageId msg, id obj) {
     NSError* error;
@@ -226,6 +237,43 @@ void Init(const char* appKey) {
     [IronSource initWithAppKey:[NSString stringWithUTF8String:appKey] delegate:ironSourceExtInitAdDelegate];
 }
 
+bool IsIDFASupported() {
+    if (@available(iOS 14, *))
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+void RequestIDFA() {
+    if (IsIDFASupported())
+    {
+        [ATTrackingManager requestTrackingAuthorizationWithCompletionHandler:^(ATTrackingManagerAuthorizationStatus status) {
+            switch (status) {
+              case ATTrackingManagerAuthorizationStatusAuthorized:
+                SendSimpleMessage(MSG_IDFA, EVENT_STATUS_AUTHORIZED);
+                break;
+              case ATTrackingManagerAuthorizationStatusDenied:
+                SendSimpleMessage(MSG_IDFA, EVENT_STATUS_DENIED);
+                break;
+              case ATTrackingManagerAuthorizationStatusNotDetermined:
+                SendSimpleMessage(MSG_IDFA, EVENT_STATUS_NOT_DETERMINED);
+                break;
+              case ATTrackingManagerAuthorizationStatusRestricted:
+                SendSimpleMessage(MSG_IDFA, EVENT_STATUS_RESTRICTED);
+                break;
+              }
+        }];
+    }
+    else
+    {
+        SendSimpleMessage(MSG_IDFA, EVENT_NOT_SUPPORTED);
+    }
+}
+
 void OnPause() {
     // no-op
 }
@@ -377,6 +425,7 @@ void ShowInterstitial(const char* placementName) {
  @param adInfo The info of the ad.
  */
 - (void)didCloseWithAdInfo:(ISAdInfo *)adInfo {
+    dmIronSource::RestoreAudioSession();
     dmIronSource::SendSimpleMessage(dmIronSource::MSG_REWARDED, dmIronSource::EVENT_AD_CLOSED, adInfo);
 }
 /**
@@ -418,6 +467,7 @@ void ShowInterstitial(const char* placementName) {
  @param adInfo The info of the ad.
  */
 - (void)didCloseWithAdInfo:(ISAdInfo *)adInfo {
+    dmIronSource::RestoreAudioSession();
     dmIronSource::SendSimpleMessage(dmIronSource::MSG_INTERSTITIAL, dmIronSource::EVENT_AD_CLOSED, adInfo);
 }
 /**

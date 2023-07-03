@@ -145,6 +145,12 @@ function init(self)
     self.console = gui.get_node("console")
     self.ui = ui.fill_tree(data, actions)
     ui.enable(self.ui.main_page, true)
+
+    -- if IDFA doesn't supported (ios < 14 or android) then hide buttons
+    if not ironsource.MSG_IDFA then
+        ui.enable(self.ui.load_consent, false)
+        ui.enable(self.ui.show_consent, false)
+    end
     msg.post(".", "acquire_input_focus")
     callback.set()
 

@@ -90,9 +90,22 @@ local function ironsource_callback(self, message_id, message)
         elseif message.event == ironsource.EVENT_CONSENT_ACCEPTED then
             -- The user pressed the Settings or Next buttons
             -- massage.consent_view_type
+            ironsource.request_idfa()
         elseif message.event == ironsource.EVENT_CONSENT_DISMISSED then
             -- The user dismiss consent
             -- massage.consent_view_type
+        end
+    elseif message_id == ironsource.MSG_IDFA then
+        if message.event == ironsource.EVENT_STATUS_AUTHORIZED then
+            -- ATTrackingManagerAuthorizationStatusAuthorized
+        elseif message.event == ironsource.EVENT_STATUS_DENIED then
+            -- ATTrackingManagerAuthorizationStatusDenied
+        elseif message.event == ironsource.EVENT_STATUS_NOT_DETERMINED then
+            -- ATTrackingManagerAuthorizationStatusNotDetermined
+        elseif message.event == ironsource.EVENT_STATUS_RESTRICTED then
+            -- ATTrackingManagerAuthorizationStatusRestricted
+        elseif message.event == ironsource.EVENT_NOT_SUPPORTED then
+            -- IDFA request not supported on this platform or OS version
         end
     end
 end

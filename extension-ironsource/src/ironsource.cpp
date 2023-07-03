@@ -71,6 +71,13 @@ static int Lua_LaunchTestSuite(lua_State* L)
     return 0;
 }
 
+static int Lua_RequestIDFA(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 0);
+    RequestIDFA();
+    return 0;
+}
+
 static int Lua_SetAdaptersDebug(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
@@ -253,6 +260,7 @@ static const luaL_reg Module_methods[] =
     {"set_metadata", Lua_SetMetaData},
     {"set_user_id", Lua_SetUserId},
     {"launch_test_suite", Lua_LaunchTestSuite},
+    {"request_idfa", Lua_RequestIDFA},
     {"set_adapters_debug", Lua_SetAdaptersDebug},
     {"load_consent_view", Lua_LoadConsentView},
     {"show_consent_view", Lua_ShowConsentView},
@@ -285,6 +293,10 @@ static void LuaInit(lua_State* L)
     SETCONSTANT(MSG_REWARDED)
     SETCONSTANT(MSG_CONSENT)
     SETCONSTANT(MSG_INIT)
+    if (IsIDFASupported())
+    {
+        SETCONSTANT(MSG_IDFA)
+    }
 
     SETCONSTANT(EVENT_AD_AVAILABLE)
     SETCONSTANT(EVENT_AD_UNAVAILABLE)
@@ -304,6 +316,11 @@ static void LuaInit(lua_State* L)
     SETCONSTANT(EVENT_CONSENT_SHOW_FAILED)
     SETCONSTANT(EVENT_CONSENT_ACCEPTED)
     SETCONSTANT(EVENT_CONSENT_DISMISSED)
+    SETCONSTANT(EVENT_STATUS_AUTHORIZED)
+    SETCONSTANT(EVENT_STATUS_DENIED)
+    SETCONSTANT(EVENT_STATUS_NOT_DETERMINED)
+    SETCONSTANT(EVENT_STATUS_RESTRICTED)
+    SETCONSTANT(EVENT_NOT_SUPPORTED)
 
     #undef SETCONSTANT
 

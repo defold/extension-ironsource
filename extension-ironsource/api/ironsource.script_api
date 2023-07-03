@@ -57,7 +57,18 @@
                 `ironsource.EVENT_AD_SHOW_SUCCEEDED`,
                 `ironsource.EVENT_AD_LOAD_FAILED`
                 `ironsource.EVENT_JSON_ERROR`
-                `ironsource.EVENT_INIT_COMPLETE`"
+                `ironsource.EVENT_INIT_COMPLETE`
+                `ironsource.EVENT_CONSENT_LOADED`
+                `ironsource.EVENT_CONSENT_SHOWN`
+                `ironsource.EVENT_CONSENT_LOAD_FAILED`
+                `ironsource.EVENT_CONSENT_SHOW_FAILED`
+                `ironsource.EVENT_CONSENT_ACCEPTED`
+                `ironsource.EVENT_CONSENT_DISMISSED`
+                `ironsource.EVENT_STATUS_AUTHORIZED`
+                `ironsource.EVENT_STATUS_DENIED`
+                `ironsource.EVENT_STATUS_NOT_DETERMINED`
+                `ironsource.EVENT_STATUS_RESTRICTED`
+                `ironsource.EVENT_NOT_SUPPORTED`"
     examples:
     - desc: |-
               ```lua
@@ -143,6 +154,18 @@
                         -- The user dismiss consent
                         -- massage.consent_view_type
                     end
+                elseif message_id == ironsource.MSG_IDFA then
+                    if message.event == ironsource.EVENT_STATUS_AUTHORIZED then
+                        -- ATTrackingManagerAuthorizationStatusAuthorized
+                    elseif message.event == ironsource.EVENT_STATUS_DENIED then
+                        -- ATTrackingManagerAuthorizationStatusDenied
+                    elseif message.event == ironsource.EVENT_STATUS_NOT_DETERMINED then
+                        -- ATTrackingManagerAuthorizationStatusNotDetermined
+                    elseif message.event == ironsource.EVENT_STATUS_RESTRICTED then
+                        -- ATTrackingManagerAuthorizationStatusRestricted
+                    elseif message.event == ironsource.EVENT_NOT_SUPPORTED then
+                        -- IDFA request not supported on this OS version
+                    end
                 end
               end
               ```
@@ -212,6 +235,14 @@
           Original docs
           [Android](https://developers.is.com/ironsource-mobile/android/unity-levelplay-test-suite/#step-1),
           [iOS](https://developers.is.com/ironsource-mobile/ios/unity-levelplay-test-suite/)
+
+#*****************************************************************************************************
+
+  - name: request_idfa
+    type: function
+    desc: iOS Only. Display the App Tracking Transparency authorization request for accessing the IDFA.
+          Original docs
+          [iOS](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/3547037-requesttrackingauthorization)
 
 #*****************************************************************************************************
 
@@ -447,6 +478,9 @@
   - name: MSG_INIT
     type: number
 
+  - name: MSG_IDFA
+    type: number
+
 #*****************************************************************************************************
 
   - name: EVENT_AD_AVAILABLE
@@ -501,6 +535,21 @@
     type: number
 
   - name: EVENT_CONSENT_DISMISSED
+    type: number
+
+  - name: EVENT_STATUS_AUTHORIZED
+    type: number
+
+  - name: EVENT_STATUS_DENIED
+    type: number
+
+  - name: EVENT_STATUS_NOT_DETERMINED
+    type: number
+
+  - name: EVENT_STATUS_RESTRICTED
+    type: number
+
+  - name: EVENT_NOT_SUPPORTED
     type: number
 
 #*****************************************************************************************************

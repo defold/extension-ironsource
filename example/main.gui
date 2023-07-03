@@ -1825,7 +1825,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "load consent\n"
-  "ios only"
+  "ios 14+ only"
   font: "larryfont"
   id: "load_consent/larrylabel"
   xanchor: XANCHOR_NONE
@@ -1997,7 +1997,7 @@ nodes {
   type: TYPE_TEXT
   blend_mode: BLEND_MODE_ALPHA
   text: "show consent\n"
-  "ios only"
+  "ios 14+ only"
   font: "larryfont"
   id: "show_consent/larrylabel"
   xanchor: XANCHOR_NONE

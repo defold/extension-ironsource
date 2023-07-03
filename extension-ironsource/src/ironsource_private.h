@@ -13,6 +13,7 @@ namespace dmIronSource {
 // };
 
 void Initialize_Ext();
+bool IsIDFASupported();
 
 void Init(const char* appKey);
 void OnPause();
@@ -22,6 +23,7 @@ void SetConsent(bool isConsentProvided);
 void SetMetaData(const char* key, const char* value);
 void SetUserId(const char* userId);
 void LaunchTestSuite();
+void RequestIDFA();
 void SetAdaptersDebug(bool isDebugAdapters);
 void LoadConsentView(const char* consentViewType);
 void ShowConsentView(const char* consentViewType);

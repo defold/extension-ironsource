@@ -215,6 +215,16 @@ void LaunchTestSuite()
     CallVoidMethod(g_ironsource.m_IronSourceJNI, g_ironsource.m_LaunchTestSuite);
 }
 
+bool IsIDFASupported()
+{
+    return false;
+}
+
+void RequestIDFA()
+{
+    // no-op
+}
+
 void SetAdaptersDebug(bool isDebugAdapters)
 {
     CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetAdaptersDebug, isDebugAdapters);
