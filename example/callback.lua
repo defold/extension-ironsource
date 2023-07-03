@@ -29,6 +29,7 @@ local function ironsource_callback(self, message_id, message)
             -- The Rewarded Video ad view has opened. Your activity will loose focus
             -- massage{AdInfo}
         elseif message.event == ironsource.EVENT_AD_CLOSED then
+            sound.set_group_gain("master", 1)
             -- The Rewarded Video ad view is about to be closed. Your activity will regain its focus
             -- massage{AdInfo}
         elseif message.event == ironsource.EVENT_AD_REWARDED then
@@ -58,6 +59,7 @@ local function ironsource_callback(self, message_id, message)
             -- This is the impression indication.
             -- massage{AdInfo}
         elseif message.event == ironsource.EVENT_AD_CLOSED then
+            sound.set_group_gain("master", 1)
             -- Invoked when the interstitial ad closed and the user went back to the application screen.
             -- massage{AdInfo}
         elseif message.event == ironsource.EVENT_AD_SHOW_FAILED then

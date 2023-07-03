@@ -104,6 +104,7 @@ actions.is_interstitial_placement_capped = function(self, el)
     print(ironsource.is_interstitial_placement_capped(INT_PLACEMENT))
 end
 actions.show_interstitial = function(self, el)
+    sound.set_group_gain("master", 0)
     ironsource.show_interstitial(self.next_int_placement)
     print("show: " .. tostring(self.next_int_placement))
     if self.next_int_placement == INT_PLACEMENT then
@@ -119,6 +120,7 @@ actions.is_rewarded_video_available = function(self, el)
     print("is_rewarded_video_available: ", ironsource.is_rewarded_video_available())
 end
 actions.show_rewarded_video = function(self, el)
+    sound.set_group_gain("master", 0)
     ironsource.show_rewarded_video(self.next_rew_placement)
     print("show: " .. tostring(self.next_rew_placement))
     if self.next_rew_placement == REW_PLACEMENT then
@@ -145,6 +147,8 @@ function init(self)
     ui.enable(self.ui.main_page, true)
     msg.post(".", "acquire_input_focus")
     callback.set()
+
+    msg.post("#sound", "play_sound")
 end
 
 function update(self, dt)
