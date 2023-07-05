@@ -67,8 +67,7 @@
                 `ironsource.EVENT_STATUS_AUTHORIZED`
                 `ironsource.EVENT_STATUS_DENIED`
                 `ironsource.EVENT_STATUS_NOT_DETERMINED`
-                `ironsource.EVENT_STATUS_RESTRICTED`
-                `ironsource.EVENT_NOT_SUPPORTED`"
+                `ironsource.EVENT_STATUS_RESTRICTED`"
     examples:
     - desc: |-
               ```lua
@@ -163,8 +162,6 @@
                         -- ATTrackingManagerAuthorizationStatusNotDetermined
                     elseif message.event == ironsource.EVENT_STATUS_RESTRICTED then
                         -- ATTrackingManagerAuthorizationStatusRestricted
-                    elseif message.event == ironsource.EVENT_NOT_SUPPORTED then
-                        -- IDFA request not supported on this OS version
                     end
                 end
               end
@@ -547,9 +544,6 @@
     type: number
 
   - name: EVENT_STATUS_RESTRICTED
-    type: number
-
-  - name: EVENT_NOT_SUPPORTED
     type: number
 
 #*****************************************************************************************************

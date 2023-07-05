@@ -268,10 +268,6 @@ void RequestIDFA() {
               }
         }];
     }
-    else
-    {
-        SendSimpleMessage(MSG_IDFA, EVENT_NOT_SUPPORTED);
-    }
 }
 
 void OnPause() {

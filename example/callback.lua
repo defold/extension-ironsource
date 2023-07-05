@@ -87,6 +87,7 @@ local function ironsource_callback(self, message_id, message)
         elseif message.event == ironsource.EVENT_CONSENT_SHOW_FAILED then
             -- Consent view was not displayed, due to error
             -- massage.consent_view_type, massage.error_code, massage.error_message
+            ironsource.request_idfa()
         elseif message.event == ironsource.EVENT_CONSENT_ACCEPTED then
             -- The user pressed the Settings or Next buttons
             -- massage.consent_view_type
@@ -104,8 +105,6 @@ local function ironsource_callback(self, message_id, message)
             -- ATTrackingManagerAuthorizationStatusNotDetermined
         elseif message.event == ironsource.EVENT_STATUS_RESTRICTED then
             -- ATTrackingManagerAuthorizationStatusRestricted
-        elseif message.event == ironsource.EVENT_NOT_SUPPORTED then
-            -- IDFA request not supported on this platform or OS version
         end
     end
 end

@@ -153,7 +153,6 @@ function init(self)
     end
     msg.post(".", "acquire_input_focus")
     callback.set()
-
     msg.post("#sound", "play_sound")
 end
 
