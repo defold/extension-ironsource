@@ -243,6 +243,20 @@
 
 #*****************************************************************************************************
 
+  - name: get_idfa_status
+    type: function
+    desc: "iOS Only. Returns current authorization status for the IDFA 
+          One of event types:
+                `ironsource.EVENT_STATUS_AUTHORIZED`
+                `ironsource.EVENT_STATUS_DENIED`
+                `ironsource.EVENT_STATUS_NOT_DETERMINED`
+                `ironsource.EVENT_STATUS_RESTRICTED`
+                or nil if not supported
+          Original docs
+          [iOS](https://developer.apple.com/documentation/apptrackingtransparency/attrackingmanager/3547037-requesttrackingauthorization)"
+
+#*****************************************************************************************************
+
   - name: set_adapters_debug
     type: function
     desc: Manage the debug logs for your integrated mediation ad networks with this boolean.

@@ -78,6 +78,21 @@ static int Lua_RequestIDFA(lua_State* L)
     return 0;
 }
 
+static int Lua_GetIDFAStatus(lua_State* L)
+{
+    DM_LUA_STACK_CHECK(L, 1);
+    int status = GetIDFAStatus();
+    if (status != -1)
+    {
+        lua_pushnumber(L, status);
+    }
+    else
+    {
+        lua_pushnil(L);
+    }
+    return 1;
+}
+
 static int Lua_SetAdaptersDebug(lua_State* L)
 {
     DM_LUA_STACK_CHECK(L, 0);
@@ -261,6 +276,7 @@ static const luaL_reg Module_methods[] =
     {"set_user_id", Lua_SetUserId},
     {"launch_test_suite", Lua_LaunchTestSuite},
     {"request_idfa", Lua_RequestIDFA},
+    {"get_idfa_status", Lua_GetIDFAStatus},
     {"set_adapters_debug", Lua_SetAdaptersDebug},
     {"load_consent_view", Lua_LoadConsentView},
     {"show_consent_view", Lua_ShowConsentView},

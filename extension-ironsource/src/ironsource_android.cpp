@@ -225,6 +225,11 @@ void RequestIDFA()
     // no-op
 }
 
+int GetIDFAStatus()
+{
+    return -1;
+}
+
 void SetAdaptersDebug(bool isDebugAdapters)
 {
     CallVoidMethodBool(g_ironsource.m_IronSourceJNI, g_ironsource.m_SetAdaptersDebug, isDebugAdapters);

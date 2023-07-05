@@ -270,6 +270,30 @@ void RequestIDFA() {
     }
 }
 
+int GetIDFAStatus() {
+    if (IsIDFASupported())
+    {
+        ATTrackingManagerAuthorizationStatus status = [ATTrackingManager trackingAuthorizationStatus];
+         int result = -1;
+         switch (status) {
+          case ATTrackingManagerAuthorizationStatusAuthorized:
+            result = EVENT_STATUS_AUTHORIZED;
+            break;
+          case ATTrackingManagerAuthorizationStatusDenied:
+            result = EVENT_STATUS_DENIED;
+            break;
+          case ATTrackingManagerAuthorizationStatusNotDetermined:
+            result = EVENT_STATUS_NOT_DETERMINED;
+            break;
+          case ATTrackingManagerAuthorizationStatusRestricted:
+            result = EVENT_STATUS_RESTRICTED;
+            break;
+          }
+        return result;
+    }
+    return -1;
+}
+
 void OnPause() {
     // no-op
 }
