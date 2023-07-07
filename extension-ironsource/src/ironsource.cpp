@@ -350,7 +350,17 @@ static dmExtension::Result AppInitializeIronSource(dmExtension::AppParams* param
 static dmExtension::Result InitializeIronSource(dmExtension::Params* params)
 {
     LuaInit(params->m_L);
-    Initialize_Ext();
+
+    const char *defoldEngineVersion = NULL;
+    
+    lua_getglobal(params->m_L, "sys");                       // push 'sys' onto stack
+    lua_getfield(params->m_L, -1, "get_engine_info");        // push desired function
+    lua_call(params->m_L, 0, 1);                             // call function with 0 arg, 1 return value
+    lua_getfield(params->m_L, -1, "version");                // push desired property
+    defoldEngineVersion = lua_tostring(params->m_L, -1);     // get return value
+    lua_pop(params->m_L, 3);                                 // pop result, function, 'sys'
+    
+    Initialize_Ext(defoldEngineVersion);
     InitializeCallback();
     return dmExtension::RESULT_OK;
 }

@@ -220,7 +220,11 @@ NSString* GetNSStringOrNULL(const char* str) {
 //--------------------------------------------------
 // Main functions
 
-void Initialize_Ext() {
+void Initialize_Ext(const char* version) {
+    [ISConfigurations getConfigurations].plugin=@"Defold";
+    [ISConfigurations getConfigurations].pluginVersion = IronSource.sdkVersion; // The SDK version of Defold, wrapping iS Native SDK
+    [ISConfigurations getConfigurations].pluginFrameworkVersion = [NSString stringWithUTF8String:version]; // The Defold engine version 
+
     UIWindow* window = dmGraphics::GetNativeiOSUIWindow();
     uiViewController = window.rootViewController;
 

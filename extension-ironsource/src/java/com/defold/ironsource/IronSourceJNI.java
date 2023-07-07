@@ -27,6 +27,8 @@ import com.ironsource.mediationsdk.logger.IronSourceError;
 import com.ironsource.mediationsdk.sdk.LevelPlayInterstitialListener;
 import com.ironsource.mediationsdk.sdk.InitializationListener;
 import com.ironsource.mediationsdk.model.InterstitialPlacement;
+import com.ironsource.mediationsdk.config.ConfigFile;
+import com.ironsource.mediationsdk.utils.IronSourceUtils;
 
 public class IronSourceJNI {
 
@@ -57,8 +59,9 @@ public class IronSourceJNI {
 
     private Activity activity;
 
-    public IronSourceJNI(Activity activity) {
+    public IronSourceJNI(Activity activity, String version) {
             this.activity = activity;
+            ConfigFile.getConfigFile().setPluginData("Defold", IronSourceUtils.getSDKVersion(), version);
     }
 
     public void init(String appKey) {

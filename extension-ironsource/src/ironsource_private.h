@@ -12,7 +12,7 @@ namespace dmIronSource {
 // {
 // };
 
-void Initialize_Ext();
+void Initialize_Ext(const char* version);
 bool IsIDFASupported();
 
 void Init(const char* appKey);
