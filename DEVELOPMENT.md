@@ -2,6 +2,9 @@
 
 The extension made using the following manuals:
 [Android](https://developers.is.com/ironsource-mobile/android/android-sdk/)
+[iOS](https://developers.is.com/ironsource-mobile/ios/ios-sdk/)
+
+When you are updating extension, please update `version` in `extension-ironsource/ext.properties`. This version is used for reporting to IronSource as the version of the extension.
 
 ## Android SDK update
 

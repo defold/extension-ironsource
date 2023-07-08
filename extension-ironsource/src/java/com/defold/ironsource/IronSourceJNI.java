@@ -59,9 +59,10 @@ public class IronSourceJNI {
 
     private Activity activity;
 
-    public IronSourceJNI(Activity activity, String version) {
+    public IronSourceJNI(Activity activity, String version, String extVersion) {
             this.activity = activity;
-            ConfigFile.getConfigFile().setPluginData("Defold", IronSourceUtils.getSDKVersion(), version);
+            ConfigFile.getConfigFile().setPluginData("Defold", extVersion, version);
+            Log.i(TAG, "Engine version: " + version + " Extension verssion: " + extVersion);
     }
 
     public void init(String appKey) {

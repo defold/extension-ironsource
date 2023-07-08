@@ -163,7 +163,7 @@ static void InitJNIMethods(JNIEnv* env, jclass cls)
     g_ironsource.m_ShowInterstitial =               env->GetMethodID(cls, "showInterstitial", "(Ljava/lang/String;)V");
 }
 
-void Initialize_Ext(const char* version)
+void Initialize_Ext(const char* version, const char* extVersion)
 {
     dmAndroid::ThreadAttacher threadAttacher;
     JNIEnv* env = threadAttacher.GetEnv();
@@ -171,9 +171,11 @@ void Initialize_Ext(const char* version)
 
     InitJNIMethods(env, cls);
     jstring jstr = env->NewStringUTF(version);
-    jmethodID jni_constructor = env->GetMethodID(cls, "<init>", "(Landroid/app/Activity;Ljava/lang/String;)V");
-    g_ironsource.m_IronSourceJNI = env->NewGlobalRef(env->NewObject(cls, jni_constructor, threadAttacher.GetActivity()->clazz, jstr));
+    jstring jstr1 = env->NewStringUTF(extVersion);
+    jmethodID jni_constructor = env->GetMethodID(cls, "<init>", "(Landroid/app/Activity;Ljava/lang/String;Ljava/lang/String;)V");
+    g_ironsource.m_IronSourceJNI = env->NewGlobalRef(env->NewObject(cls, jni_constructor, threadAttacher.GetActivity()->clazz, jstr, jstr1));
     env->DeleteLocalRef(jstr);
+    env->DeleteLocalRef(jstr1);
 }
 
 void Init(const char* appKey)

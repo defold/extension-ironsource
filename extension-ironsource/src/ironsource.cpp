@@ -359,8 +359,10 @@ static dmExtension::Result InitializeIronSource(dmExtension::Params* params)
     lua_getfield(params->m_L, -1, "version");                // push desired property
     defoldEngineVersion = lua_tostring(params->m_L, -1);     // get return value
     lua_pop(params->m_L, 3);                                 // pop result, function, 'sys'
+
+    const char* extVer = dmConfigFile::GetString(params->m_ConfigFile, "iron_source.version", "0.0");
     
-    Initialize_Ext(defoldEngineVersion);
+    Initialize_Ext(defoldEngineVersion, extVer);
     InitializeCallback();
     return dmExtension::RESULT_OK;
 }
