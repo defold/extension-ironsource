@@ -84,6 +84,7 @@ local function ironsource_callback(self, message_id, message)
         elseif message.event == ironsource.EVENT_CONSENT_LOAD_FAILED then
             -- Consent view was failed to load
             -- massage.consent_view_type, massage.error_code, massage.error_message
+            ironsource.request_idfa()
         elseif message.event == ironsource.EVENT_CONSENT_SHOW_FAILED then
             -- Consent view was not displayed, due to error
             -- massage.consent_view_type, massage.error_code, massage.error_message
@@ -95,6 +96,7 @@ local function ironsource_callback(self, message_id, message)
         elseif message.event == ironsource.EVENT_CONSENT_DISMISSED then
             -- The user dismiss consent
             -- massage.consent_view_type
+            ironsource.request_idfa()
         end
     elseif message_id == ironsource.MSG_IDFA then
         if message.event == ironsource.EVENT_STATUS_AUTHORIZED then

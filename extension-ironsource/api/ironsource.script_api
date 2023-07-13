@@ -273,7 +273,7 @@
   - name: load_consent_view
     type: function
     desc: iOS Only. Load the IronSource permission pop-up.
-          [iOS](https://developers.is.com/ironsource-mobile/ios/unity-levelplay-test-suite/)
+          [iOS](https://developers.is.com/ironsource-mobile/ios/permission-popup-ios/#step-1)
 
     returns:
     - name: consent_view_type
@@ -285,7 +285,7 @@
   - name: show_consent_view
     type: function
     desc: iOS Only. Display the IronSource permission pop-up.
-          [iOS](https://developers.is.com/ironsource-mobile/ios/unity-levelplay-test-suite/)
+          [iOS](https://developers.is.com/ironsource-mobile/ios/permission-popup-ios/#step-1)
 
     returns:
     - name: consent_view_type
