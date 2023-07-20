@@ -25,9 +25,10 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: ${{ github.ref }}
 
-      - name: Update release tag
-        uses: johnwbyrd/update-release@v1
+      - name: Update tag
+        uses: richardsimko/update-tag@v1.0.7
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
-          files: 'extension-ironsource/ext.properties'
+          tag_name: ${{ steps.get-version.outputs.version }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
