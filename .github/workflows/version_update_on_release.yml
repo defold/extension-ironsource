@@ -1,16 +1,33 @@
 name: Update version of the extension in a file
+
 on:
   release:
-    types: [published]
+    types:
+      - published
 
 jobs:
-  upgrade-version:
+  update_version:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: pocket-apps/action-update-version@v1
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Update version in ext.properties
+        uses: jacobtomlinson/gha-find-replace@v3
         with:
           files: 'extension-ironsource/ext.properties'
-          version-regexp: '\d+.\d+.\d+'
-          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          find: 'version.default = \d+\.\d+\.\d+'
+          replace: 'version.default = ${{ github.event.release.tag_name }}'
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
+
+      - name: Update release tag
+        uses: johnwbyrd/update-release@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          files: 'extension-ironsource/ext.properties'
           
