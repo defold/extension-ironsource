@@ -15,7 +15,7 @@ jobs:
       - name: Update version in ext.properties
         uses: jacobtomlinson/gha-find-replace@v3
         with:
-          files: 'extension-ironsource/ext.properties'
+          include: 'ext.properties'
           find: 'version.default = \d+\.\d+\.\d+'
           replace: 'version.default = ${{ github.event.release.tag_name }}'
 
