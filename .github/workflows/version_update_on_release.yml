@@ -28,7 +28,7 @@ jobs:
       - name: Update tag
         uses: richardsimko/update-tag@v1.0.7
         with:
-          tag_name: ${{ steps.get-version.outputs.version }}
+          tag_name: ${{ github.event.release.tag_name }}
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           
