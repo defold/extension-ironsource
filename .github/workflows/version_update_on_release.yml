@@ -16,7 +16,11 @@ jobs:
         run: |
           sed -i.bak 's/version\.default =.*/version.default = ${{ github.event.release.tag_name }}/' extension-ironsource/ext.properties
           rm extension-ironsource/ext.properties.bak
-
+      - name: Commit files
+        run: |
+          git config --local user.email "github-actions[bot]@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git commit -a -m "Change version in ext.properties"
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
         with:
