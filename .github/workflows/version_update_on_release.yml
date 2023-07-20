@@ -13,11 +13,9 @@ jobs:
         uses: actions/checkout@v2
 
       - name: Update version in ext.properties
-        uses: jacobtomlinson/gha-find-replace@v3
-        with:
-          include: 'ext.properties'
-          find: 'version.default = \d+\.\d+\.\d+'
-          replace: 'version.default = ${{ github.event.release.tag_name }}'
+        run: |
+          sed -i.bak 's/version\.default =.*/version.default = ${{ github.event.release.tag_name }}/' extension-ironsource/ext.properties
+          rm extension-ironsource/ext.properties.bak
 
       - name: Push changes
         uses: ad-m/github-push-action@v0.6.0
