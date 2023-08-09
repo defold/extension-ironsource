@@ -117,7 +117,7 @@ repositories {
 
 for key, value in mapping.items():
     if  site_values.get(key) is None:
-        exit(f"Adapter `{key}` was removed. Please change mappings")
+        exit(f"Adapter `{key}` was removed. Please change `mappings` in this script and remove it from `game.project` and `ext.properties`")
 
 for key, value in mapping.items():
     result += f"{{{{#iron_source.{value}_android}}}}\n"
