@@ -10,7 +10,7 @@ height = 1280
 
 [project]
 title = IronSource
-version = 0.6.0
+version = 0.7.0
 dependencies#0 = https://github.com/andsve/dirtylarry/archive/master.zip
 
 [library]
