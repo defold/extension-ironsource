@@ -36,7 +36,6 @@ mytarget_android = 1
 pangle_android = 1
 tapjoy_android = 1
 unityads_android = 1
-yahoo_android = 1
 ios_use_skan = 1
 ios_tracking_usage_description = Your data will be used to provide you a better and personalized ad experience.
 ios_enable_ats = 1

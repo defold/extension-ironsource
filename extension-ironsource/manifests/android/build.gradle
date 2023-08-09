@@ -5,7 +5,7 @@ repositories {
     maven {url 'https://android-sdk.is.com/'}
 
     {{#iron_source.charboost_android}}
-    maven { url 'https://cboost.jfrog.io/artifactory/chartboost-ads/'}
+    maven {url 'https://cboost.jfrog.io/artifactory/chartboost-ads/' }
     {{/iron_source.charboost_android}}
 
     {{#iron_source.maio_android}}
@@ -32,13 +32,9 @@ repositories {
     maven { url "https://sdk.tapjoy.com/"}
     {{/iron_source.tapjoy_android}}
 
-    {{#iron_source.yahoo_android}}
-    maven { url 'https://artifactory.yahooinc.com/artifactory/maven/'}
-    {{/iron_source.yahoo_android}}
-
 }
 dependencies {
- implementation 'com.ironsource.sdk:mediationsdk:7.3.1' 
+ implementation 'com.ironsource.sdk:mediationsdk:7.4.0' 
 
 // Remove for AMAZON:
 // --- NOT AMAZON START ---
@@ -82,14 +78,14 @@ implementation "com.fyber:marketplace-sdk:8.2.3"
 
 {{#iron_source.facebook_android}}
 // Add Facebook Network
-implementation 'com.ironsource.adapters:facebookadapter:4.3.43'
-implementation 'com.facebook.android:audience-network-sdk:6.14.0'
+implementation 'com.ironsource.adapters:facebookadapter:4.3.44'
+implementation 'com.facebook.android:audience-network-sdk:6.15.0'
 {{/iron_source.facebook_android}}
 
 {{#iron_source.admob_android}}
 // Add AdMob and Ad Manager Network
-implementation 'com.google.android.gms:play-services-ads:22.1.0'
-implementation 'com.ironsource.adapters:admobadapter:4.3.38'
+implementation 'com.google.android.gms:play-services-ads:22.2.0'
+implementation 'com.ironsource.adapters:admobadapter:4.3.39'
 {{/iron_source.admob_android}}
 
 {{#iron_source.hyprmx_android}}
@@ -107,7 +103,7 @@ implementation 'com.inmobi.monetization:inmobi-ads:10.1.2'
 
 {{#iron_source.liftoff_android}}
 // Add Vungle Network
-implementation 'com.ironsource.adapters:vungleadapter:4.3.20'
+implementation 'com.ironsource.adapters:vungleadapter:4.3.21'
 implementation 'com.vungle:publisher-sdk-android:6.12.1' 
 {{/iron_source.liftoff_android}}
 
@@ -125,6 +121,7 @@ implementation 'com.mbridge.msdk.oversea:mbbid:16.4.61'
 implementation 'com.mbridge.msdk.oversea:reward:16.4.61'
 implementation 'com.mbridge.msdk.oversea:mbbanner:16.4.61'
 implementation 'com.mbridge.msdk.oversea:newinterstitial:16.4.61'
+
 
 
 {{/iron_source.mintegral_android}}
@@ -164,16 +161,8 @@ implementation 'com.tapjoy:tapjoy-android-sdk:13.0.1'
 
 {{#iron_source.unityads_android}}
 // Add UnityAds Network
-implementation 'com.ironsource.adapters:unityadsadapter:4.3.30'
-implementation 'com.unity3d.ads:unity-ads:4.7.1'
+implementation 'com.ironsource.adapters:unityadsadapter:4.3.31'
+implementation 'com.unity3d.ads:unity-ads:4.8.0'
 {{/iron_source.unityads_android}}
-
-{{#iron_source.yahoo_android}}
-// Add Yahoo Network
-implementation 'com.ironsource.adapters:yahooadapter:4.3.4'
-implementation 'com.yahoo.mobile.ads:android-yahoo-mobile-sdk:1.4.0'
-
-
-{{/iron_source.yahoo_android}}
 
 }

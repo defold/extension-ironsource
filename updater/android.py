@@ -90,7 +90,7 @@ mapping = {
         'SuperAwesome': 'superawesome',
         'Tapjoy': 'tapjoy',
         'UnityAds': 'unityads',
-        'Yahoo': 'yahoo'
+        # 'Yahoo': 'yahoo'
     }
 
 result = site_values['sdk_maven']
@@ -114,6 +114,10 @@ repositories {
     maven {url 'https://android-sdk.is.com/'}
 
 """
+
+for key, value in mapping.items():
+    if  site_values.get(key) is None:
+        exit(f"Adapter `{key}` was removed. Please change mappings")
 
 for key, value in mapping.items():
     result += f"{{{{#iron_source.{value}_android}}}}\n"
