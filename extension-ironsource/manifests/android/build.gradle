@@ -63,6 +63,12 @@ implementation ('com.ironsource.adapters:apsadapter:4.3.9')
 
 {{/iron_source.aps_android}}
 
+{{#iron_source.bidmachine_android}}
+// Add BidMachine Network
+implementation 'com.ironsource.adapters:bidmachineadapter:4.3.0'
+implementation 'io.bidmachine:ads:2.3.2'
+{{/iron_source.bidmachine_android}}
+
 {{#iron_source.charboost_android}}
 // Add Chartboost Network
 implementation 'com.ironsource.adapters:chartboostadapter:4.3.12'

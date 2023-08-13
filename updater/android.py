@@ -75,6 +75,7 @@ mapping = {
         'AdColony': 'adcolony',
         'AppLovin': 'applovin',
         'APS': 'aps',
+        'BidMachine': 'bidmachine',
         'Chartboost': 'charboost',
         'Digital Turbine': 'fyber',
         'Facebook': 'facebook',
@@ -115,9 +116,15 @@ repositories {
 
 """
 
+del site_values['sdk_maven']
+del site_values['sdk_cocoapods']
+for key, value in site_values.items():
+    if mapping.get(key) is None:
+        exit(f"Adapter `{key}` was added. Please change `mappings` in this script and add adapter to `game.project` and `ext.properties`")
+
 for key, value in mapping.items():
-    if  site_values.get(key) is None:
-        exit(f"Adapter `{key}` was removed. Please change `mappings` in this script and remove it from `game.project` and `ext.properties`")
+    if site_values.get(key) is None:
+        exit(f"Adapter `{key}` was removed. Please change `mappings` in this script and remove adapter from `game.project` and `ext.properties`")
 
 for key, value in mapping.items():
     result += f"{{{{#iron_source.{value}_android}}}}\n"
