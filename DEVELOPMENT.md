@@ -8,13 +8,13 @@ When you are updating extension, please update `version` in `extension-ironsourc
 
 ## Android SDK update
 
-Open `updater` folder in terminal and run `android.py` which will change versions of the main package and adapters.
+Open `updater` folder in terminal and run `android.py` which will change versions of the main package and adapters in Gradle file.
 
 Check [Change Log](https://developers.is.com/ironsource-mobile/android/sdk-change-log/) to make sure there are no breaking changes and all new APIs implemented. Make sure you use compatable adapters using [this page](https://developers.is.com/ironsource-mobile/android/mediation-networks-android/).
 
 ## iOS SDK update
 
-Open `extension-ironsource/manifests/android/Podfile` and change versions for the main package and adapters.
+Open `updater` folder in terminal and run `ios.py` which will change versions of the main package and adapters in Podsfile.
 
 Check [Change Log](https://developers.is.com/ironsource-mobile/ios/sdk-change-log/) to make sure there are no breaking changes and all new APIs implemented. Make sure you use compatable adapters using [this page](https://developers.is.com/ironsource-mobile/ios/mediation-networks-ios/).
 
