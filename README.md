@@ -1,6 +1,6 @@
 # IronSource Extension for Defold
 
-Defold [native extension](https://www.defold.com/manuals/extensions/) which provides access to IronSource functionality on Android and iOS.
+Defold [native extension](https://www.defold.com/manuals/extensions/) which provides access to IronSource mediation on Android and iOS.
 
 ## Installation
 To use this library in your Defold project, add the needed version URL to your `game.project` dependencies from [Releases](https://github.com/defold/extension-ironsource/releases)
