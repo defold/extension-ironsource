@@ -19,13 +19,14 @@ include_dirs = extension-ironsource
 [android]
 iap_provider = GooglePlay
 package = com.defold.ironsource
+minimum_sdk_version = 21
 
 [iron_source]
 adcolony_android = 1
 admob_android = 1
 admob_android_appid = ca-app-pub-3940256099942544~3347511713
 applovin_android = 1
-bidmachine = 1
+bidmachine_android = 1
 charboost_android = 1
 fyber_android = 1
 facebook_android = 1
@@ -35,7 +36,6 @@ liftoff_android = 1
 mintegral_android = 1
 mytarget_android = 1
 pangle_android = 1
-tapjoy_android = 1
 unityads_android = 1
 ios_use_skan = 1
 ios_tracking_usage_description = Your data will be used to provide you a better and personalized ad experience.
@@ -53,7 +53,6 @@ liftoff_ios = 1
 maio_ios = 1
 mintegral_ios = 1
 mytarget_ios = 1
-tapjoy_ios = 1
 unityads_ios = 1
 
 [ios]

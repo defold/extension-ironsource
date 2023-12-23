@@ -89,7 +89,7 @@ mapping = {
         'Pangle': 'pangle',
         'Smaato': 'smaato',
         'SuperAwesome': 'superawesome',
-        'Tapjoy': 'tapjoy',
+        # 'Tapjoy': 'tapjoy',
         'UnityAds': 'unityads',
         # 'Yahoo': 'yahoo'
     }
