@@ -34,7 +34,7 @@ repositories {
 
 }
 dependencies {
- implementation 'com.ironsource.sdk:mediationsdk:7.6.1' 
+ implementation 'com.ironsource.sdk:mediationsdk:7.7.0' 
 
 // Remove for AMAZON:
 // --- NOT AMAZON START ---
@@ -44,16 +44,10 @@ dependencies {
     implementation 'com.google.android.gms:play-services-basement:18.1.0' 
 // --- NOT AMAZON END ---
 
-{{#iron_source.adcolony_android}}
-// Add AdColony Network
-implementation 'com.ironsource.adapters:adcolonyadapter:4.3.15'
-implementation 'com.adcolony:sdk:4.8.0'
-{{/iron_source.adcolony_android}}
-
 {{#iron_source.applovin_android}}
 // Add Applovin Network
-implementation 'com.ironsource.adapters:applovinadapter:4.3.40'
-implementation 'com.applovin:applovin-sdk:11.11.3'
+implementation 'com.ironsource.adapters:applovinadapter:4.3.41'
+implementation 'com.applovin:applovin-sdk:12.1.0'
 {{/iron_source.applovin_android}}
 
 {{#iron_source.aps_android}}
@@ -91,7 +85,7 @@ implementation 'com.facebook.android:audience-network-sdk:6.16.0'
 {{#iron_source.admob_android}}
 // Add AdMob and Ad Manager Network
 implementation 'com.google.android.gms:play-services-ads:22.6.0'
-implementation 'com.ironsource.adapters:admobadapter:4.3.40'
+implementation 'com.ironsource.adapters:admobadapter:4.3.41'
 {{/iron_source.admob_android}}
 
 {{#iron_source.hyprmx_android}}
@@ -102,15 +96,15 @@ implementation 'com.hyprmx.android:HyprMX-SDK:6.2.0'
 
 {{#iron_source.inmobi_android}}
 // Add InMobi Network
-implementation 'com.ironsource.adapters:inmobiadapter:4.3.20' 
-implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.6.1' 
+implementation 'com.ironsource.adapters:inmobiadapter:4.3.21' 
+implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.6.2' 
 
 {{/iron_source.inmobi_android}}
 
 {{#iron_source.liftoff_android}}
 // Add Vungle Network
-implementation 'com.ironsource.adapters:vungleadapter:4.3.22'
-implementation 'com.vungle:vungle-ads:7.0.0'
+implementation 'com.ironsource.adapters:vungleadapter:4.3.23'
+implementation 'com.vungle:vungle-ads:7.1.0'
 {{/iron_source.liftoff_android}}
 
 {{#iron_source.maio_android}}

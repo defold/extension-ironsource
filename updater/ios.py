@@ -72,7 +72,7 @@ var_name = "sdk_data"
 site_values = parse_js_table(url, var_name)
 # print(site_values)
 mapping = {
-        'AdColony': 'adcolony',
+        # 'AdColony': 'adcolony',
         'AppLovin': 'applovin',
         'APS': 'aps',
         'BidMachine': 'bidmachine',
@@ -101,7 +101,7 @@ result = '\n'.join(lines[:-1])
 result += """
 
 """
-repositories = """platform :ios, '10.0'
+repositories = """platform :ios, '13.0'
 """
 repositories += site_values['sdk_cocoapods']
 

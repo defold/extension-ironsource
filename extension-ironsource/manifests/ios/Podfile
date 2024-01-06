@@ -1,83 +1,79 @@
 platform :ios, '13.0'
-pod 'IronSourceSDK','7.6.0.0'
-
-{{#iron_source.adcolony_ios}}
-pod 'IronSourceAdColonyAdapter','4.3.17.3'
-{{/iron_source.adcolony_ios}}
+pod 'IronSourceSDK','7.7.0.0'
 
 {{#iron_source.applovin_ios}}
-pod 'IronSourceAppLovinAdapter','4.3.41.1'
+pod 'IronSourceAppLovinAdapter','4.3.42.1'
 {{/iron_source.applovin_ios}}
 
 {{#iron_source.aps_ios}}
-pod 'IronSourceAPSAdapter','4.3.9.1'
+pod 'IronSourceAPSAdapter','4.3.9.2'
 {{/iron_source.aps_ios}}
 
 {{#iron_source.bidmachine_ios}}
-pod 'IronSourceBidMachineAdapter','4.3.3.1'
+pod 'IronSourceBidMachineAdapter','4.3.3.2'
 {{/iron_source.bidmachine_ios}}
 
 {{#iron_source.charboost_ios}}
-pod 'IronSourceChartboostAdapter','4.3.16.1'
+pod 'IronSourceChartboostAdapter','4.3.16.2'
 {{/iron_source.charboost_ios}}
 
 {{#iron_source.csj_ios}}
-pod 'IronSourceCSJAdapter', '4.3.2.5'
+pod 'IronSourceCSJAdapter', '4.3.2.6'
 {{/iron_source.csj_ios}}
 
 {{#iron_source.fyber_ios}}
-pod 'IronSourceFyberAdapter','4.3.31.3'
+pod 'IronSourceFyberAdapter','4.3.31.4'
 {{/iron_source.fyber_ios}}
 
 {{#iron_source.facebook_ios}}
-pod 'IronSourceFacebookAdapter','4.3.43.2'
+pod 'IronSourceFacebookAdapter','4.3.43.3'
 {{/iron_source.facebook_ios}}
 
 {{#iron_source.admob_ios}}
-pod 'IronSourceAdMobAdapter','4.3.50.0'
+pod 'IronSourceAdMobAdapter','4.3.51.0'
 {{/iron_source.admob_ios}}
 
 {{#iron_source.hyprmx_ios}}
-pod 'IronSourceHyprMXAdapter','4.3.3.4'
+pod 'IronSourceHyprMXAdapter','4.3.3.5'
 {{/iron_source.hyprmx_ios}}
 
 {{#iron_source.inmobi_ios}}
-pod 'IronSourceInMobiAdapter','4.3.20.1'
+pod 'IronSourceInMobiAdapter','4.3.20.2'
 {{/iron_source.inmobi_ios}}
 
 {{#iron_source.liftoff_ios}}
-pod 'IronSourceVungleAdapter','4.3.29.2'
+pod 'IronSourceVungleAdapter','4.3.30.1'
 {{/iron_source.liftoff_ios}}
 
 {{#iron_source.maio_ios}}
-pod 'IronSourceMaioAdapter','4.1.11.5'
+pod 'IronSourceMaioAdapter','4.1.11.6'
 {{/iron_source.maio_ios}}
 
 {{#iron_source.mintegral_ios}}
-pod 'IronSourceMintegralAdapter', '4.3.19.0'
+pod 'IronSourceMintegralAdapter', '4.3.19.1'
 {{/iron_source.mintegral_ios}}
 
 {{#iron_source.mytarget_ios}}
-pod 'IronSourceMyTargetAdapter','4.1.18.1'
+pod 'IronSourceMyTargetAdapter','4.1.18.2'
 {{/iron_source.mytarget_ios}}
 
 {{#iron_source.pangle_ios}}
-pod 'IronSourcePangleAdapter','4.3.25.0'
+pod 'IronSourcePangleAdapter','4.3.25.1'
 {{/iron_source.pangle_ios}}
 
 {{#iron_source.smaato_ios}}
-pod 'IronSourceSmaatoAdapter','4.3.10.5'
+pod 'IronSourceSmaatoAdapter','4.3.10.6'
 {{/iron_source.smaato_ios}}
 
 {{#iron_source.superawesome_ios}}
-pod 'IronSourceSuperAwesomeAdapter','4.1.7.4'
+pod 'IronSourceSuperAwesomeAdapter','4.1.7.5'
 {{/iron_source.superawesome_ios}}
 
 {{#iron_source.tencent_ios}}
-pod 'IronSourceTencentAdapter','4.3.5.5'
+pod 'IronSourceTencentAdapter','4.3.5.6'
 {{/iron_source.tencent_ios}}
 
 {{#iron_source.unityads_ios}}
-pod 'IronSourceUnityAdsAdapter','4.3.34.1'
+pod 'IronSourceUnityAdsAdapter','4.3.34.2'
 {{/iron_source.unityads_ios}}
 
