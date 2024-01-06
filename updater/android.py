@@ -72,7 +72,7 @@ url = "https://developers.is.com/ironsource-mobile/android/mediation-networks-an
 var_name = "sdk_data"
 site_values = parse_js_table(url, var_name)
 mapping = {
-        'AdColony': 'adcolony',
+        # 'AdColony': 'adcolony',
         'AppLovin': 'applovin',
         'APS': 'aps',
         'BidMachine': 'bidmachine',
@@ -89,7 +89,7 @@ mapping = {
         'Pangle': 'pangle',
         'Smaato': 'smaato',
         'SuperAwesome': 'superawesome',
-        'Tapjoy': 'tapjoy',
+        # 'Tapjoy': 'tapjoy',
         'UnityAds': 'unityads',
         # 'Yahoo': 'yahoo'
     }
