@@ -5,6 +5,7 @@
 #include <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "IronSource/IronSource.h"
+#import "IronSourceAdQuality.h"
 
 #if __has_include(<AppTrackingTransparency/ATTrackingManager.h>)
 #import <AppTrackingTransparency/ATTrackingManager.h>
@@ -238,6 +239,7 @@ void Initialize_Ext(const char* version, const char* extVersion) {
 }
 
 void Init(const char* appKey) {
+    [[IronSourceAdQuality getInstance] initializeWithAppKey:[NSString stringWithUTF8String:appKey]];
     [IronSource initWithAppKey:[NSString stringWithUTF8String:appKey] delegate:ironSourceExtInitAdDelegate];
 }
 

@@ -18,6 +18,7 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 import org.json.JSONException;
 
+import com.ironsource.adqualitysdk.sdk.IronSourceAdQuality;
 import com.ironsource.mediationsdk.IronSource;
 import com.ironsource.mediationsdk.integration.IntegrationHelper;
 import com.ironsource.mediationsdk.sdk.LevelPlayRewardedVideoListener;
@@ -66,6 +67,7 @@ public class IronSourceJNI {
     }
 
     public void init(String appKey) {
+        IronSourceAdQuality.getInstance().initialize(activity, appKey);
         IronSource.setLevelPlayRewardedVideoListener(new DefoldLevelPlayRewardedVideoListener());
         IronSource.setLevelPlayInterstitialListener(new DefoldLevelPlayInterstitialListener());
         //TODO: add AD Units android.app.Activity, java.lang.String, com.ironsource.mediationsdk.sdk.InitializationListener, com.ironsource.mediationsdk.IronSource$AD_UNIT...
