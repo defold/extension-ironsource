@@ -5,6 +5,7 @@
 #include <UIKit/UIKit.h>
 #import <AVFoundation/AVFoundation.h>
 #import "IronSource/IronSource.h"
+#import "IronSourceAdQuality.h"
 
 #if __has_include(<AppTrackingTransparency/ATTrackingManager.h>)
 #import <AppTrackingTransparency/ATTrackingManager.h>
