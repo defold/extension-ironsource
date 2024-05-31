@@ -239,7 +239,7 @@ void Initialize_Ext(const char* version, const char* extVersion) {
 }
 
 void Init(const char* appKey) {
-    [[IronSourceAdQuality getInstance] initializeWithAppKey:appKey];
+    [[IronSourceAdQuality getInstance] initializeWithAppKey:[NSString stringWithUTF8String:appKey]];
     [IronSource initWithAppKey:[NSString stringWithUTF8String:appKey] delegate:ironSourceExtInitAdDelegate];
 }
 
