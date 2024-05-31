@@ -1,5 +1,6 @@
 platform :ios, '13.0'
 pod 'IronSourceSDK','7.7.0.0'
+pod 'IronSourceAdQualitySDK','7.20.0'
 
 {{#iron_source.applovin_ios}}
 pod 'IronSourceAppLovinAdapter','4.3.42.1'
