@@ -79,7 +79,7 @@ mapping = {
         'APS': 'aps',
         'BidMachine': 'bidmachine',
         'Chartboost': 'charboost',
-        'Digital Turbine': 'fyber',
+        'DT Exchange': 'dt_exchange',
         'Facebook': 'facebook',
         'Google': 'admob',
         'HyprMX': 'hyprmx',
@@ -87,13 +87,13 @@ mapping = {
         'Liftoff Monetize': 'liftoff',
         'Maio': 'maio',
         'Mintegral': 'mintegral',
+        'Moloco': 'moloco',
         'myTarget': 'mytarget',
         'Pangle': 'pangle',
         'Smaato': 'smaato',
         'SuperAwesome': 'superawesome',
-        # 'Tapjoy': 'tapjoy',
         'UnityAds': 'unityads',
-        # 'Yahoo': 'yahoo'
+        'Yandex Ads': 'yandex_ads'
     }
 
 result = site_values['sdk_maven']

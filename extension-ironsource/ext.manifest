@@ -1,6 +1,9 @@
 name: "IronSourceExt"
 
 platforms:
+    android:
+        context:
+            excludeJars: ["(.*)/androidx-multidex.jar"]
     ios:
         context:
             frameworks: ["UIKit", "AppTrackingTransparency", "AVFoundation"]
