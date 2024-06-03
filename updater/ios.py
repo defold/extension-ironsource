@@ -80,7 +80,7 @@ mapping = {
         'BidMachine': 'bidmachine',
         'Chartboost': 'charboost',
         'CSJ': 'csj',
-        'Digital Turbine': 'fyber',
+        'DT Exchange': 'dt_exchange',
         'Facebook': 'facebook',
         'Google': 'admob',
         'HyprMX': 'hyprmx',
@@ -88,13 +88,14 @@ mapping = {
         'Liftoff Monetize': 'liftoff',
         'Maio': 'maio',
         'Mintegral': 'mintegral',
+        'Moloco': 'moloco',
         'myTarget': 'mytarget',
         'Pangle': 'pangle',
         'Smaato': 'smaato',
         'SuperAwesome': 'superawesome',
-        # 'Tapjoy': 'tapjoy',
         'Tencent': 'tencent',
         'UnityAds': 'unityads',
+        'Yandex Ads': 'yandex_ads'
     }
 
 result = ""
@@ -109,17 +110,18 @@ repositories += site_values['sdk_cocoapods']
 
 del site_values['sdk_maven']
 del site_values['sdk_cocoapods']
-for key, value in site_values.items():
+stripped_site_values = {key.strip(): value for key, value in site_values.items()}
+for key, value in stripped_site_values.items():
     if mapping.get(key) is None:
         exit(f"Adapter `{key}` was added. Please change `mappings` in this script and add adapter to `game.project` and `ext.properties`")
 
 for key, value in mapping.items():
-    if site_values.get(key) is None:
+    if stripped_site_values.get(key) is None:
         exit(f"Adapter `{key}` was removed. Please change `mappings` in this script and remove adapter from `game.project` and `ext.properties`")
 
 for key, value in mapping.items():
     result += f"{{{{#iron_source.{value}_ios}}}}\n"
-    result += remove_spaces_and_newlines(site_values[key]['code'])
+    result += remove_spaces_and_newlines(stripped_site_values[key]['code'])
     result += f"\n{{{{/iron_source.{value}_ios}}}}\n\n"
 
 result = repositories + result
