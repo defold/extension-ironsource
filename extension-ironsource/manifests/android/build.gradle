@@ -1,3 +1,5 @@
+
+
 repositories {
     mavenCentral()
     maven {url 'https://android-sdk.is.com/'}
@@ -45,8 +47,8 @@ dependencies {
 
 {{#iron_source.applovin_android}}
 // Add Applovin Network
-implementation 'com.ironsource.adapters:applovinadapter:4.3.43'
-implementation 'com.applovin:applovin-sdk:12.4.3'
+implementation 'com.ironsource.adapters:applovinadapter:4.3.44'
+implementation 'com.applovin:applovin-sdk:12.5.0'
 {{/iron_source.applovin_android}}
 
 {{#iron_source.aps_android}}
@@ -161,8 +163,8 @@ implementation 'tv.superawesome.sdk.publisher:superawesome:9.3.2'
 
 {{#iron_source.unityads_android}}
 // Add UnityAds Network
-implementation 'com.ironsource.adapters:unityadsadapter:4.3.39'
-implementation 'com.unity3d.ads:unity-ads:4.11.3'
+implementation 'com.ironsource.adapters:unityadsadapter:4.3.40'
+implementation 'com.unity3d.ads:unity-ads:4.12.0'
 {{/iron_source.unityads_android}}
 
 {{#iron_source.yandex_ads_android}}
