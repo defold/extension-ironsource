@@ -26,19 +26,13 @@ except ImportError:
         exit()
 
 def extract_text_after(text, var_name):
-    # Split the text into a list of words
     words = text.split()
-
-    # Find the index of the var_name string in the list of words
     try:
         index = words.index(var_name)
     except ValueError:
         print(f"The '{var_name}' string was not found in the text.")
         return ""
-
-    # Extract all the words after the var_name string
     result = " ".join(words[index+1:])
-
     return result
 
 def remove_spaces_and_newlines(text):
@@ -46,66 +40,54 @@ def remove_spaces_and_newlines(text):
     return cleaned_text
 
 def parse_js_table(url, var_name):
-    # Send a GET request to the URL
     response = requests.get(url)
-
-    # Parse the HTML content of the response using BeautifulSoup
     soup = BeautifulSoup(response.content, 'html.parser')
-
-    # Search for the specified JavaScript variable in the HTML content
     script = soup.find('script', string=lambda t: t and var_name in t)
     if script:
-        # Extract the JSON data from the JavaScript variable
         text = extract_text_after(script.text, var_name)
         start = text.find('{')
         end = text.rfind('}') + 1
         json_data = text[start:end]
-
-        # Parse the JSON data as a Python table
         table = json.loads(json_data)
-
         return table
     else:
         print(f"Did not find '{var_name}' in the URL '{url}'")
+        return {}
 
-# Example usage
 url = "https://developers.is.com/ironsource-mobile/ios/mediation-networks-ios/"
 var_name = "sdk_data"
 site_values = parse_js_table(url, var_name)
-# print(site_values)
+
 mapping = {
-        # 'AdColony': 'adcolony',
-        'AppLovin': 'applovin',
-        'APS': 'aps',
-        'BidMachine': 'bidmachine',
-        'Chartboost': 'charboost',
-        'CSJ': 'csj',
-        'DT Exchange': 'dt_exchange',
-        'Facebook': 'facebook',
-        'Google': 'admob',
-        'HyprMX': 'hyprmx',
-        'InMobi': 'inmobi',
-        'Liftoff Monetize': 'liftoff',
-        'Maio': 'maio',
-        'Mintegral': 'mintegral',
-        'Moloco': 'moloco',
-        'myTarget': 'mytarget',
-        'Pangle': 'pangle',
-        'Smaato': 'smaato',
-        'SuperAwesome': 'superawesome',
-        'Tencent': 'tencent',
-        'UnityAds': 'unityads',
-        'Yandex Ads': 'yandex_ads'
-    }
+    'AppLovin': 'applovin',
+    'APS': 'aps',
+    'BidMachine': 'bidmachine',
+    'Chartboost': 'charboost',
+    'CSJ': 'csj',
+    'DT Exchange': 'dt_exchange',
+    'Facebook': 'facebook',
+    'Google': 'admob',
+    'HyprMX': 'hyprmx',
+    'InMobi': 'inmobi',
+    'Liftoff Monetize': 'liftoff',
+    'Maio': 'maio',
+    'Mintegral': 'mintegral',
+    'Moloco': 'moloco',
+    'myTarget': 'mytarget',
+    'Pangle': 'pangle',
+    'Smaato': 'smaato',
+    'SuperAwesome': 'superawesome',
+    'Tencent': 'tencent',
+    'UnityAds': 'unityads',
+    'Yandex Ads': 'yandex_ads'
+}
 
 result = ""
 lines = result.splitlines()
 result = '\n'.join(lines[:-1])
-result += """
+result += "\n\n"
 
-"""
-repositories = """platform :ios, '13.0'
-"""
+repositories = """platform :ios, '13.0'\n"""
 repositories += site_values['sdk_cocoapods']
 
 del site_values['sdk_maven']
@@ -128,3 +110,99 @@ result = repositories + result
 
 with open("../extension-ironsource/manifests/ios/Podfile", "w") as file:
     file.write(result)
+
+# Parsing PLIST_NETWORK_IDS and generating Info.plist
+skadnetwork_url = "https://developers.is.com/ironsource-mobile/flutter/managing-skadnetwork-ids/"
+var_name = "PLIST_NETWORK_IDS"
+skadnetwork_data = parse_js_table(skadnetwork_url, var_name)
+
+if skadnetwork_data:
+    ironSource_ids = set(skadnetwork_data.get("ironSource", [])[1])
+    cleaned_networks = {}
+
+    for network, ids in skadnetwork_data.items():
+        if network != "ironSource":
+            cleaned_ids = [id_ for id_ in ids[1] if id_ not in ironSource_ids]
+            if cleaned_ids:
+                cleaned_networks[network] = cleaned_ids
+
+    skadnetwork_ids = list(ironSource_ids)  # Start with ironSource IDs
+else:
+    skadnetwork_ids = []
+
+plist_template = """<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd" [ <!ATTLIST key merge (keep) #IMPLIED> ]>
+<plist version="1.0">
+    <dict>
+        <key merge='keep'>SKAdNetworkItems</key>
+        <array>
+//here
+        </array>
+
+        <key>NSAppTransportSecurity</key>
+        <dict>
+            <key>NSAllowsArbitraryLoads</key>
+            <true/>
+{{#iron_source.ios_enable_ats}}
+            <key>NSAllowsLocalNetworking</key>  
+            <true/>
+            <key>NSAllowsArbitraryLoadsInWebContent</key>
+            <true/>
+            <key>NSAllowsArbitraryLoadsForMedia</key>
+            <true/>
+{{/iron_source.ios_enable_ats}}
+{{#iron_source.tapjoy_ios}}
+            <key>NSExceptionDomains</key>
+            <dict>
+               <key>localhost</key>
+               <dict>           
+                   <key>NSExceptionAllowsInsecureHTTPLoads</key>
+                   <true/>
+               </dict>
+            </dict>
+{{/iron_source.tapjoy_ios}}
+        </dict>
+
+{{#iron_source.admob_ios}}
+        <key>GADApplicationIdentifier</key>
+        <string>{{iron_source.admob_ios_appid}}</string>
+{{/iron_source.admob_ios}}
+
+        <key>NSUserTrackingUsageDescription</key>
+        <string>{{iron_source.ios_tracking_usage_description}}</string>
+
+{{#iron_source.ios_use_skan}}
+        <key>NSAdvertisingAttributionReportEndpoint</key>
+        <string>https://postbacks-is.com</string>
+{{/iron_source.ios_use_skan}}
+
+{{#iron_source.hyprmx_ios}}
+        <key>NSCameraUsageDescription</key>
+            <string>{{project.title}} requests write access to the Camera</string>
+        <key>NSCalendarsUsageDescription</key>
+            <string>{{project.title}} requests access to the Calendar</string>
+        <key>NSPhotoLibraryUsageDescription</key>
+            <string>{{project.title}} requests access to the Photo Library</string>
+        <key>NSPhotoLibraryAddUsageDescription</key>
+            <string>{{project.title}} requests write access to the Photo Library</string> 
+{{/iron_source.hyprmx_ios}}
+
+    </dict>
+</plist>
+"""
+
+# Insert the SKAdNetwork IDs into the plist template
+skadnetwork_items = "\n".join([f"            <dict><key>SKAdNetworkIdentifier</key><string>{item}</string></dict>" for item in skadnetwork_ids])
+
+# Add blocks for each network
+for network, ids in cleaned_networks.items():
+    if network in mapping:
+        network_key = mapping[network]
+        skadnetwork_items += f"\n{{{{#iron_source.{network_key}_ios}}}}\n"
+        skadnetwork_items += "\n".join([f"            <dict><key>SKAdNetworkIdentifier</key><string>{item}</string></dict>" for item in ids])
+        skadnetwork_items += f"\n{{{{/iron_source.{network_key}_ios}}}}\n"
+
+plist_content = plist_template.replace("//here", skadnetwork_items)
+
+with open("../extension-ironsource/manifests/ios/Info.plist", "w") as file:
+    file.write(plist_content)
