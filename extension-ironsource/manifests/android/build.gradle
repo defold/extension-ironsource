@@ -35,7 +35,7 @@ repositories {
 }
 dependencies {
  implementation 'com.ironsource.sdk:mediationsdk:8.1.0' 
- implementation 'com.ironsource:adqualitysdk:7.20.0'
+ implementation 'com.ironsource:adqualitysdk:7.20.2'
 
 // Remove for AMAZON:
 // --- NOT AMAZON START ---
@@ -53,8 +53,8 @@ implementation 'com.applovin:applovin-sdk:12.5.0'
 
 {{#iron_source.aps_android}}
 // Add APS Network
-implementation ('com.amazon.android:aps-sdk:9.9.3+') 
-implementation ('com.ironsource.adapters:apsadapter:4.3.12')
+implementation ('com.amazon.android:aps-sdk:9.10.0+') 
+implementation ('com.ironsource.adapters:apsadapter:4.3.13')
 implementation ("com.iabtcf:iabtcf-decoder:2.0.10")
 
 {{/iron_source.aps_android}}
@@ -74,8 +74,8 @@ implementation 'com.chartboost:chartboost-sdk:9.7.0'
 
 {{#iron_source.dt_exchange_android}}
 // Add Fyber Network (Adapter only)
-implementation 'com.ironsource.adapters:fyberadapter:4.3.30'
-implementation "com.fyber:marketplace-sdk:8.2.6"
+implementation 'com.ironsource.adapters:fyberadapter:4.3.31'
+implementation "com.fyber:marketplace-sdk:8.2.7"
 {{/iron_source.dt_exchange_android}}
 
 {{#iron_source.facebook_android}}
@@ -116,13 +116,13 @@ implementation 'com.maio:android-sdk:1.1.16@aar'
 {{/iron_source.maio_android}}
 
 {{#iron_source.mintegral_android}}
-implementation 'com.ironsource.adapters:mintegraladapter:4.3.26'
+implementation 'com.ironsource.adapters:mintegraladapter:4.3.27'
 
 //overseas market
-implementation 'com.mbridge.msdk.oversea:mbbid:16.7.31'
-implementation 'com.mbridge.msdk.oversea:reward:16.7.31'
-implementation 'com.mbridge.msdk.oversea:mbbanner:16.7.31'
-implementation 'com.mbridge.msdk.oversea:newinterstitial:16.7.31'
+implementation 'com.mbridge.msdk.oversea:mbbid:16.7.71'
+implementation 'com.mbridge.msdk.oversea:reward:16.7.71'
+implementation 'com.mbridge.msdk.oversea:mbbanner:16.7.71'
+implementation 'com.mbridge.msdk.oversea:newinterstitial:16.7.71'
 
 
 
@@ -130,8 +130,8 @@ implementation 'com.mbridge.msdk.oversea:newinterstitial:16.7.31'
 
 {{#iron_source.moloco_android}}
 // Add Moloco Network
-implementation 'com.ironsource.adapters:molocoadapter:4.3.0'
-implementation 'com.moloco.sdk:moloco-sdk:2.2.0'
+implementation 'com.ironsource.adapters:molocoadapter:4.3.3'
+implementation 'com.moloco.sdk:moloco-sdk:3.0.1'
 {{/iron_source.moloco_android}}
 
 {{#iron_source.mytarget_android}}
@@ -163,14 +163,14 @@ implementation 'tv.superawesome.sdk.publisher:superawesome:9.3.2'
 
 {{#iron_source.unityads_android}}
 // Add UnityAds Network
-implementation 'com.ironsource.adapters:unityadsadapter:4.3.40'
-implementation 'com.unity3d.ads:unity-ads:4.12.0'
+implementation 'com.ironsource.adapters:unityadsadapter:4.3.41'
+implementation 'com.unity3d.ads:unity-ads:4.12.1'
 {{/iron_source.unityads_android}}
 
 {{#iron_source.yandex_ads_android}}
 // Add Yandex Ads Network
-implementation 'com.ironsource.adapters:yandexadapter:4.3.0'
-implementation 'com.yandex.android:mobileads:7.0.1'
+implementation 'com.ironsource.adapters:yandexadapter:4.3.1'
+implementation 'com.yandex.android:mobileads:7.1.0'
 {{/iron_source.yandex_ads_android}}
 
 }
