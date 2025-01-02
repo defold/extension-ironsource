@@ -20,6 +20,10 @@ repositories {
     maven { url "https://dl-maven-android.mintegral.com/repository/mbridge_android_sdk_oversea"}
     {{/iron_source.mintegral_android}}
 
+    {{#iron_source.ogury_android}}
+    maven { url 'https://maven.ogury.co'}
+    {{/iron_source.ogury_android}}
+
     {{#iron_source.pangle_android}}
     maven {url 'https://artifact.bytedance.com/repository/pangle'}
     {{/iron_source.pangle_android}}
@@ -32,10 +36,15 @@ repositories {
     maven { url "https://aa-sdk.s3-eu-west-1.amazonaws.com/android_repo" }
     {{/iron_source.superawesome_android}}
 
+    {{#iron_source.verve_android}}
+    maven { url 'https://verve.jfrog.io/artifactory/verve-gradle-release' }
+    {{/iron_source.verve_android}}
+
 }
 dependencies {
- implementation 'com.ironsource.sdk:mediationsdk:8.1.0' 
- implementation 'com.ironsource:adqualitysdk:7.20.2'
+ implementation 'com.ironsource.sdk:mediationsdk:8.5.0' 
+
+ implementation 'com.ironsource:adqualitysdk:7.22.3'
 
 // Remove for AMAZON:
 // --- NOT AMAZON START ---
@@ -47,66 +56,72 @@ dependencies {
 
 {{#iron_source.applovin_android}}
 // Add Applovin Network
-implementation 'com.ironsource.adapters:applovinadapter:4.3.44'
-implementation 'com.applovin:applovin-sdk:12.5.0'
+implementation 'com.ironsource.adapters:applovinadapter:4.3.48'
+implementation 'com.applovin:applovin-sdk:13.0.1'
 {{/iron_source.applovin_android}}
 
 {{#iron_source.aps_android}}
 // Add APS Network
 implementation ('com.amazon.android:aps-sdk:9.10.0+') 
-implementation ('com.ironsource.adapters:apsadapter:4.3.13')
+implementation ('com.ironsource.adapters:apsadapter:4.3.15')
 implementation ("com.iabtcf:iabtcf-decoder:2.0.10")
 
 {{/iron_source.aps_android}}
 
 {{#iron_source.bidmachine_android}}
 // Add BidMachine Network
-implementation 'com.ironsource.adapters:bidmachineadapter:4.3.7'
-implementation 'io.bidmachine:ads:2.7.0'
+implementation 'com.ironsource.adapters:bidmachineadapter:4.3.10'
+implementation 'io.bidmachine:ads:3.1.1'
 {{/iron_source.bidmachine_android}}
+
+{{#iron_source.bigo_android}}
+// Add Bigo Network
+implementation 'com.ironsource.adapters:bigoadapter:4.3.5'
+implementation 'com.bigossp:bigo-ads:5.0.2'
+{{/iron_source.bigo_android}}
 
 {{#iron_source.charboost_android}}
 // Add Chartboost Network
-implementation 'com.ironsource.adapters:chartboostadapter:4.3.16'
-implementation 'com.chartboost:chartboost-sdk:9.7.0'
+implementation 'com.ironsource.adapters:chartboostadapter:4.3.18'
+implementation 'com.chartboost:chartboost-sdk:9.8.2'
 
 {{/iron_source.charboost_android}}
 
 {{#iron_source.dt_exchange_android}}
 // Add Fyber Network (Adapter only)
-implementation 'com.ironsource.adapters:fyberadapter:4.3.31'
-implementation "com.fyber:marketplace-sdk:8.2.7"
+implementation 'com.ironsource.adapters:fyberadapter:4.3.35'
+implementation "com.fyber:marketplace-sdk:8.3.3"
 {{/iron_source.dt_exchange_android}}
 
 {{#iron_source.facebook_android}}
 // Add Facebook Network
-implementation 'com.ironsource.adapters:facebookadapter:4.3.46'
-implementation 'com.facebook.android:audience-network-sdk:6.17.0'
+implementation 'com.ironsource.adapters:facebookadapter:4.3.48'
+implementation 'com.facebook.android:audience-network-sdk:6.18.0'
 {{/iron_source.facebook_android}}
 
 {{#iron_source.admob_android}}
 // Add AdMob and Ad Manager Network
-implementation 'com.google.android.gms:play-services-ads:23.0.0'
-implementation 'com.ironsource.adapters:admobadapter:4.3.43'
+implementation 'com.google.android.gms:play-services-ads:23.6.0'
+implementation 'com.ironsource.adapters:admobadapter:4.3.48'
 {{/iron_source.admob_android}}
 
 {{#iron_source.hyprmx_android}}
 // Add HyprMX Network
-implementation 'com.ironsource.adapters:hyprmxadapter:4.3.8'
-implementation 'com.hyprmx.android:HyprMX-SDK:6.2.3'
+implementation 'com.ironsource.adapters:hyprmxadapter:4.3.10'
+implementation 'com.hyprmx.android:HyprMX-SDK:6.4.2'
 {{/iron_source.hyprmx_android}}
 
 {{#iron_source.inmobi_android}}
 // Add InMobi Network
-implementation 'com.ironsource.adapters:inmobiadapter:4.3.24' 
-implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.6.6' 
+implementation 'com.ironsource.adapters:inmobiadapter:4.3.28' 
+implementation 'com.inmobi.monetization:inmobi-ads-kotlin:10.8.0' 
 
 {{/iron_source.inmobi_android}}
 
 {{#iron_source.liftoff_android}}
 // Add Vungle Network
-implementation 'com.ironsource.adapters:vungleadapter:4.3.24'
-implementation 'com.vungle:vungle-ads:7.3.2'
+implementation 'com.ironsource.adapters:vungleadapter:4.3.27'
+implementation 'com.vungle:vungle-ads:7.4.2'
 {{/iron_source.liftoff_android}}
 
 {{#iron_source.maio_android}}
@@ -116,61 +131,75 @@ implementation 'com.maio:android-sdk:1.1.16@aar'
 {{/iron_source.maio_android}}
 
 {{#iron_source.mintegral_android}}
-implementation 'com.ironsource.adapters:mintegraladapter:4.3.27'
+implementation 'com.ironsource.adapters:mintegraladapter:4.3.33'
 
 //overseas market
-implementation 'com.mbridge.msdk.oversea:mbbid:16.7.71'
-implementation 'com.mbridge.msdk.oversea:reward:16.7.71'
-implementation 'com.mbridge.msdk.oversea:mbbanner:16.7.71'
-implementation 'com.mbridge.msdk.oversea:newinterstitial:16.7.71'
-
-
-
+implementation 'com.mbridge.msdk.oversea:mbridge_android_sdk:16.8.91'
 {{/iron_source.mintegral_android}}
 
 {{#iron_source.moloco_android}}
 // Add Moloco Network
-implementation 'com.ironsource.adapters:molocoadapter:4.3.3'
-implementation 'com.moloco.sdk:moloco-sdk:3.0.1'
+implementation 'com.ironsource.adapters:molocoadapter:4.3.9'
+implementation 'com.moloco.sdk:moloco-sdk:3.4.0'
 {{/iron_source.moloco_android}}
+
+{{#iron_source.mobile_fuse_android}}
+// Add MobileFuse Network
+implementation 'com.ironsource.adapters:mobilefuseadapter:4.3.3'
+implementation 'com.mobilefuse.sdk:mobilefuse-sdk-core:1.8.2'
+{{/iron_source.mobile_fuse_android}}
+
+{{#iron_source.ogury_android}}
+// Add Ogury Network
+implementation 'com.ironsource.adapters:oguryadapter:4.3.1' 
+implementation 'co.ogury:ogury-sdk:5.8.0'
+{{/iron_source.ogury_android}}
 
 {{#iron_source.mytarget_android}}
 // Add myTarget Network
-implementation 'com.ironsource.adapters:mytargetadapter:4.1.19'
-implementation 'com.my.target:mytarget-sdk:5.20.0'
+implementation 'com.ironsource.adapters:mytargetadapter:4.1.20'
+implementation 'com.my.target:mytarget-sdk:5.22.1'
 implementation 'com.google.android.exoplayer:exoplayer:2.17.1'
 
 {{/iron_source.mytarget_android}}
 
 {{#iron_source.pangle_android}}
 // Add Pangle Network
-implementation 'com.ironsource.adapters:pangleadapter:4.3.26'
-implementation 'com.pangle.global:ads-sdk:5.8.0.8'
+implementation 'com.ironsource.adapters:pangleadapter:4.3.32'
+implementation 'com.pangle.global:ads-sdk:6.4.0.3'
 {{/iron_source.pangle_android}}
 
 {{#iron_source.smaato_android}}
 // Add Smaato Network
-implementation 'com.ironsource.adapters:smaatoadapter:4.3.10'
-implementation 'com.smaato.android.sdk:smaato-sdk-banner:22.6.0'
-implementation 'com.smaato.android.sdk:smaato-sdk-in-app-bidding:22.6.0'
+implementation 'com.ironsource.adapters:smaatoadapter:4.3.12'
+implementation 'com.smaato.android.sdk:smaato-sdk-banner:22.7.1'
+implementation 'com.smaato.android.sdk:smaato-sdk-in-app-bidding:22.7.1'
+implementation 'com.smaato.android.sdk:smaato-sdk-interstitial:22.7.1'
+implementation 'com.smaato.android.sdk:smaato-sdk-rewarded-ads:22.7.1'
 {{/iron_source.smaato_android}}
 
 {{#iron_source.superawesome_android}}
 // Add SuperAwesome Network
-implementation 'com.ironsource.adapters:superawesomeadapter:4.1.9'
-implementation 'tv.superawesome.sdk.publisher:superawesome:9.3.2'
+implementation 'com.ironsource.adapters:superawesomeadapter:4.1.10'
+implementation 'tv.superawesome.sdk.publisher:superawesome:9.4.0'
 {{/iron_source.superawesome_android}}
 
 {{#iron_source.unityads_android}}
 // Add UnityAds Network
-implementation 'com.ironsource.adapters:unityadsadapter:4.3.41'
-implementation 'com.unity3d.ads:unity-ads:4.12.1'
+implementation 'com.ironsource.adapters:unityadsadapter:4.3.46'
+implementation 'com.unity3d.ads:unity-ads:4.12.5'
 {{/iron_source.unityads_android}}
+
+{{#iron_source.verve_android}}
+// Add Verve Network
+implementation 'com.ironsource.adapters:verveadapter:4.3.4'
+implementation 'net.pubnative:hybid.sdk:3.2.1'
+{{/iron_source.verve_android}}
 
 {{#iron_source.yandex_ads_android}}
 // Add Yandex Ads Network
-implementation 'com.ironsource.adapters:yandexadapter:4.3.1'
-implementation 'com.yandex.android:mobileads:7.1.0'
+implementation 'com.ironsource.adapters:yandexadapter:4.3.7'
+implementation 'com.yandex.android:mobileads:7.8.0'
 {{/iron_source.yandex_ads_android}}
 
 }
