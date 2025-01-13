@@ -62,6 +62,7 @@ mapping = {
     'AppLovin': 'applovin',
     'APS': 'aps',
     'BidMachine': 'bidmachine',
+    'BIGO Ads': 'bigo',
     'Chartboost': 'charboost',
     'CSJ': 'csj',
     'DT Exchange': 'dt_exchange',
@@ -73,12 +74,15 @@ mapping = {
     'Maio': 'maio',
     'Mintegral': 'mintegral',
     'Moloco': 'moloco',
+    'MobileFuse': 'mobile_fuse',
+    'Ogury': 'ogury',
     'myTarget': 'mytarget',
     'Pangle': 'pangle',
     'Smaato': 'smaato',
     'SuperAwesome': 'superawesome',
     'Tencent': 'tencent',
     'UnityAds': 'unityads',
+    'Verve': 'verve',
     'Yandex Ads': 'yandex_ads'
 }
 
