@@ -6,6 +6,6 @@ platforms:
             excludeJars: ["(.*)/androidx-multidex.jar"]
     ios:
         context:
-            frameworks: ["UIKit", "AppTrackingTransparency", "AVFoundation"]
+            frameworks: ["UIKit", "AppTrackingTransparency", "AVFoundation", "JavaScriptCore", "WebKit", "AdSupport", "SystemConfiguration"]
             linkFlags:  ["-ObjC", "-Wl,-rpath,/usr/lib/swift", "-Wl,-rpath,@executable_path/Frameworks"]
-            libs:       ["swiftCompatibility50", "swiftCompatibility51"]
+            libs:       ["swiftCompatibility50", "swiftCompatibility51", "z", "sqlite3.0"]
