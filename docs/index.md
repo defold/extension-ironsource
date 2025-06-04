@@ -43,6 +43,3 @@ If you get such an error, make sure that you initialize ADS right and use test p
 ## Source code
 
 The source code is available on [GitHub](https://github.com/defold/extension-ironsource)
-
-
-## API reference
