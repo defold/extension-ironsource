@@ -1,0 +1,7 @@
+# Native LevelPlay code loads the extension's Java classes and methods by name through JNI.
+-keep,allowoptimization class com.defold.levelplay.** { *; }
+
+# The extension invokes this optional APS entry point through reflection.
+-keep,allowoptimization class com.amazon.device.ads.AdRegistration {
+    public static com.amazon.device.ads.AdRegistration getInstance(java.lang.String, android.content.Context);
+}
