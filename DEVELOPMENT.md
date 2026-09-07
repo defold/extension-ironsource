@@ -58,7 +58,7 @@ java -jar bob.jar \
   --architectures arm64-android \
   --variant debug \
   --bundle-format apk \
-  --build-server https://build-stage.defold.com \
+  --build-server https://build.defold.com \
   resolve distclean build bundle
 
 java -jar bob.jar \
@@ -66,7 +66,7 @@ java -jar bob.jar \
   --platform arm64-ios \
   --architectures arm64-ios \
   --variant debug \
-  --build-server https://build-stage.defold.com \
+  --build-server https://build.defold.com \
   resolve distclean build bundle
 ```
 
